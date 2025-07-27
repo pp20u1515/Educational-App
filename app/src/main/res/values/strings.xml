@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Programming C</string>
+    <string name="password">password</string>
+    <string name="username">username</string>
+    <string name="log_in">Log In</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="next">Next</string>
+</resources>

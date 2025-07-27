@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentMainScreen">
+
+    <activity
+        android:id="@+id/activityMainScreen"
+        android:name="com.example.programmingc.presentation.ui.MainActivity"
+        android:label="activity_main_screen"
+        tools:layout="@layout/activity_main_screen" />
+
+    <fragment
+        android:id="@+id/fragmentSuccRecovery"
+        android:name="com.example.programmingc.presentation.ui.auth.SuccessRecoveryFragment"
+        android:label="fragment_recovery_successful"
+        tools:layout="@layout/fragment_successfull_recovery">
+        <action
+            android:id="@+id/action_fragmentSuccRecovery_to_fragment_auth"
+            app:destination="@id/fragment_auth" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentCreateAcc"
+        android:name="com.example.programmingc.presentation.ui.auth.CreateAccFragment"
+        android:label="fragment_create_acc"
+        tools:layout="@layout/fragment_create_acc" >
+
+        <action
+            android:id="@+id/action_fragmentCreateAcc_to_fragment_auth"
+            app:destination="@id/fragment_auth" />
+        <action
+            android:id="@+id/action_fragmentCreateAcc_to_fragmentRecover"
+            app:destination="@id/fragmentRecover" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentIntroduction"
+        android:name="com.example.programmingc.presentation.ui.auth.FragmentIntroduction"
+        android:label="fragment_introduction"
+        tools:layout="@layout/fragment_introduction">
+
+        <action
+            android:id="@+id/action_fragmentIntroduction_to_fragmentMainScreen"
+            app:destination="@id/fragmentMainScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentRecover"
+        android:name="com.example.programmingc.presentation.ui.auth.RecoveryFragment"
+        android:label="fragment_recover"
+        tools:layout="@layout/fragment_recover" >
+        <action
+            android:id="@+id/action_fragmentRecover_to_fragmentSuccRecovery"
+            app:destination="@id/fragmentSuccRecovery" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentMainScreen"
+        android:name="com.example.programmingc.presentation.ui.FragmentMainScreen"
+        android:label="fragmentMainScreen"
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_fragmentMainScreen_to_fragmentMenuBarPage2"
+            app:destination="@id/fragmentMenuBarPage" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentMenuBarPage"
+        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.menubar.FragmentMenuBarPage"
+        android:label="fragmentMenuBarPage"
+        tools:layout="@layout/fragment_menubar_page">
+
+        <action
+            android:id="@+id/action_fragmentMenuBarPage_to_fragmentLevels"
+            app:destination="@id/fragmentLevels" />
+        <action
+            android:id="@+id/action_fragmentMenuBarPage_to_fragmentDiamonds2"
+            app:destination="@id/fragmentDiamonds" />
+        <action
+            android:id="@+id/action_fragmentMenuBarPage_to_fragmentMainScreen2"
+            app:destination="@id/fragmentMainScreen" />
+        <action
+            android:id="@+id/action_fragmentMenuBarPage_to_fragment_auth"
+            app:destination="@id/fragment_auth" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentDiamonds"
+        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.FragmentDiamonds"
+        android:label="fragment_diamonds"
+        tools:layout="@layout/fragment_diamonds">
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentLevels"
+        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.FragmentLevels"
+        android:label="fragment_levels"
+        tools:layout="@layout/fragment_levels">
+
+        <action
+            android:id="@+id/action_fragmentLevels_to_fragmentMainScreen"
+            app:destination="@id/fragmentMainScreen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_auth"
+        android:name="com.example.programmingc.presentation.ui.auth.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth">
+
+        <argument
+            android:name = "credentials"
+            android:defaultValue="@null"
+            app:argType="com.example.programmingc.presentation.model.UserCredentialsViewData"
+            app:nullable="true"/>
+        <action
+            android:id="@+id/action_fragment_auth_to_fragmentCreateAcc"
+            app:destination="@id/fragmentCreateAcc" />
+        <action
+            android:id="@+id/action_fragment_auth_to_fragmentRecover"
+            app:destination="@id/fragmentRecover" />
+        <action
+            android:id="@+id/action_fragment_auth_to_fragmentIntroduction"
+            app:destination="@id/fragmentIntroduction" />
+
+    </fragment>
+
+</navigation>

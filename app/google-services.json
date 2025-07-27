@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "828965009315",
+    "project_id": "programmingc-33c6b",
+    "storage_bucket": "programmingc-33c6b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828965009315:android:f4bec66ed431a508f68c16",
+        "android_client_info": {
+          "package_name": "com.example.programmingc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDN15wbG_l7n4j0zQdJ3SPWbI9bbwYybe0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

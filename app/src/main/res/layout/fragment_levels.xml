@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textLevels"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Levels"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/buttonBeginner"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/rounded_button"
+        android:layout_marginBottom="40dp"
+        android:layout_marginHorizontal="50dp"
+        android:text="Beginner Level"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/buttonMiddle"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/rounded_button"
+        android:layout_marginBottom="40dp"
+        android:layout_marginHorizontal="50dp"
+        android:text="Middle Level"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/buttonPro"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="50dp"
+        android:background="@drawable/rounded_button"
+        android:text="Pro Level"
+        android:textColor="@color/white"/>
+
+
+</LinearLayout>
