@@ -13,13 +13,13 @@ class CredentialRepository @Inject constructor(
     private val networkDaoService: INetworkDaoService
 ): ICredentialRepository{
     override suspend fun authenticate(credential: Credential) {
-        val owner = networkDaoService.authenticate(credential)
+        val user = networkDaoService.authenticate(credential)
 
-        if (owner == null){
-            error("Ошибка авторизации")
+        if (user == null){
+            //error("Ошибка авторизации")
         }
         else{
-            userDaoService.insert(owner)
+            userDaoService.insert(user)
             credentialDaoService.insert(credential)
         }
     }

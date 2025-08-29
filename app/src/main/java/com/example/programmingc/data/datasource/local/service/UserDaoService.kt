@@ -15,11 +15,19 @@ class UserDaoService @Inject constructor(database: Database) {
         userDao.insert(user.toEntity())
     }
 
-    suspend fun insertAll(users: List<User>){
-        userDao.insertAll(users.map { it.toEntity() })
-    }
-
     fun readAll(): Flow<List<User>> {
         return userDao.readAll().map { users-> users.map { it.toDomain() } }
+    }
+
+    fun readByEmail(email: String): User?{
+        return userDao.readByEmail(email)?.toDomain()
+    }
+
+    suspend fun update(user: User){
+        return userDao.update(user.toEntity())
+    }
+
+    suspend fun delete(user: User){
+        return userDao.delete(user.toEntity())
     }
 }

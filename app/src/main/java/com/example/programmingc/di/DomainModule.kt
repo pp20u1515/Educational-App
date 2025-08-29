@@ -19,7 +19,7 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 class DomainModule {
     @Provides
-    fun proviceUserRepository(
+    fun provideUserRepository(
         userDaoService: UserDaoService,
         networkDaoService: NetworkDaoService
     ): IUserRepository{

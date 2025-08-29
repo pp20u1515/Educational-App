@@ -5,7 +5,7 @@ plugins {
     id ("androidx.navigation.safeargs.kotlin")
     id ("kotlin-kapt")
     id ("dagger.hilt.android.plugin")
-    id ("com.google.gms.google-services")
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -59,14 +59,14 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.8.5")
 
     // Firebase
-    implementation (platform("com.google.firebase:firebase-bom:33.7.0"))
-    //implementation (platform("com.google.firebase:firebase-bom:33.8.0"))
+    implementation (platform("com.google.firebase:firebase-bom:34.1.0"))
     implementation ("com.google.firebase:firebase-analytics")
     implementation ("com.google.firebase:firebase-auth")
-    implementation ("com.google.firebase:firebase-firestore:25.1.1")
-    implementation ("com.google.firebase:firebase-appcheck:18.0.0")
+    implementation ("com.google.firebase:firebase-firestore:26.0.0")
+    implementation ("com.google.firebase:firebase-appcheck:19.0.0")
     implementation ("com.google.firebase:firebase-appcheck-ktx:18.0.0")
     implementation ("com.google.firebase:firebase-appcheck-safetynet:16.1.2")
+    implementation("com.google.android.gms:play-services-auth:21.4.0")
 
     // library hilt
     implementation("com.google.dagger:hilt-android:2.56.2")
@@ -80,6 +80,11 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.9.3")
 
     implementation("androidx.room:room-runtime:2.6.1")
+
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation("com.squareup.okhttp3:okhttp:5.1.0")
+    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.1.0")
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:2.6.1")

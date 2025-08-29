@@ -2,8 +2,7 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
-
-    id("com.google.gms.google-services") version "4.4.3" apply false
+    alias(libs.plugins.google.gms.google.services) apply false
 }
 
 buildscript {
@@ -15,6 +14,5 @@ buildscript {
         classpath(libs.androidx.navigation.safe.args.gradle.plugin)
         classpath(libs.gradle.kotlin)
         classpath(libs.hilt.android.gradle.plugin)
-        classpath("com.google.gms:google-services:4.4.3")
     }
 }

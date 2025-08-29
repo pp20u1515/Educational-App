@@ -4,6 +4,7 @@ import com.example.programmingc.datasource.remote.model.CredentialDto
 import com.example.programmingc.datasource.remote.model.UserDto
 import com.example.programmingc.domain.model.Credential
 import com.example.programmingc.domain.model.User
+import com.google.firebase.auth.FirebaseUser
 
 // region domain->dto
 fun User.toDto(): UserDto = UserDto(
@@ -13,6 +14,7 @@ fun User.toDto(): UserDto = UserDto(
 )
 
 fun Credential.toDto(): CredentialDto = CredentialDto(
+    id = id,
     email = email,
     password = password
 )
@@ -26,7 +28,14 @@ fun UserDto.toDomain(): User = User(
 )
 
 fun CredentialDto.toDomain(): Credential = Credential(
+    id = id,
     email = email,
     password = password
+)
+
+fun FirebaseUser.toDomain(): User = User(
+    id = uid,
+    email = email ?: "",
+    password = displayName ?: ""
 )
 // endregion

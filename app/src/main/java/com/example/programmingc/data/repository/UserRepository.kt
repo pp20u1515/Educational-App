@@ -11,18 +11,26 @@ class UserRepository @Inject constructor(
     private val userDaoService: UserDaoService,
     private val networkDaoService: INetworkDaoService
 ): IUserRepository {
-    override suspend fun update() {
-        /*val users = networkDaoService.getUsers()
 
-        if (users == null){
-            error("Ошибка обновления данных")
-        }
-        else{
-            userDaoService.insertAll(users)
-        }*/
+    override suspend fun insert(user: User) {
+        userDaoService.insert(user)
+        networkDaoService
+    }
+
+    override suspend fun read() {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun delete() {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun update() {
+
     }
 
     override fun getAll(): Flow<List<User>> {
-        return userDaoService.readAll()
+        TODO("Not yet implemented")
+        //return userDaoService.readAll()
     }
 }

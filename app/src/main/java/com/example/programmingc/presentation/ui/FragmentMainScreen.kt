@@ -30,7 +30,7 @@ class FragmentMainScreen: BaseMenuBar() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        super.onViewCreated(view, savedInstanceState)
 
         val lessons = listOf(
             Lesson(1, "Introduction", "Basics of C", listOf(R.drawable.image_study, R.drawable.image_c, R.drawable.baseline_play_arrow)),
@@ -43,5 +43,10 @@ class FragmentMainScreen: BaseMenuBar() {
         binding.lessonRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.lessonRecyclerView.adapter = LessonAdapter(lessons)
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

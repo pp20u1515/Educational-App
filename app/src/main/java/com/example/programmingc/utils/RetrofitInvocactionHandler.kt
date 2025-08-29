@@ -7,7 +7,7 @@ import com.example.programmingc.datasource.remote.model.UserDto
 import java.lang.reflect.InvocationHandler
 import java.lang.reflect.Method
 import java.util.UUID
-
+/*
 class RetrofitInvocactionHandler :InvocationHandler {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun invoke(proxy: Any, method: Method, args: Array<out Any>): Any {
@@ -53,4 +53,4 @@ class RetrofitInvocactionHandler :InvocationHandler {
             isSuccessfull = true
         )
     }
-}
+}*/

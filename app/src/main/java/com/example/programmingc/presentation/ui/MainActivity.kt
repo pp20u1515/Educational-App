@@ -10,27 +10,21 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.programmingc.R
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
-import com.google.firebase.firestore.firestore
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import com.example.programmingc.databinding.ActivityMainScreenBinding
-import com.example.programmingc.presentation.ui.manager.AuthManager
-import com.google.firebase.FirebaseApp
+import com.example.programmingc.presentation.ui.auth.AuthViewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainScreenBinding? = null
     private val binding: ActivityMainScreenBinding get() = _binding!!
     private val viewModel: MainViewModel by viewModels()
+    private val authViewModel: AuthViewModel by viewModels()
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        FirebaseApp.initializeApp(this)
-        configureFirebaseServices()
 
         _binding = ActivityMainScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -46,21 +40,21 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         setupNavigationDrawer()
-        viewModel.checkAuthState()
+        authViewModel.checkAuthState()
 
         lifecycleScope.launch {
-            viewModel.authState.collect { state ->
+            authViewModel.authState.collect { state ->
                 when (state) {
-                    AuthManager.AuthState.Loading -> {
+                    AuthViewModel.AuthState.Loading -> {
                         // TODO
                     }
-                    AuthManager.AuthState.Authenticated -> {
+                    AuthViewModel.AuthState.Authenticated -> {
                         navController.navigate(R.id.fragmentMainScreen)
                     }
-                    AuthManager.AuthState.Unauthenticated -> {
+                    AuthViewModel.AuthState.Unauthenticated -> {
                         navController.navigate(R.id.fragment_auth)
                     }
-                    is AuthManager.AuthState.Error -> showError(state.message)
+                    is AuthViewModel.AuthState.Error -> showError(state.message)
                 }
             }
         }
@@ -88,12 +82,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun configureFirebaseServices(){
-        if ("true".toBoolean()){
-            Firebase.auth.useEmulator(LOCALHOST, AUTH_PORT)
-            Firebase.firestore.useEmulator(LOCALHOST, FIRESTORE_PORT)
-        }
     }
 }

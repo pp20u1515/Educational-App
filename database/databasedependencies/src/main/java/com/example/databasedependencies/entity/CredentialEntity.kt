@@ -1,12 +1,12 @@
 package com.example.databasedependencies.entity
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Entity(tableName = "CredentialEntity")
+@Entity(tableName = "Credentials")
 data class CredentialEntity (
-    @ColumnInfo("email")
+    @PrimaryKey
+    val id: Long = 0L,
     val email: String,
-    @ColumnInfo("password")
     val password: String
 )

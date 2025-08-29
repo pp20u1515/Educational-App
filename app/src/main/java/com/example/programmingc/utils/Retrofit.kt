@@ -1,7 +1,7 @@
 package com.example.programmingc.utils
 
 import java.lang.reflect.Proxy
-
+/*
 class Retrofit {
     class Builder{
         fun baseUrl(url: String): Builder{
@@ -19,4 +19,4 @@ class Retrofit {
         ) as T
     }
 
-}
+}*/

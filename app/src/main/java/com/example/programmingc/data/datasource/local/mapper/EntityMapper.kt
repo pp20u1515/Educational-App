@@ -7,6 +7,7 @@ import com.example.programmingc.domain.model.User
 
 // region entity -> domain
 fun CredentialEntity.toDomain(): Credential = Credential(
+    id = id,
     email = email,
     password = password
 )
@@ -14,19 +15,22 @@ fun CredentialEntity.toDomain(): Credential = Credential(
 fun UserEntity.toDomain(): User = User(
     id = id,
     email = email,
-    password = password
+    password = password,
+    registrationDate = registrationDate
 )
 // endregion
 
 // region domain -> entity
 fun Credential.toEntity(): CredentialEntity = CredentialEntity(
+    id = id,
     email = email,
-    password = password
+    password = password,
 )
 
 fun User.toEntity(): UserEntity = UserEntity(
     id = id,
     email = email,
-    password = password
+    password = password,
+    registrationDate = registrationDate
 )
 // endregion

@@ -1,15 +1,13 @@
 package com.example.databasedependencies.entity
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
-import java.util.UUID
+import androidx.room.PrimaryKey
 
-@Entity(tableName = "UserEntity")
+@Entity(tableName = "Users")
 data class UserEntity (
-    @ColumnInfo("id")
-    val id: UUID,
-    @ColumnInfo("email")
+    @PrimaryKey
+    val id: String,
     val email: String,
-    @ColumnInfo("password")
-    val password: String
+    val password: String,
+    val registrationDate: Long = System.currentTimeMillis()
 )
