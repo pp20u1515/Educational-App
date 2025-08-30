@@ -1,7 +1,6 @@
 package com.example.programmingc.presentation.ui
 
 import android.os.Bundle
-import android.view.Gravity
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,14 +12,12 @@ import com.example.programmingc.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import com.example.programmingc.databinding.ActivityMainScreenBinding
-import com.example.programmingc.presentation.ui.auth.AuthViewModel
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainScreenBinding? = null
     private val binding: ActivityMainScreenBinding get() = _binding!!
     private val viewModel: MainViewModel by viewModels()
-    private val authViewModel: AuthViewModel by viewModels()
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,21 +37,21 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         setupNavigationDrawer()
-        authViewModel.checkAuthState()
+        viewModel.checkAuthState()
 
         lifecycleScope.launch {
-            authViewModel.authState.collect { state ->
+            viewModel.authState.collect { state ->
                 when (state) {
-                    AuthViewModel.AuthState.Loading -> {
+                    MainViewModel.AuthState.Loading -> {
                         // TODO
                     }
-                    AuthViewModel.AuthState.Authenticated -> {
+                    MainViewModel.AuthState.Authenticated -> {
                         navController.navigate(R.id.fragmentMainScreen)
                     }
-                    AuthViewModel.AuthState.Unauthenticated -> {
+                    MainViewModel.AuthState.Unauthenticated -> {
                         navController.navigate(R.id.fragment_auth)
                     }
-                    is AuthViewModel.AuthState.Error -> showError(state.message)
+                    is MainViewModel.AuthState.Error -> showError(state.message)
                 }
             }
         }
@@ -74,13 +71,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun openDrawer(){
-        if (!binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
+    private fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun openDrawer() {
+        if (!binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
     }
 
-    private fun showError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

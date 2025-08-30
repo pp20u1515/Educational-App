@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +20,6 @@ class AuthFragment: Fragment() {
     private var _binding: FragmentAuthBinding? = null
     private val binding: FragmentAuthBinding  get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
-    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +49,7 @@ class AuthFragment: Fragment() {
 
             if (checkInput(email, password)) {
                 lifecycleScope.launch {
-                    authViewModel.authenticate(email, password)
+                    viewModel.authenticate(email, password)
                 }
             } else {
                 Toast.makeText(requireContext(), "Email and password cant be empty", Toast.LENGTH_SHORT).show()
