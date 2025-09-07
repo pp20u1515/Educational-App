@@ -27,7 +27,6 @@ class FragmentLevels: BaseMenuBar() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentLevelsBinding.inflate(inflater, container, false)
-        menuViewModel.menuBarVisible.value = true
 
         binding.buttonBeginner.setOnClickListener{
             direction = FragmentLevelsDirections.actionFragmentLevelsToFragmentMainScreen()

@@ -1,6 +1,7 @@
-package com.example.programmingc.presentation.ui.objects.visiable_objects
+package com.example.programmingc.domain.model
 
-data class Lesson (
+data class LessonWindow(
+    val id: String,
     val number: Int,
     val title: String,
     val text: String,

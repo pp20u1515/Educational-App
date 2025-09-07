@@ -19,6 +19,7 @@ firebaseCrashlyticsBuildtools = "3.0.4"
 recyclerview = "1.4.0"
 googleGmsGoogleServices = "4.4.3"
 room = "2.7.1"
+benchmarkCommon = "1.4.0"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx" }
@@ -66,6 +67,7 @@ androidx-room-common-jvm = { group = "androidx.room", name = "room-common-jvm", 
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlyticsBuildtools" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room"}
+androidx-benchmark-common = { group = "androidx.benchmark", name = "benchmark-common", version.ref = "benchmarkCommon" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -38,7 +38,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.FragmentMenuBar"/>
+                app:layout_constraintBottom_toTopOf="@id/container"
+                android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.FragmentMenuBar"
+                tools:layout="@layout/fragment_menubar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

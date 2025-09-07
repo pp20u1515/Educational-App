@@ -54,6 +54,8 @@ dependencies {
     implementation ("androidx.fragment:fragment-ktx:1.8.5")
     implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.9.0")
 
+    implementation("com.google.code.gson:gson:2.10.1")
+
     // jet compose navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.5")
@@ -73,6 +75,7 @@ dependencies {
     implementation ("androidx.hilt:hilt-navigation-fragment:1.2.0")
     implementation(libs.firebase.crashlytics.buildtools)
     implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.benchmark.common)
     kapt ("com.google.dagger:hilt-android-compiler:2.56.2")
     kapt ("androidx.hilt:hilt-compiler:1.2.0")
 

@@ -1,5 +1,6 @@
 package com.example.programmingc.presentation.ui
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,14 +27,18 @@ class MainViewModel @Inject constructor(
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
 
     // Видимость меню
-    val menuBarVisible = MutableLiveData(true)
+    val _menuBarVisible = MutableLiveData(true)
+    val menuBarVisible: LiveData<Boolean> = _menuBarVisible
 
     // Проверка состояния аутентификации
     fun checkAuthState() {
         viewModelScope.launch {
             val result = checkAuthStateUseCase()
             _authState.value = if (result.isSuccess) {
-                if (result.getOrNull() == true) AuthState.Authenticated else AuthState.Unauthenticated
+                if (result.getOrNull() == true)
+                    AuthState.Authenticated
+                else
+                    AuthState.Unauthenticated
             } else {
                 AuthState.Error(result.exceptionOrNull()?.message ?: "Auth check failed")
             }
@@ -57,6 +62,18 @@ class MainViewModel @Inject constructor(
                 AuthState.Error(result.exceptionOrNull()?.message ?: "Logout failed")
             }
         }
+    }
+
+    fun showMenu(){
+        _menuBarVisible.value = true
+    }
+
+    fun hideMenu(){
+        _menuBarVisible.value = false
+    }
+
+    fun setMenuVisiable(visiable: Boolean){
+        _menuBarVisible.value = visiable
     }
 
     sealed class AuthState {

@@ -13,10 +13,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import com.example.programmingc.databinding.FragmentAuthBinding
 import com.example.programmingc.presentation.additional_functions.checkInput
 import com.example.programmingc.presentation.ui.MainViewModel
+import com.example.programmingc.presentation.ui.objects.visiable_objects.menubar.BaseMenuBar
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AuthFragment: Fragment() {
+class AuthFragment: BaseMenuBar() {
     private var _binding: FragmentAuthBinding? = null
     private val binding: FragmentAuthBinding  get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
@@ -32,7 +33,6 @@ class AuthFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.menuBarVisible.value = false
 
         setupClickListener()
     }
@@ -65,6 +65,10 @@ class AuthFragment: Fragment() {
             val direction = AuthFragmentDirections.actionFragmentAuthToFragmentRecover()
             findNavController().navigate(direction)
         }
+    }
+
+    override fun shouldShowMenu(): Boolean {
+        return false
     }
 
     companion object {

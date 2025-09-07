@@ -23,8 +23,6 @@ class FragmentDiamonds: BaseMenuBar() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDiamondsBinding.inflate(inflater, container, false)
-        menuViewModel.menuBarVisible.value = true
-
 
         return binding.root
     }

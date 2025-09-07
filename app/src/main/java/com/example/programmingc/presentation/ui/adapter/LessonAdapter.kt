@@ -3,39 +3,43 @@ package com.example.programmingc.presentation.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.programmingc.R
-import com.example.programmingc.presentation.ui.objects.visiable_objects.Lesson
+import com.example.programmingc.domain.model.Lesson
 
 class LessonAdapter(
-    private val lessons: List<Lesson>
+    private var lesson: List<Lesson>,
+    private val onPracticeClick: (String) -> Unit
 ): RecyclerView.Adapter<LessonAdapter.LessonViewHolder>() {
     inner class LessonViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val title: TextView = itemView.findViewById(R.id.lessonTitle)
-        val description: TextView = itemView.findViewById(R.id.lessonDescription)
-        val firstImage: ImageView = itemView.findViewById(R.id.image1)
-        val secondImage: ImageView = itemView.findViewById(R.id.image2)
-        val thirdImage: ImageView = itemView.findViewById(R.id.image3)
+        val lecture: TextView = itemView.findViewById(R.id.lectureID)
+        val content: TextView = itemView.findViewById(R.id.contentID)
+        val practicing: Button = itemView.findViewById(R.id.startPracticingId)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonAdapter.LessonViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_lesson, parent, false)
+            .inflate(R.layout.lesson, parent, false)
         return LessonViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: LessonViewHolder, position: Int) {
-        val lesson = lessons[position]
-        holder.title.text = "Lesson ${lesson.number}: ${lesson.title}"
-        holder.description.text = lesson.text
+    override fun onBindViewHolder(holder: LessonAdapter.LessonViewHolder, position: Int) {
+        val _lesson = lesson[position]
 
-        val images = lesson.imageResIds
-        holder.firstImage.setImageResource(images.getOrNull(0) ?: R.drawable.image_study)
-        holder.secondImage.setImageResource(images.getOrNull(1) ?: R.drawable.image_c)
-        holder.thirdImage.setImageResource(images.getOrNull(2) ?: R.drawable.baseline_play_arrow)
+        holder.lecture.text = _lesson.title
+        holder.content.text = _lesson.content
+        holder.practicing.setOnClickListener {
+            onPracticeClick(_lesson.id)
+        }
     }
 
-    override fun getItemCount(): Int = lessons.size
+    override fun getItemCount(): Int = lesson.size
+
+    fun updateData(newLessons: List<Lesson>){
+        lesson = newLessons
+        notifyDataSetChanged()
+    }
 }

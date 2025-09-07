@@ -1,5 +1,7 @@
 package com.example.programmingc.presentation.ui.objects.visiable_objects.menubar
 
+import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.programmingc.presentation.ui.MainViewModel
@@ -10,24 +12,26 @@ abstract class BaseMenuBar: Fragment() {
     private val _viewModel: MainViewModel by activityViewModels()
     protected val menuViewModel: MainViewModel get() = _viewModel
 
-    protected fun showMenu(){
-        menuViewModel.menuBarVisible.value = true
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        updateMenuVisibility()
     }
 
-    protected fun hideMenu(){
-        menuViewModel.menuBarVisible.value=false
+    override fun onStart() {
+        super.onStart()
+        updateMenuVisibility()
     }
 
-    override fun onResume() {
-        super.onResume()
-
+    private fun updateMenuVisibility(){
         if (shouldShowMenu()){
-            showMenu()
+            menuViewModel.showMenu()
         }
         else{
-            hideMenu()
+            menuViewModel.hideMenu()
         }
     }
+
     // Абстрактный метод, который должен быть реализован в дочерних классах
     abstract fun shouldShowMenu(): Boolean
 }

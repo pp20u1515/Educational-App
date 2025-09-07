@@ -61,29 +61,17 @@
         android:name="com.example.programmingc.presentation.ui.FragmentMainScreen"
         android:label="fragmentMainScreen"
         tools:layout="@layout/fragment_main_screen" >
-        <action
-            android:id="@+id/action_fragmentMainScreen_to_fragmentMenuBarPage2"
-            app:destination="@id/fragmentMenuBarPage" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/fragmentMenuBarPage"
-        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.menubar.FragmentMenuBarPage"
-        android:label="fragmentMenuBarPage"
-        tools:layout="@layout/fragment_menubar_page">
 
         <action
-            android:id="@+id/action_fragmentMenuBarPage_to_fragmentLevels"
-            app:destination="@id/fragmentLevels" />
-        <action
-            android:id="@+id/action_fragmentMenuBarPage_to_fragmentDiamonds2"
-            app:destination="@id/fragmentDiamonds" />
-        <action
-            android:id="@+id/action_fragmentMenuBarPage_to_fragmentMainScreen2"
-            app:destination="@id/fragmentMainScreen" />
-        <action
-            android:id="@+id/action_fragmentMenuBarPage_to_fragment_auth"
-            app:destination="@id/fragment_auth" />
+            android:id="@+id/action_fragmentMainScreen_to_fragment_lesson"
+            app:destination="@id/fragment_lesson" >
+
+            <argument
+                android:name="lessonId"
+                app:argType="string"
+                android:defaultValue=""/>
+
+        </action>
     </fragment>
 
     <fragment
@@ -124,6 +112,42 @@
         <action
             android:id="@+id/action_fragment_auth_to_fragmentIntroduction"
             app:destination="@id/fragmentIntroduction" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_lesson"
+        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.LessonFragment"
+        android:label="fragment_lesson"
+        tools:layout="@layout/lesson">
+
+        <argument
+            android:name="lessonId"
+            app:argType="string"
+            android:defaultValue=""/>
+
+        <action
+            android:id="@+id/action_fragment_lesson_to_fragment_practice"
+            app:destination="@id/fragment_practice" >
+
+            <argument
+                android:name="lessonId"
+                app:argType="string"
+                android:defaultValue=""/>
+
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_practice"
+        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.PracticeFragment"
+        android:label="fragment_practice"
+        tools:layout="@layout/practice">
+
+        <argument
+            android:name="lessonId"
+            app:argType="string"
+            android:defaultValue=""/>
 
     </fragment>
 

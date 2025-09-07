@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:id="@+id/lectureCardId"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/lectureID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lecture Title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/contentID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Context"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="4sp"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/startPracticingId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start practising"
+            android:textAllCaps="false"
+            android:background="@drawable/rectangle_blue"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
