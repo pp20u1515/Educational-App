@@ -20,7 +20,6 @@ import kotlinx.coroutines.launch
 class AuthFragment: BaseMenuBar() {
     private var _binding: FragmentAuthBinding? = null
     private val binding: FragmentAuthBinding  get() = _binding!!
-    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,9 +68,5 @@ class AuthFragment: BaseMenuBar() {
 
     override fun shouldShowMenu(): Boolean {
         return false
-    }
-
-    companion object {
-        fun newInstance() = AuthFragment()
     }
 }

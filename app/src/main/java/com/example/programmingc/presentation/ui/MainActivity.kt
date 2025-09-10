@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainScreenBinding get() = _binding!!
     private val viewModel: MainViewModel by viewModels()
     private lateinit var navController: NavController
-    private var selectedItemId: Int = R.id.nav_courses
-    private var isRestored = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,15 +27,10 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        savedInstanceState?.let {
-            selectedItemId = it.getInt("SELECTED_ITEM_ID", R.id.nav_courses)
-            viewModel.setMenuVisiable(it.getBoolean("MENU_VISIABLE", true))
-        }
-
         binding.apply {
             activityVM = viewModel
             lifecycleOwner = this@MainActivity
-            executePendingBindings()
+            //executePendingBindings()
         }
 
         val navHostFragment = supportFragmentManager
@@ -46,18 +39,10 @@ class MainActivity : AppCompatActivity() {
 
         setupNavigationDrawer()
         viewModel.checkAuthState()
-
-        viewModel.menuBarVisible.observe(this) { isVisible ->
-            if (isVisible) {
-                binding.containerMenuBar.visibility = View.VISIBLE
-            } else {
-                binding.containerMenuBar.visibility = View.GONE
-            }
-        }
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
 
         restoreNavigationState()
     }
@@ -67,14 +52,8 @@ class MainActivity : AppCompatActivity() {
         _binding = null
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt("SELECTED_ITEM_ID", selectedItemId)
-        outState.putBoolean("MENU_VISIABLE", viewModel.menuBarVisible.value ?: true)
-    }
-
     private fun setupNavigationDrawer(){
-        binding.navigationView.setCheckedItem(selectedItemId)
+        //binding.navigationView.setCheckedItem(selectedItemId)
         binding.navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId){
                 R.id.nav_courses ->navController.navigate(R.id.fragmentLevels)
@@ -107,13 +86,13 @@ class MainActivity : AppCompatActivity() {
                     MainViewModel.AuthState.Loading -> {
                         // TODO
                     }
-
                     MainViewModel.AuthState.Authenticated -> {
                         val currentDestination = navController.currentDestination?.id
 
                         if (currentDestination == null || currentDestination == R.id.fragment_auth) {
                             navController.navigate(R.id.fragmentMainScreen)
                         }
+                        viewModel.showMenu()
                     }
 
                     MainViewModel.AuthState.Unauthenticated -> {
@@ -122,6 +101,7 @@ class MainActivity : AppCompatActivity() {
                         if (currentDestination != R.id.fragment_auth) {
                             navController.navigate(R.id.fragment_auth)
                         }
+                        viewModel.hideMenu()
                     }
 
                     is MainViewModel.AuthState.Error -> showError(state.message)

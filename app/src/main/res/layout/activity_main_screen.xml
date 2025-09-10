@@ -14,11 +14,14 @@
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context=".presentation.ui.MainActivity">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/container"
@@ -35,12 +38,13 @@
                 android:id="@+id/containerMenuBar"
                 android:layout_width="0dp"
                 android:layout_height="?attr/actionBarSize"
+                android:visibility="@{activityVM.menuBarVisible ? View.VISIBLE : View.GONE}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/container"
                 android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.FragmentMenuBar"
-                tools:layout="@layout/fragment_menubar" />
+                tools:layout="@layout/fragment_menubar"
+                android:fitsSystemWindows="true"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -49,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:fitsSystemWindows="true"
             app:menu="@menu/button_nav_menu"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>

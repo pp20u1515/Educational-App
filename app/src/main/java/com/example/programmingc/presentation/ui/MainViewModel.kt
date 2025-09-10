@@ -72,10 +72,6 @@ class MainViewModel @Inject constructor(
         _menuBarVisible.value = false
     }
 
-    fun setMenuVisiable(visiable: Boolean){
-        _menuBarVisible.value = visiable
-    }
-
     sealed class AuthState {
         object Loading : AuthState()
         object Authenticated : AuthState()

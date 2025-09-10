@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.observeOn
 class LessonFragment: BaseMenuBar() {
     private var _binding: FragmentLessonsBinding? = null
     private val binding: FragmentLessonsBinding get() = _binding!!
-    private val viewModel: LessonViewModel by viewModels()
+    private val lessonViewModel: LessonViewModel by viewModels()
     private lateinit var adapter: LessonAdapter
 
     override fun shouldShowMenu(): Boolean {
@@ -41,13 +41,13 @@ class LessonFragment: BaseMenuBar() {
 
         val lessonId = arguments?.getString("lessonId") ?: ""
         println("lessonId = $lessonId")
-        viewModel.loadLesson(lessonId)
+        lessonViewModel.loadLesson(lessonId)
         setupAdapter()
         setupObservers()
     }
 
     private fun setupObservers(){
-        viewModel.currentLesson.observe(viewLifecycleOwner) { lesson ->
+        lessonViewModel.currentLesson.observe(viewLifecycleOwner) { lesson ->
             lesson?.let{
                 adapter.updateData(listOf(it))
             }

@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 abstract class BaseMenuBar: Fragment() {
     private val _viewModel: MainViewModel by activityViewModels()
-    protected val menuViewModel: MainViewModel get() = _viewModel
+    protected val viewModel: MainViewModel get() = _viewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,10 +25,10 @@ abstract class BaseMenuBar: Fragment() {
 
     private fun updateMenuVisibility(){
         if (shouldShowMenu()){
-            menuViewModel.showMenu()
+            viewModel.showMenu()
         }
         else{
-            menuViewModel.hideMenu()
+            viewModel.hideMenu()
         }
     }
 
