@@ -1,85 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp">
 
+    <!-- Заголовок -->
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Watch ad and get free diamonds"
-        android:gravity="center"
-        android:layout_margin="20dp"
-        android:textSize="21sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:gravity="center"
+        android:layout_marginBottom="24dp"/>
 
-    <Button
-        android:id="@+id/imageButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/television"
-        android:layout_margin="40dp"
-        app:layout_constraintEnd_toStartOf="@id/diamondButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView4" />
-
-
+    <!-- Блок с кнопкой просмотра и информацией о бонусе -->
     <LinearLayout
-        android:id="@+id/diamondButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="#4E5567"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="32dp">
 
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="98dp"
-            android:layout_height="60dp"
+        <!-- Кнопка просмотра -->
+        <Button
+            android:id="@+id/watchButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/television"
+            android:layout_marginEnd="16dp"/>
+
+        <!-- Блок с информацией о бонусе -->
+        <LinearLayout
+            android:id="@+id/diamondButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:background="#4E5567"
-            android:scaleType="centerInside"
-            android:src="@drawable/diamond"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textOverlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Next bonus"
-            android:textColor="@color/white"
-            android:textSize="15sp"/>
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="98dp"
+                android:layout_height="60dp"
+                android:background="#4E5567"
+                android:scaleType="centerInside"
+                android:src="@drawable/diamond"/>
 
-        <TextView
-            android:id="@+id/textOverlay2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="08:00:00"
-            android:textColor="@color/white"
-            android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/textOverlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Next bonus"
+                android:textColor="@color/white"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/textOverlay2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="08:00:00"
+                android:textColor="@color/white"
+                android:textSize="15sp"/>
+        </LinearLayout>
     </LinearLayout>
 
+    <!-- Сетка пакетов -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/packagesGrid"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        android:padding="8dp"
-        app:layout_constraintTop_toBottomOf="@id/diamondButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_package"
+        android:padding="8dp"/>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+</LinearLayout>

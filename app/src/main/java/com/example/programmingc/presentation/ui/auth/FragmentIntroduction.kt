@@ -22,10 +22,14 @@ class FragmentIntroduction: Fragment() {
         _binding = FragmentIntroductionBinding.inflate(inflater, container, false)
 
         binding.clientNext.setOnClickListener{
-            val destination = FragmentIntroductionDirections.actionFragmentIntroductionToFragmentMainScreen()
-            findNavController().navigate(destination)
+            navigateDirection()
         }
 
         return binding.root
+    }
+
+    private fun navigateDirection(){
+        val destination = FragmentIntroductionDirections.actionFragmentIntroductionToFragmentMainScreen()
+        findNavController().navigate(destination)
     }
 }

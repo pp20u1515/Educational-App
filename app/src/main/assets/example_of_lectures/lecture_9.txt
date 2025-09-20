@@ -1,0 +1,356 @@
+Loops are essential for repeating similar operations and simplifying a programmer's life. Computers are happy to perform any number of repetitive actions; it's a piece of cake for them. In the C programming language, there are several types of loops. In this topic, you will explore two of them: the while loop and the do-while loop.
+
+\bold The while loop
+
+The while loop is very similar to the conditional if statement.
+
+The while loop consists of a block of code and a condition (a Boolean expression). If the condition is true, the code inside the block is executed. This code repeats until the condition becomes false. Since this loop checks the condition before the block is executed, this control structure is also known as a pre-test loop. You can think of the while loop as a repetitive if statement.
+
+The basic syntax of the while loop is the following:
+
+c
+
+while (condition) {
+    // some code here
+    // this code will repeat as long as the condition is true
+}
+c
+
+A loop's body can contain any correct C statements, including conditional statements and even other loops (the latter are called nested loops).
+
+It is also possible to write an infinite loop if the condition is invariably true. In C, non-zero constants are typically used for this:
+
+c
+
+while (1) {
+    // code will repeat indefinitely
+}
+c
+
+But be very careful with such experiments; you need to clearly understand what you are doing and how to stop it!
+
+\bold Example 1: The while loop
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int count = 0;
+    while (count < 5) {
+        printf("Count: %d\n", count);
+        count++;
+    }
+    return 0;
+}
+c
+
+In this example, the while loop will continue executing the code block as long as the condition count < 5 is true. It will print the current value of count and increment it by 1 with each iteration. The loop will stop once the condition becomes false. The output will be:
+
+Count: 0
+Count: 1
+Count: 2
+Count: 3
+Count: 4
+
+Note that the condition is evaluated before each iteration, and if it is initially false, the loop will not be executed at all.
+
+\bold Example 2: The while loop (printing letters)
+
+c
+
+#include <stdio.h>
+
+int main() {
+    char letter = 'A';
+    while (letter <= 'Z') {
+        printf("%c", letter);
+        letter++;
+    }
+    return 0;
+}
+c
+
+This program prints English letters in a single line. The program takes the first letter 'A' and then proceeds as follows: if the letter is less than or equal to 'Z', the program enters the loop's body; inside the body, it prints the current character, and letter is assigned the next letter of the alphabet.
+
+The program prints:
+
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+Remember that you can get the next character according to the ASCII table (standard for C) by using the increment operator.
+
+\bold The do-while loop
+
+In the do-while loop, the body is executed first, and the condition is tested afterwards. If the condition is true, the statements within the block are executed again. This repeats until the condition becomes false. Because do-while loops check the condition after the block is executed, this control structure is often also known as a post-test loop.
+
+In contrast to the while loop, which tests the condition before the code within the block is executed, the do-while loop is an exit-condition loop. Therefore, the code within the block is always executed at least once.
+
+This loop contains three parts: the do keyword, a body, and while(condition):
+
+c
+
+do {
+    // body: do something
+} while (condition); // check condition and if true, go to body
+c
+
+A good example of its use is a program that reads data from standard input until a user enters a certain number or string.
+
+\bold Example 3: The do-while loop
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int value;
+    printf("Input value: \n");
+    do {
+        scanf("%d", &value);
+        printf("You entered %d\n", value);
+    } while (value != 0);
+    return 0;
+}
+c
+
+This program reads integers from the standard input and displays them. The program runs until you enter the number 0. If the number 0 is entered, the program prints it and then stops. Note that, like the while loop, the do-while loop can be infinite.
+
+In practice, the do-while loop is used less frequently than the while loop. It is used when the code inside the loop must be executed at least once.
+
+What makes computers so wonderful? They think quickly and never tire of repetitive tasks. Imagine having an array that contains the entire alphabet, and you want to print it line by line. Or even an array with 1000 or even a million values. If you had to print everything manually, I believe you would quickly grow tired of writing code. That's where loops come to the rescue!
+
+In this topic, let's explore the most popular loop in programming: the for loop. It allows you to automate repetitive tasks and iterate over arrays or ranges of values without the need for manual repetition. With the for loop, you can harness the power of computers to handle large amounts of data effortlessly.
+
+\bold The basic for-loop syntax
+
+The for loop has the following basic syntax:
+
+c
+
+for (initialization; condition; modification) {
+    // do something
+}
+c
+
+Parts of the loop:
+
+    The initialization statement is executed once before the loop begins; usually, loop variables are initialized here.
+
+    The condition is a Boolean expression that determines the need for the next iteration; if it's false, the loop terminates.
+
+    The modification is a statement that changes the value of the loop variables; it is invoked after each iteration of the loop; usually, it uses increment or decrement to modify the loop's variable.
+
+Inside the loop's body, the program can perform any correct C statements. It can even contain other loops (nested loops).
+The order of execution for any for loop is always the same:
+
+    The initialization statement is executed.
+
+    If the condition is false, then the loop terminates.
+
+    If the condition is true, then the loop's body is executed.
+
+    The modification is performed.
+
+    Go to step 2 (check the condition).
+
+Let's write a loop for printing integer numbers from 0 to 9 on the same line.
+
+c
+
+#include <stdio.h>
+
+int main() {
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", i);
+    }
+    return 0;
+}
+c
+
+This code displays:
+
+0 1 2 3 4 5 6 7 8 9
+
+You declared the iterative variable i in the loop, and each time the loop is executed, you increase it by 1 (i++). And you will display its value on the screen as long as your variable is less than 10 (i < 10).
+The variables declared in the initialization statement are visible only inside the scope that includes all parts of the loop: the condition, the body, and the modification. Integer loop variables are often named i, j, k, or index.
+
+Here's another example. Let's calculate the sum of the integer numbers from 1 to 10000 (inclusive) using the for loop:
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int sum = 0;
+    for (int i = 1; i <= 10000; i++) {
+        sum += i;
+    }
+    printf("The sum is: %d\n", sum);
+    return 0;
+}
+c
+
+The code displays:
+
+The sum is: 50005000
+
+Here you carry out the same actions, only the termination conditions have changed a little (i <= 10000) and inside the loop, you do not display the result, but sum it up (sum += i;).
+
+Let's take a slightly more difficult problem and at the same time recall what you've learned before. Let's write a loop for printing the English alphabet:
+
+c
+
+#include <stdio.h>
+
+int main() {
+    char alphabet[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    int alphabetSize = sizeof(alphabet) / sizeof(alphabet[0]);
+    int lettersPerLine = 4;
+
+    for (int i = 0; i < alphabetSize; i++) {
+        printf("%c ", alphabet[i]);
+        if ((i + 1) % lettersPerLine == 0) {
+            printf("\n");
+        }
+    }
+    return 0;
+}
+c
+
+Don't rush to read further; carefully study the example. Do you understand everything? In this example, a large number of everything you have already learned is concentrated (if, %, sizeof, array, printf). Play around with the code in your IDE. If everything is clear, let's move on.
+
+\bold Skipping parts
+
+The initialization statement, the condition, and the modification parts are optional; the for loop might not have all of them.
+It is possible to declare a variable outside the loop:
+
+c
+
+int i = 10;
+for (; i > 0; i--) {
+    printf("%d ", i);
+}
+c
+
+Moreover, it is also possible to write an infinite loop without these parts at all:
+
+c
+
+for (;;) {
+    // do something
+}
+c
+
+But be very careful with such experiments; you need to clearly understand what you are doing and how to stop it!
+
+\bold Nested loops
+
+It's possible to nest one for loop inside another for loop. This approach is used to process multidimensional structures like tables (matrices), data cubes, and so on.
+
+For example, the following code prints the multiplication table for numbers from 1 to 9 (inclusive).
+
+c
+
+#include <stdio.h>
+
+int main() {
+    for (int i = 1; i < 10; i++) {
+        for (int j = 1; j < 10; j++) {
+            printf("%d\t", i * j);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+c
+
+It outputs:
+(The multiplication table as in the original text)
+
+One of the biggest challenges that beginner programmers often face with for loops (as well as other types of loops) is the off-by-one error. This error occurs when the loop iterates one time more or one time less than the desired number of iterations. It usually happens because an incorrect comparison operator is used in the loop condition (for example, > instead of >=, or vice versa). These errors are often difficult to detect as the compiler will not complain about them, and the program will run, but the results will be incorrect.
+When writing for loops, it's important to remember that the loop will continue executing as long as the condition is true. It is recommended to test loops using different values to verify their functionality. It is good practice to test loops with various input data (numbers, characters, etc.) that force the loop to execute 0, 1, and 2 times. If the loop operates correctly in these scenarios, then everything is okay.
+
+\bold Rewritten code in C:
+
+Example 1: Printing numbers from 0 to 9
+
+c
+
+#include <stdio.h>
+
+int main() {
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", i);
+    }
+    return 0;
+}
+c
+
+Example 2: Sum of numbers from 1 to 10000
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int sum = 0;
+    for (int i = 1; i <= 10000; i++) {
+        sum += i;
+    }
+    printf("The sum is: %d\n", sum);
+    return 0;
+}
+c
+
+Example 3: Printing the alphabet (4 letters per line)
+
+c
+
+#include <stdio.h>
+
+int main() {
+    char alphabet[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    int alphabetSize = sizeof(alphabet) / sizeof(alphabet[0]);
+    int lettersPerLine = 4;
+
+    for (int i = 0; i < alphabetSize; i++) {
+        printf("%c ", alphabet[i]);
+        if ((i + 1) % lettersPerLine == 0) {
+            printf("\n");
+        }
+    }
+    return 0;
+}
+c
+
+Example 4: Loop with a variable declared outside
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int i = 10;
+    for (; i > 0; i--) {
+        printf("%d ", i);
+    }
+    return 0;
+}
+c
+
+Example 5: Multiplication table (nested loops)
+
+c
+
+#include <stdio.h>
+
+int main() {
+    for (int i = 1; i < 10; i++) {
+        for (int j = 1; j < 10; j++) {
+            printf("%d\t", i * j);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+c

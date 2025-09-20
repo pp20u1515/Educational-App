@@ -1,7 +1,7 @@
 package com.example.programmingc.presentation.ui
 
 import android.os.Bundle
-import android.view.View
+import android.view.Gravity
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +13,7 @@ import com.example.programmingc.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import com.example.programmingc.databinding.ActivityMainScreenBinding
+import com.example.programmingc.presentation.ui.menu.FragmentMenuBar
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -53,13 +54,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigationDrawer(){
-        //binding.navigationView.setCheckedItem(selectedItemId)
+        val fragmentMenuBar = supportFragmentManager.findFragmentById(R.id.menuIcon) as? FragmentMenuBar
+        fragmentMenuBar?.setOnMenuButtonClickListener {
+            openDrawer()
+        }
+
         binding.navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId){
-                R.id.nav_courses ->navController.navigate(R.id.fragmentLevels)
+                R.id.nav_courses ->navController.navigate(R.id.fragmentCourses)
                 R.id.nav_diamonds->navController.navigate(R.id.fragmentDiamonds)
                 R.id.nav_settings->navController.navigate(R.id.fragmentMainScreen)
-                R.id.nav_levels->navController.navigate(R.id.fragmentLevels)
+                R.id.nav_levels->navController.navigate(R.id.fragmentCourses)
                 R.id.nav_logout->{
                     viewModel.signOut()
                     navController.navigate(R.id.fragment_auth)}
@@ -107,6 +112,20 @@ class MainActivity : AppCompatActivity() {
                     is MainViewModel.AuthState.Error -> showError(state.message)
                 }
             }
+        }
+    }
+
+    fun closeDrawer() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        }
+    }
+
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            closeDrawer()
+        } else {
+            super.onBackPressed()
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.programmingc.presentation.ui.objects.visiable_objects
+package com.example.programmingc.presentation.ui.menu
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.programmingc.databinding.FragmentMenubarBinding
 import com.example.programmingc.presentation.ui.MainActivity
-import com.example.programmingc.presentation.ui.objects.visiable_objects.menubar.BaseMenuBar
 
 class FragmentMenuBar: BaseMenuBar() {
-    private var _binding: FragmentMenubarBinding ?= null
+    private var _binding: FragmentMenubarBinding?= null
     private val binding: FragmentMenubarBinding get() = _binding!!
+    private var menuButtonClickListener: (() -> Unit)? = null
 
     override fun shouldShowMenu(): Boolean {
         return false // Сам меню-бар не должен управлять своей видимостью
@@ -33,7 +33,7 @@ class FragmentMenuBar: BaseMenuBar() {
             binding.menuBar.visibility = if (isVisible) View.VISIBLE else View.GONE
         }
 
-        binding.menuBar.setOnClickListener{
+        binding.menuIcon.setOnClickListener{
             (requireActivity() as MainActivity).openDrawer()
         }
     }
@@ -41,5 +41,10 @@ class FragmentMenuBar: BaseMenuBar() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        menuButtonClickListener = null
+    }
+
+    fun setOnMenuButtonClickListener(listener: () -> Unit) {
+        menuButtonClickListener = listener
     }
 }

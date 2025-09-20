@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/codeCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="8dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:contentPadding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvCodeHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C Code"
+            android:textColor="#9CDCFE"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvCodeContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#D4D4D4"
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:lineSpacingExtra="4dp"
+            android:textIsSelectable="true"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

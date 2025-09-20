@@ -1,0 +1,111 @@
+In programming, variables play a crucial role as they allow us to store and manipulate data. Variables are named containers that hold values of various types, such as numbers, characters, or text. They serve as a way to label and refer to specific data stored in a computer's memory. Variables enable us to store information temporarily or permanently, perform calculations, make decisions, and create dynamic programs. Understanding how to work with variables is fundamental to programming, and in this topic, we will learn how to declare and use variables in C programs.
+
+\bold Declare a variable
+
+Let's remember how we can declare a variable (allocate memory for the object):
+
+c
+
+int ourIntVariable;     // declare an integer variable
+float ourFloatVariable; // declare a floating-point variable
+char ourCharVariable;   // declare a character variable
+c
+
+// This code will not work because "void" cannot be used as a variable type.
+void ourVoidVariable;
+
+The name (or identifier) distinguishes the variable from others.
+Here are a few small rules about variable names:
+
+    A variable name cannot start with a digit; it usually starts with a letter.
+
+    Always try to choose meaningful and readable names for variables to make your code easy to understand.
+
+    Such names are chosen for clarity; there is no need to include the variable's type in its name.
+
+    The case in a variable name makes a difference: variable is not the same as VARiablE.
+
+We discussed that a variable is a label for an object that has a specific address in computer memory. We can easily verify this. In C, there is a simple way to view the address of our object (using the address-of operator &, which should be placed before the variable name):
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int ourIntVariable;
+    printf("%p\n", (void*)&ourIntVariable); // Will output something like: 0x7ffd42a1babc
+    return 0;
+}
+c
+
+\bold Assign the value
+
+After declaring a variable, we can assign it a value, which means storing a value in the memory cell associated with that variable. There is one restriction for variables: you can only assign a value of the same type as the type of the initial variable.
+
+ourBoolVariable = false;
+ourIntVariable = 100500;
+ourFloatVariable = 2.718f; // Note: the suffix 'f' is often added for float
+ourCharVariable = 'X';
+
+Once a variable has been declared, its value can be accessed and modified using its name.
+
+The logic of assignment is as follows: first, the expression located to the right of the = is evaluated. Then, the resulting value is placed into the variable whose name is located to the left of the = sign. Let's consider a more detailed example:
+
+c
+
+int number;
+number = 100;        // number contains 100
+
+// Note: if you assign a new value to an existing variable,
+// it will overwrite the previous value:
+// the order of arithmetic operations is preserved.
+number = 2 + 2 * 2;  // number contains 6, not 8
+number = number + 4;  // This is OK, now number contains 10
+number = "twenty";    // This is incorrect! Invalid data type
+c
+
+\bold Uninitialized variables
+
+What if we want to output the value of an uninitialized variable immediately after its declaration?
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int a;
+    printf("%d", a); // Will output an undefined (garbage) value
+    return 0;
+}
+c
+
+If you attempt to output the value of a variable immediately after its declaration without assigning a value to it, the variable will contain an undefined (garbage) value. In C and C++, this is referred to as Undefined Behavior. C and C++ do not initialize variables by default (e.g., with zero). This can lead to unpredictable behavior, as the value of an uninitialized variable depends on the initial state of the memory location allocated for that variable. Accessing and using the value of an uninitialized variable can result in unexpected or erroneous outputs in your program. It is always recommended to initialize variables with appropriate values before using them to ensure predictable and reliable behavior in your code.
+
+\bold Initialization
+
+Programmers are a lazy bunch, so to avoid having to declare a variable first and then assign a value to it (and to minimize errors in the process), they came up with the following idea: let's assign a value to the variable right at the moment of declaration, thus performing variable initialization.
+
+Multiple declaration of variables
+
+In a single statement, you can declare multiple variables of the same data type by separating their names with commas. For example, the following two code snippets accomplish the same thing:
+
+c
+
+int x = 100;
+int y = 66;
+
+
+int x = 100, y = 66;
+c
+
+\bold Constants
+
+One important feature of variables is that they can be changed. You don't need to declare a variable again to change its value; just assign a new value to it using the = operator.
+
+However, sometimes it is useful to use variables whose values cannot be changed – constants. To make a variable constant, use the keyword const before or after the variable type. Constants must be initialized at the time of declaration. It is not possible to change their values using the assignment operation. For example:
+
+c
+const float pi = 3.1415f; // Proper initialization of a constant
+pi = 3.15f;               // Not allowed - compilation error.
+const double grav;         // Compilation error, the constant must be initialized.
+c

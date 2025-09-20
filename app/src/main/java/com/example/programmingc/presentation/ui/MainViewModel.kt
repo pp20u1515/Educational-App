@@ -52,6 +52,10 @@ class MainViewModel @Inject constructor(
         _authState.value = AuthState.Authenticated
     }
 
+    suspend fun resetPassword(email: String){
+
+    }
+
     // Выход
     fun signOut() {
         viewModelScope.launch {

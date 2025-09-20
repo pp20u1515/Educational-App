@@ -1,0 +1,94 @@
+\bold First look at input/output
+
+All programs perform some kind of computation, and computations are meaningless without data. Therefore, almost all programs receive input data and/or produce output results. Input and output operations are essential for creating interactive and functional programs. They allow programs to communicate with users, read data from external sources, and display information to the user.
+
+Effective input/output handling is crucial in many real-world scenarios, such as reading user input, processing files, and interacting with databases. Understanding the principles and techniques of I/O in C will empower you to create dynamic and interactive applications.
+
+\bold What is input-output for?
+
+Input information can come from an "infinite" number of devices:
+- from keyboards, mouse, touchscreens, and other input devices;
+- from files;
+- from audio equipment: remote controls, microphones, and so on;
+- from photo and video devices;
+- from various sensors: temperature, pressure, position, thermal imaging, etc.;
+- from other programs;
+- from other parts of the same program.
+
+Similarly, results can be output to various devices:
+- to the screen;
+- to a file;
+- to a network connection;
+- to other output devices (music synthesizers, electric motors, light bulbs and LEDs, heaters, and others);
+- to other programs or parts of a program.
+
+If we disregard this fact, our programs will be severely limited. If we had to directly access different input/output devices each time we needed to switch, we would have to rewrite a part of the program. Clearly, this is absurd. Therefore, it is best to separate the methods by which a program reads and writes data from the actual input and output devices.
+Most modern operating systems delegate the management of input/output devices to specialized drivers, and then programs interact with them through input/output library facilities, which provide a uniform interface to various sources and data destinations.
+ 
+In this case, our work as application developers boils down to the following:
+Configure input/output streams to receive/send data from/to devices.
+Read from and write to the streams (with all the internal implementation details handled by the input/output library and device drivers).
+
+In this topic, we will explore the basics of input and output in C.
+
+\bold Input & output (to/from console)
+
+First, let's include our I/O library: #include "stdio.h"
+
+The iostream library in C provides a set of functions that allow you to perform input and output operations. It is an essential part of the C Standard Library. It offers convenient and flexible ways to interact with the user, read input from various sources, and display output.
+The "stdio.h" library includes the following functions:
+- printf()
+- scanf()
+- fscanf()
+- fopen()
+- fclose() ...
+Also it include structures and macros used to work with threads.
+
+When receiving data from the console, you need to store them somewhere, and for that, we will use a variable (don't worry, you will soon get acquainted with them in more detail 😁).
+int age; //This is a variable, we will discuss it in detail in the following topics.
+
+c
+
+#include "stdio.h"
+// In this case, our example becomes:
+int main(){ //the main entry point 
+	int age; 
+	printf("Enter your age: "); 
+	scanf("%d", &age); 
+	printf("Your age = %d\n", age);
+	return 0; //don't forget about return and of course about ";" 
+}
+c
+
+What happens in this program? 
+First, we declare a variable age of type int (integer), which can only store whole numbers. It contains a random value (garbage) because it is uninitialized.
+
+Next, on line 5, we print a prompt telling the user what to do.
+
+On line 6, the scanf() function pauses the program and waits for the user to enter a number and press Enter.
+
+    "%d" (The format string): This is an instruction for scanf() — "expect to find a decimal integer in the input buffer".
+
+    &age: The address-of operator tells scanf() where in memory to store the entered value.
+    The entered number is then written into the variable age.
+
+⚠️ Important Note on Input Safety:
+Now you can compile and run your program. It will work correctly if you enter a number. But what if you enter text instead? For example, if you type "hello" and press Enter, the program will not behave as expected.
+
+Since scanf() with %d expects only digits, receiving non-numeric input will cause it to fail. The variable age will remain unchanged (keeping its random garbage value), and the program will likely continue execution with incorrect data or terminate abnormally.
+
+This happens because:
+
+    There is no automatic type checking during input in C
+
+    The program blindly trusts the user to provide correct input
+
+    Incorrect input leads to undefined behavior - the results are unpredictable
+
+This vulnerability highlights the importance of input validation, a crucial concept we will explore in future topics when we discuss data types and error handling.
+
+After that, the result is printed using printf() (though it may display unexpected values if input was invalid).
+
+Finally, the main() function returns 0 (indicating success), and the program terminates.
+
+In programming, it is conventional to return 0 to signal successful execution, and a non-zero value to indicate an error or abnormal termination.

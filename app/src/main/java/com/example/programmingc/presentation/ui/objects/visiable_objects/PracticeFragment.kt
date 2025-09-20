@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.programmingc.databinding.PracticeBinding
-import com.example.programmingc.presentation.ui.objects.visiable_objects.menubar.BaseMenuBar
+import com.example.programmingc.presentation.ui.menu.BaseMenuBar
 import dagger.hilt.android.AndroidEntryPoint
 import org.intellij.lang.annotations.Language
 

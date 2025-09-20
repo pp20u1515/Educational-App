@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.programmingc.databinding.FragmentAuthBinding
 import com.example.programmingc.presentation.additional_functions.checkInput
-import com.example.programmingc.presentation.ui.MainViewModel
-import com.example.programmingc.presentation.ui.objects.visiable_objects.menubar.BaseMenuBar
+import com.example.programmingc.presentation.ui.menu.BaseMenuBar
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     android:id="@+id/fragmentMainScreen">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lessonRecyclerView"
         android:layout_width="match_parent"

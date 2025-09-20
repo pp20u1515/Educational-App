@@ -20,8 +20,17 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import android.content.Context
 import com.example.programmingc.data.repository.LessonRepository
+import com.example.programmingc.data.repository.PackageRepository
 import com.example.programmingc.domain.repo.ILessonRepository
+import com.example.programmingc.domain.repo.IPackageRepository
+import com.example.programmingc.domain.usecase.CheckAuthStateUseCase
+import com.example.programmingc.domain.usecase.CompleteLessonUseCase
+import com.example.programmingc.domain.usecase.CreateAccUseCase
 import com.example.programmingc.domain.usecase.GetLessonUseCase
+import com.example.programmingc.domain.usecase.ResetPasswordUseCase
+import com.example.programmingc.domain.usecase.ShowLessonsUseCase
+import com.example.programmingc.domain.usecase.ShowPackageUseCase
+import com.example.programmingc.domain.usecase.SignOutUseCase
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -59,10 +68,36 @@ class DomainModule {
     }
 
     @Provides
+    fun providePackageRepository(): IPackageRepository{
+        return PackageRepository()
+    }
+
+    @Provides
     fun provideAuthenticateUseCase(
         credentialRepository: ICredentialRepository
     ): AuthenticateUseCase {
         return AuthenticateUseCase(credentialRepository)
+    }
+
+    @Provides
+    fun provideCheckAuthStateUseCase(
+        authRepository: IAuthRepository
+    ): CheckAuthStateUseCase{
+        return CheckAuthStateUseCase(authRepository)
+    }
+
+    @Provides
+    fun provideCompleteLessonUseCase(
+        lessonRepository: ILessonRepository
+    ): CompleteLessonUseCase{
+        return CompleteLessonUseCase(lessonRepository)
+    }
+
+    @Provides
+    fun provideCreateAccUseCase(
+        credentialRepository: ICredentialRepository
+    ): CreateAccUseCase{
+        return CreateAccUseCase(credentialRepository)
     }
 
     @Provides
@@ -76,5 +111,33 @@ class DomainModule {
         lessonRepository: ILessonRepository
     ): GetLessonUseCase{
         return GetLessonUseCase(lessonRepository)
+    }
+
+    @Provides
+    fun provideResetPasswordUseCase(
+        credentialRepository: ICredentialRepository
+    ): ResetPasswordUseCase{
+        return ResetPasswordUseCase(credentialRepository)
+    }
+
+    @Provides
+    fun provideShowLessonsUseCase(
+        lessonRepository: ILessonRepository
+    ): ShowLessonsUseCase{
+        return ShowLessonsUseCase(lessonRepository)
+    }
+
+    @Provides
+    fun provideShowPackageUseCase(
+        packageRepository: IPackageRepository
+    ): ShowPackageUseCase{
+        return ShowPackageUseCase(packageRepository)
+    }
+
+    @Provides
+    fun provideSignOutUseCase(
+        authRepository: IAuthRepository
+    ): SignOutUseCase{
+        return SignOutUseCase(authRepository)
     }
 }

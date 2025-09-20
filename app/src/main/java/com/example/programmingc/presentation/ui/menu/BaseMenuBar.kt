@@ -1,4 +1,4 @@
-package com.example.programmingc.presentation.ui.objects.visiable_objects.menubar
+package com.example.programmingc.presentation.ui.menu
 
 import android.os.Bundle
 import android.view.View

@@ -11,7 +11,7 @@ import com.example.programmingc.R
 import com.example.programmingc.domain.model.LessonWindow
 
 class LessonWindowAdapter(
-    private val lessons: List<LessonWindow>,
+    private var lessons: List<LessonWindow>,
     private val onPlayClick: (String) -> Unit
 ): RecyclerView.Adapter<LessonWindowAdapter.LessonViewHolder>() {
     inner class LessonViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -44,4 +44,9 @@ class LessonWindowAdapter(
     }
 
     override fun getItemCount(): Int = lessons.size
+
+    fun updateLessons(newLessons: List<LessonWindow>) {
+        lessons = newLessons
+        notifyDataSetChanged() // Обновляем RecyclerView
+    }
 }

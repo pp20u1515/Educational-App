@@ -7,14 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.programmingc.databinding.LessonBinding
 import com.example.programmingc.presentation.ui.adapter.LessonAdapter
-import com.example.programmingc.presentation.ui.auth.AuthFragmentDirections
-import com.example.programmingc.presentation.ui.objects.visiable_objects.menubar.BaseMenuBar
+import com.example.programmingc.presentation.ui.menu.BaseMenuBar
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.programmingc.R
 import com.example.programmingc.databinding.FragmentLessonsBinding
-import kotlinx.coroutines.flow.observeOn
 
 @AndroidEntryPoint
 class LessonFragment: BaseMenuBar() {
@@ -40,7 +37,7 @@ class LessonFragment: BaseMenuBar() {
         super.onViewCreated(view, savedInstanceState)
 
         val lessonId = arguments?.getString("lessonId") ?: ""
-        println("lessonId = $lessonId")
+
         lessonViewModel.loadLesson(lessonId)
         setupAdapter()
         setupObservers()
@@ -67,9 +64,7 @@ class LessonFragment: BaseMenuBar() {
         val bundle = Bundle().apply {
             putString("lessonId", id)
         }
-        /*val direction = LessonFragmentDirections
-            .actionFragmentLessonToFragmentPractice()
-            .setLessonId(id)*/
+
         findNavController().navigate(actionId, bundle)
     }
 }

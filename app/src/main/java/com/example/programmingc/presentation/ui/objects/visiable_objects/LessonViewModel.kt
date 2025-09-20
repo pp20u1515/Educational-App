@@ -9,8 +9,6 @@ import com.example.programmingc.domain.usecase.CompleteLessonUseCase
 import com.example.programmingc.domain.usecase.GetLessonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,7 +25,6 @@ class LessonViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val lesson = getLessonUseCase(lessonId)
-                println("lesson = ${lesson}")
                 _currentLesson.value = lesson
             }
             catch (e: Exception){

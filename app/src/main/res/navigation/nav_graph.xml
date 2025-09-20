@@ -12,16 +12,6 @@
         tools:layout="@layout/activity_main_screen" />
 
     <fragment
-        android:id="@+id/fragmentSuccRecovery"
-        android:name="com.example.programmingc.presentation.ui.auth.SuccessRecoveryFragment"
-        android:label="fragment_recovery_successful"
-        tools:layout="@layout/fragment_successfull_recovery">
-        <action
-            android:id="@+id/action_fragmentSuccRecovery_to_fragment_auth"
-            app:destination="@id/fragment_auth" />
-    </fragment>
-
-    <fragment
         android:id="@+id/fragmentCreateAcc"
         android:name="com.example.programmingc.presentation.ui.auth.CreateAccFragment"
         android:label="fragment_create_acc"
@@ -30,9 +20,6 @@
         <action
             android:id="@+id/action_fragmentCreateAcc_to_fragment_auth"
             app:destination="@id/fragment_auth" />
-        <action
-            android:id="@+id/action_fragmentCreateAcc_to_fragmentRecover"
-            app:destination="@id/fragmentRecover" />
     </fragment>
 
     <fragment
@@ -52,8 +39,8 @@
         android:label="fragment_recover"
         tools:layout="@layout/fragment_recover" >
         <action
-            android:id="@+id/action_fragmentRecover_to_fragmentSuccRecovery"
-            app:destination="@id/fragmentSuccRecovery" />
+            android:id="@+id/action_fragmentRecover_to_fragment_auth"
+            app:destination="@id/fragment_auth" />
     </fragment>
 
     <fragment
@@ -72,20 +59,23 @@
                 android:defaultValue=""/>
 
         </action>
+        <action
+            android:id="@+id/action_fragmentMainScreen_to_fragmentDiamonds"
+            app:destination="@id/fragmentDiamonds" />
     </fragment>
 
     <fragment
         android:id="@+id/fragmentDiamonds"
-        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.FragmentDiamonds"
+        android:name="com.example.programmingc.presentation.ui.diamonds_products.FragmentPackage"
         android:label="fragment_diamonds"
         tools:layout="@layout/fragment_diamonds">
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentLevels"
-        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.FragmentLevels"
-        android:label="fragment_levels"
-        tools:layout="@layout/fragment_levels">
+        android:id="@+id/fragmentCourses"
+        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.FragmentCourses"
+        android:label="fragment_courses"
+        tools:layout="@layout/fragment_courses">
 
         <action
             android:id="@+id/action_fragmentLevels_to_fragmentMainScreen"

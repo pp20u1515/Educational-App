@@ -1,4 +1,4 @@
-package com.example.programmingc.presentation.ui.objects.visiable_objects
+package com.example.programmingc.domain.model
 
 data class Package(
     val typeOfPackage: String,

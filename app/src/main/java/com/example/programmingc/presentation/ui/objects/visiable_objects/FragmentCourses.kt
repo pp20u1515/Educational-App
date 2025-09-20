@@ -5,16 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.example.programmingc.databinding.FragmentLevelsBinding
-import com.example.programmingc.presentation.ui.MainViewModel
-import com.example.programmingc.presentation.ui.objects.visiable_objects.menubar.BaseMenuBar
+import com.example.programmingc.databinding.FragmentCoursesBinding
+import com.example.programmingc.presentation.ui.menu.BaseMenuBar
 
-class FragmentLevels: BaseMenuBar() {
-    private var _binding: FragmentLevelsBinding ?= null
-    private val binding: FragmentLevelsBinding get() = _binding!!
+class FragmentCourses: BaseMenuBar() {
+    private var _binding: FragmentCoursesBinding ?= null
+    private val binding: FragmentCoursesBinding get() = _binding!!
     private lateinit var direction: NavDirections
 
     override fun shouldShowMenu(): Boolean {
@@ -26,10 +24,10 @@ class FragmentLevels: BaseMenuBar() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentLevelsBinding.inflate(inflater, container, false)
+        _binding = FragmentCoursesBinding.inflate(inflater, container, false)
 
         binding.buttonBeginner.setOnClickListener{
-            direction = FragmentLevelsDirections.actionFragmentLevelsToFragmentMainScreen()
+            direction = FragmentCoursesDirections.actionFragmentLevelsToFragmentMainScreen()
             findNavController().navigate(direction)
         }
 

@@ -70,6 +70,9 @@ dependencies {
     implementation ("com.google.firebase:firebase-appcheck-safetynet:16.1.2")
     implementation("com.google.android.gms:play-services-auth:21.4.0")
 
+    // Google Ads
+    //implementation("com.google.android.gms:play-services-ads:24.6.0")
+
     // library hilt
     implementation("com.google.dagger:hilt-android:2.56.2")
     implementation ("androidx.hilt:hilt-navigation-fragment:1.2.0")

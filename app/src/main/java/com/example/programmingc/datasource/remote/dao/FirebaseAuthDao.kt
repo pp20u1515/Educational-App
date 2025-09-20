@@ -1,6 +1,7 @@
 package com.example.programmingc.datasource.remote.dao
 
 import com.example.programmingc.datasource.remote.model.CredentialDto
+import com.example.programmingc.domain.model.Credential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.tasks.await
@@ -25,6 +26,16 @@ class FirebaseAuthDao @Inject constructor(
         }
         catch (e: Exception){
             null
+        }
+    }
+
+    suspend fun resetPassword(email: String): Boolean{
+        return try {
+            firebaseAuth.sendPasswordResetEmail(email)
+            true
+        }
+        catch (e: Exception){
+            false
         }
     }
 }

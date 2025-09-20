@@ -1,0 +1,60 @@
+\bold Working with files
+
+We mentioned that streams are convenient because they allow us to unify working with different input and output sources. Yes, that's correct. Below is an example of working with files using streams (the code may seem complex, but we will definitely break it down in detail).
+
+// In this example, we are writing text data to a file in C:
+#include <stdio.h>
+
+int main() {
+    const char* filename = "text_file.txt"; // The name of the file
+    const char* text = "Hello World!!!";    // The text to write to the file
+    
+    // Creating a file pointer and opening the file for writing
+    FILE* file = fopen(filename, "w");
+    
+    // The if statement is used here to check was the opening of the file successfull
+    if (file == NULL) {
+        printf("Failed to open file for writing.\n");
+        return 1;
+    }
+    
+    // Writing text to the file using fprintf
+    fprintf(file, "%s", text);
+    
+    // Closing the file is important!
+    fclose(file);
+    
+    printf("The text was successfully written to the file.\n");
+    return 0;
+}
+
+This is how you can write text data to a file. If you now look for text_file.txt, you will see our Hello World!!! text.
+
+Below is an example of how you can read data from a file (you may want to edit the text in the file first):
+
+// Reading text from a file
+#include <stdio.h>
+
+int main() {
+    const char* filename = "text_file.txt"; // The name of the file
+    
+    // Opening the file for reading
+    FILE* file = fopen(filename, "r");
+    
+    if (file == NULL) {
+        printf("Failed to open file for reading.\n");
+        return 1;
+    }
+    
+    char word[100]; // Buffer to store each word
+    
+    // Reading words one by one using fscanf
+    while (fscanf(file, "%99s", word) == 1) {
+        printf("%s ", word); // Outputting each word to the console
+    }
+    
+    // Don't forget to close the file
+    fclose(file);
+    
+    return 0;
+}

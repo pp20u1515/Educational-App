@@ -1,5 +1,6 @@
 package com.example.programmingc.presentation.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,10 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.programmingc.R
-import com.example.programmingc.presentation.ui.objects.visiable_objects.Package
+import com.example.programmingc.domain.model.Package
 
 class PackageAdapter(
-    private val myPackage: List<Package>
+    private var myPackage: List<Package>
 ) : RecyclerView.Adapter<PackageAdapter.PackageViewHolder>() {
 
     inner class PackageViewHolder(packageView: View): RecyclerView.ViewHolder(packageView){
@@ -34,5 +35,14 @@ class PackageAdapter(
         holder.diamondIcon.setImageResource(packages.diamondIcon)
     }
 
-    override fun getItemCount(): Int = myPackage.size
+    //override fun getItemCount(): Int = myPackage.size
+    override fun getItemCount(): Int {
+        println("DEBUG: Item count = ${myPackage.size}")
+        return myPackage.size
+    }
+
+    fun updatePackages(_package: List<Package>){
+        myPackage = _package
+        notifyDataSetChanged()
+    }
 }

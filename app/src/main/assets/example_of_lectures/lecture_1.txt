@@ -1,0 +1,40 @@
+Programming is the art of creating instructions for computers to execute.
+
+For example, imagine you have a robot vacuum cleaner at home. By programming it, you can tell it how to navigate obstacles and clean your house efficiently. For instance, you can program it to move forward until it detects an obstacle, then turn in a different direction to avoid it and continue cleaning the rest of the area. With programming, we can create instructions that automate tasks and enable machines to perform complex actions, making our lives easier and more efficient.
+
+One powerful language that has played a significant role in programming history is C. In this topic, we will provide an introduction to programming and explore the history and important features of C.
+
+\bold What is C?
+
+C is a general-purpose, procedural programming language that was developed in the early 1970s by Dennis Ritchie at Bell Labs. It is one of the most widely used and influential programming languages in the history of computing.
+
+\bold Areas of C Language Usage
+
+C is the foundational language of modern computing. Its unique combination of low-level control and high-performance capabilities makes it indispensable across numerous domains:
+
+- Operating Systems:
+	- Windows, Linux, ...
+- Embedded Systems Engineering
+- High-Performance Applications:
+	- Oracle
+	- MySQL
+	- SQL Server
+	- PostgreSQL
+	- MATLAB ...
+- Compilers and Interpreters:
+	- Python
+	- Ruby ...
+- Open-Source Software Revolution
+
+\bold Key Characteristics of the C Language
+
+C is a relatively "low-level" language. It is "small" language with a single-pass compiler (passes the source code through each compilation module only once). Assumes that the programmer knows what they are doing
+
+The C language is one that practically does not interfere with the programmer doing what they have decided to do. There is no "nanny" that follows you around and tries to "prevent you from doing stupid things." After all, it's impossible to protect against all stupidities anyway.
+
+A program in the C language consists of one or more subroutines, called functions.
+The C language is block-structured. Each block is enclosed in curly braces {}.
+The main block in a console application program in the C language is the main function, named main().
+Every action in the C language ends with a "semicolon" symbol — ;. An action can be a function call or the performance of some operations.
+
+
