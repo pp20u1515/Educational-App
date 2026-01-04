@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "questionText": "Which operator is used for division in the C language?",
+    "options": [
+      "|",
+      "//",
+      "/",
+      "%"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "What will the % (modulo) operator return for the expression 16 % 3?",
+    "options": [
+      "5",
+      "1",
+      "0",
+      "3"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "What happens when performing integer division 20 / 3?",
+    "options": [
+      "The result will be 6.666...",
+      "The result will be 6 (the fractional part is truncated)",
+      "The program will terminate with an error",
+      "The result will be 7 (rounded up)"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "What does the += operator mean?",
+    "options": [
+      "Assignment",
+      "Multiplication with assignment",
+      "Addition with assignment",
+      "Value comparison"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "How does integer division differ from floating-point division?",
+    "options": [
+      "Integer division always gives an exact result.",
+      "Floating-point division preserves the fractional part.",
+      "Integer division requires a special operator.",
+      "There is no difference; the results are always the same."
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "Which of the following statements about arithmetic in C are true? (Choose all that apply)",
+    "options": [
+      "When dividing integers, the fractional part is truncated",
+      "The % operator works with floating-point numbers.",
+      "With mixed types, implicit conversion occurs.",
+      "Integer overflow causes a compilation error"
+    ],
+    "correctAnswers": ["When dividing integers, the fractional part is truncated", "With mixed types, implicit conversion occurs."],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "What will this code print?\n#include <stdio.h>\nint main() {\n    int a = 10;\n    a += 5;\n    a *= 2;\n    printf(\"%d\", a);\n    return 0;\n}",
+    "options": [
+      "15",
+      "20",
+      "30",
+      "25"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "Why might the expression 0.1 + 0.1 + 0.1 give a result not equal to 0.3?",
+    "options": [
+      "Due to an overflow error.",
+      "Due to the specifics of binary representation of floating-point numbers.",
+      "Due to incorrect syntax.",
+      "Due to automatic rounding."
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "Write a line of code to increase the variable count by 3 using a compound assignment operator",
+    "options": [],
+    "correctAnswers": ["count += 3;"],
+    "questionType": "INPUT_CHOICE"
+  }
+]

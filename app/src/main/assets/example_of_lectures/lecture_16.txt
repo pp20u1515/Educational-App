@@ -1,5 +1,6 @@
 You already know how to store individual data (variables) and collections of homogeneous data (arrays). But what if you want to store different types of data under one roof? That's where structures come into play in C. Structures allow you to store heterogeneous types of data together, providing a unified container for them. They provide a way to organize related data elements and create more complex data structures.
-Why do you need structures?
+
+\bold Why do you need structures?
 
 Let's explore some of the key reasons why you need structures:
 
@@ -9,7 +10,7 @@ Let's explore some of the key reasons why you need structures:
 
     Passing Complex Data to Functions: Structures provide a convenient way to pass complex data to functions. Instead of passing multiple individual parameters, you can pass a structure that encapsulates all the necessary data.
 
-Structure declaration
+\bold Structure declaration
 
 You need to inform the compiler about the structure's design (so to speak, provide a blueprint). For this purpose, use the keyword struct in C. It is followed by the structure name and a block of variables that define its members. Each member can have a different data type and represents a specific attribute of the structure.
 c
@@ -19,7 +20,7 @@ struct Person {
     int age;
     float height;
 };
-
+c
 In C, the structure definition is a statement, and like any other statement, you need to terminate it with a semicolon.
 Keep in mind that this requirement for a semicolon applies not only to structure definitions but to other statements as well:
 
@@ -30,7 +31,7 @@ Keep in mind that this requirement for a semicolon applies not only to structure
     function calls.
     Note that the ; after } is very important in the context of structures.
 
-Accessing structure members
+\bold Accessing structure members
 
 To use the Person struct, you simply need to declare a variable of type struct Person. And after that, you can access structure members using the dot (.) operator.
 
@@ -48,8 +49,8 @@ struct Person james;
 strcpy(james.name, "James P. Sullivan");
 james.age = 47;
 james.height = 2.2;
-
-Struct initialization
+c
+\bold Struct initialization
 
 You can initialize the structure by accessing each member individually (as in the example above) or by using a compound literal (C99 and later):
 c
@@ -64,11 +65,11 @@ struct Person james = { .name = "James P. Sullivan", .age = 47 }; // You can ini
 // Assignment using a compound literal after declaration (C99)
 struct Person mike;
 mike = (struct Person) { "Mike Wazowski", 45, 1.2 };
-
-*(Translator's note: Unlike C++, C does not have a built-in std::string type, so character arrays and functions like strcpy from <string.h> are used for strings. Also, C does not have "uniform initialization" like C++11, but it has a similar mechanism—compound literals—since the C99 standard.)*
+c
 
 If one or more elements are not in the initializer list (like james.height in the first example), then they will be assigned default values (usually 0). In the example above, the james.height member is set to the default value of 0 because you didn't provide any value yourself during initialization.
-Nested structures
+
+\bold Nested structures
 
 You can nest structures within other structures, which allows you to create more complex data structures. This helps in organizing related data and maintaining a logical structure.
 c
@@ -92,7 +93,7 @@ struct Company {
     struct Employee CEO;
     struct Address address;
 };
-
+c
 Now you can work with information in a convenient, and, most importantly, structured and understandable way:
 c
 
@@ -100,8 +101,8 @@ struct Company comp;
 strcpy(comp.CEO.name, "John Doe");
 strcpy(comp.CEO.address.street, "Main St. 123"); // getting the CEO's street
 strcpy(comp.address.street, "Broadway 456"); // and this is the street where the company is located
-
-Using structures in functions
+c
+\bold Using structures in functions
 
 Structures can be passed as function arguments or returned from functions. This allows you to avoid passing each variable individually. Moreover, if you ever want to add new members to the Person structure, you don't have to modify the function declaration or call (we will introduce the concept of functions very soon, and we hope this example is fairly simple and understandable):
 c
@@ -134,7 +135,7 @@ int main() {
 
     return 0;
 }
-
+c
 We haven't covered functions in detail yet, but for the purpose of understanding the code, here's a brief explanation:
 A function is a distinct block of code enclosed in curly braces {} and assigned a name. It serves as a reusable unit of code, which is beneficial when you need to execute the same logic multiple times.
 In this code, we created a function named printPersonInformation. Inside the function, we simply output data about the structure passed as an argument.

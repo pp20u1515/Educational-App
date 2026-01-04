@@ -18,7 +18,7 @@ interface UserDao {
     fun readAll(): Flow<List<UserEntity>>
 
     @Query("SELECT * FROM Users WHERE email = :email")
-    fun readByEmail(email: String): UserEntity?
+    suspend fun readByEmail(email: String): UserEntity?
 
     @Update
     suspend fun update(user: UserEntity)

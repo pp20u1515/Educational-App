@@ -18,7 +18,7 @@ interface CredentialDao {
     fun readAll(): Flow<List<CredentialEntity>>
 
     @Query("SELECT * FROM Credentials WHERE email=:email")
-    fun readByEmail(email: String): CredentialEntity?
+    suspend fun readByEmail(email: String): CredentialEntity?
 
     @Delete
     suspend fun delete(credentialDao: CredentialEntity)

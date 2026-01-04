@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.programmingc.databinding.FragmentRecoverBinding
-import com.example.programmingc.presentation.additional_functions.checkValidEmail
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -18,7 +19,6 @@ import kotlinx.coroutines.launch
 class RecoveryFragment: Fragment() {
     private var _binding: FragmentRecoverBinding? = null
     private val binding: FragmentRecoverBinding get() = _binding!!
-
     private val viewModel: RecoveryViewModel by viewModels()
 
     override fun onCreateView(
@@ -35,6 +35,7 @@ class RecoveryFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupClickListener()
+        observeState()
     }
 
     override fun onDestroyView() {
@@ -46,22 +47,34 @@ class RecoveryFragment: Fragment() {
         binding.buttonNext.setOnClickListener{
             val email = binding.email.text.toString().trim()
 
-            if (checkValidEmail(email)){
-                lifecycleScope.launch {
-                    val rc = viewModel.resetPassword(email)
+            viewModel.resetPassword(email)
+        }
+    }
 
-                    if (rc == true){
-                        navigateDirection()
-                    }
-                    else {
-                        Toast.makeText(requireContext(), "Failed to reset password", Toast.LENGTH_SHORT).show()
-                    }
+    private fun observeState(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.recoveryState.collect { state ->
+                    handleState(state)
                 }
             }
-            else{
-                Toast.makeText(requireContext(), "You entered your email incorrectly", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun handleState(state: RecoveryViewModel.RecoveryState){
+        when (state){
+            is RecoveryViewModel.RecoveryState.Idle -> {}
+            is RecoveryViewModel.RecoveryState.Success -> {
+                navigateDirection()
+            }
+            is RecoveryViewModel.RecoveryState.Error -> {
+                showError(state.message)
             }
         }
+    }
+
+    private fun showError(message: String){
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     private fun navigateDirection(){

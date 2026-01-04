@@ -10,6 +10,6 @@ sealed class Practice {
 
     data class QuizPractice(
         val id: String,
-        val question: List<QuizQuestion>
-    ): Practice()
+        val questions: List<QuizQuestion> // Переименовал question → questions
+    ) : Practice()
 }

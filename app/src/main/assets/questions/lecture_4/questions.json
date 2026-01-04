@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "questionText": "What is a variable in the C language?",
+    "options": [
+      "A named object in memory",
+      "A keyword for creating functions",
+      "The address of a RAM cell",
+      "A data type, such as int or char"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "How does the compiler efficiently manage memory and optimize the use of objects?",
+    "options": [
+      "Using keywords like if and else",
+      "By using variable names",
+      "Through the use of data types",
+      "By directly accessing memory addresses"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "Which data type in C is intended for storing characters (e.g., letters)?",
+    "options": [
+      "char",
+      "float",
+      "int",
+      "void"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "Which format specifier is used to print a value of type double using the printf function?",
+    "options": [
+      "%f",
+      "%d",
+      "%lf",
+      "%c"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "Is it possible to create a variable of type void?",
+    "options": [
+      "Yes, it is a special type for pointers",
+      "Yes, but it can only store very large numbers.",
+      "No, because it consumes too much memory",
+      "No, the void type represents the absence of a type and cannot be used to declare variables."
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "Which of the following statements about the void type are correct? (Choose all that apply)",
+    "options": [
+      "It can be used to declare variables that do not store values",
+      "It is used as the return type for a function that returns nothing",
+      "It can be used to create generic pointers (void*)",
+      "It indicates that a function takes an infinite number of arguments"
+    ],
+    "correctAnswers": ["It is used as the return type for a function that returns nothing", "It can be used to create generic pointers (void*)"],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "How does the float type differ from the double type?",
+    "options": [
+      "double has a larger size and higher precision than float",
+      "float has a larger size and higher precision than double",
+      "float is used for integers, while double is used for characters",
+      "They are synonyms, and there is no difference between them"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "What happens when a variable is declared, for example, int ourVariable;?",
+    "options": [
+      "The variable is immediately assigned the value 0",
+      "The compiler allocates a block of memory of a suitable size to store values of that type",
+      "The program immediately starts executing, and the processor writes data to memory",
+      "A pointer named ourVariable is created"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "Write a line of code to declare a variable named price of type float",
+    "options": [],
+    "correctAnswers": ["float price;"],
+    "questionType": "INPUT_CHOICE"
+  }
+]

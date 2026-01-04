@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "questionText": "What is program?",
+    "options": [
+      "A program is a set of precise instructions written in a programming language that tell a computer how to perform a specific task",
+      "A program is a piece of hardware, like a graphics card or a processor, that physically makes a computer work",
+      "Data type",
+      "A program is a general idea or a plan for solving a problem, but it doesn't need to be written down for a computer to understand"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "What is programming?",
+    "options": [
+      "Programming is the act of typing very fast to hack into computer systems, often depicted in movies with green text on a black screen",
+      "Programming is the skill of using existing computer programs, like a web browser or a word processor, to complete specific tasks",
+      "Programming is the process of creating computer programs by writing code in special programming languages",
+      "None of the above"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "Which of the following areas heavily rely on C programming? (Select all that apply)",
+    "options": [
+      "Operating system kernels",
+      "Embedded systems",
+      "Web development",
+      "Compilers and interpreters"
+    ],
+    "correctAnswers": ["Operating system kernels", "Web development", "Compilers and interpreters"],
+    "questionType": "MULTIPLE_CHOICE"
+  }
+]

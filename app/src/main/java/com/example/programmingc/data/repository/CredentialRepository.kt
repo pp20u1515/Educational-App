@@ -13,16 +13,18 @@ class CredentialRepository @Inject constructor(
     private val userDaoService: UserDaoService,
     private val networkDaoService: INetworkDaoService
 ): ICredentialRepository{
-    override suspend fun authenticate(credential: Credential) {
+    override suspend fun authenticate(credential: Credential): Boolean {
+        var rc = true
         val user = networkDaoService.authenticate(credential)
 
         if (user == null){
-            //error("Ошибка авторизации")
+            rc = false
         }
         else{
             userDaoService.insert(user)
             credentialDaoService.insert(credential)
         }
+        return rc
     }
 
     override suspend fun createAcc(credential: Credential): FirebaseUser? {

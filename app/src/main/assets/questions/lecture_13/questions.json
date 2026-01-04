@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "questionText": "What is a function parameter in the C language?",
+    "options": [
+      "The actual value passed to the function when it is called",
+      "A variable declared in the function header to receive arguments",
+      "The result returned by the function",
+      "The name of the function"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "What is a function argument?",
+    "options": [
+      "The data type returned by the function",
+      "The statement that calls the function",
+      "A variable declared inside the function body",
+      "The actual value passed to the function when it is called"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "What will be the value of the variable x after this code executes?\nvoid change(int a) { a = 100; }\nint main() {\n    int x = 5;\n    change(x);\n    // value of x here?\n    return 0;\n}",
+    "options": [
+      "5",
+      "100",
+      "0",
+      "A random value"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "How should an argument be passed to a function to allow the function to change its original value?",
+    "options": [
+      "Pass by value.",
+      "Pass by pointer.",
+      "Declare the parameter as a constant.",
+      "Use a global variable."
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "What is the purpose of the const keyword when declaring a pointer parameter?",
+    "options": [
+      "To make the pointer itself constant",
+      "To prevent modification of the data pointed to",
+      "To speed up the function's execution",
+      "To make the parameter mandatory"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "Which of the following statements about passing arguments in C are true? (Choose all that apply)",
+    "options": [
+      "Pass by value means the function receives a copy of the argument",
+      "C supports pass by reference like C++",
+      "Pass by pointer allows a function to modify the original value of a variable",
+      "Parameters declared with const cannot be used inside the function."
+    ],
+    "correctAnswers": ["Pass by value means the function receives a copy of the argument", "Pass by pointer allows a function to modify the original value of a variable"],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "How does pass by value differ from pass by pointer?",
+    "options": [
+      "Pass by value is faster for large data structures",
+      "Both methods are completely identical in functionality",
+      "Pass by value allows modifying the original arguments",
+      "Pass by pointer avoids copying large amounts of data"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "What will this program print?\n#include <stdio.h>\nvoid modify(int *p) { *p = 30; }\nint main() {\n    int num = 10;\n    modify(&num);\n    printf(\"%d\", num);\n    return 0;\n}",
+    "options": [
+      "10",
+      "30",
+      "The address of variable num",
+      "0"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "Write the prototype for a function named calculate that takes a pointer to an integer and returns no value.",
+    "options": [],
+    "correctAnswers": ["void calculate(int *value);"],
+    "questionType": "INPUT_CHOICE"
+  },
+  {
+    "id": 10,
+    "questionText": "Why is it recommended to check if a pointer is NULL before using it inside a function?",
+    "options": [
+      "It speeds up the program",
+      "The compiler requires this check",
+      "To avoid undefined behavior when dereferencing",
+      "The function will not compile without the check"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  }
+]

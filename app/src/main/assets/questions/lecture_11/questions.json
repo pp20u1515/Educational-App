@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "questionText": "What is a pointer in the C language?",
+    "options": [
+      "A variable that stores the value of another pointer.",
+      "A variable that stores the memory address of another variable",
+      "A special data type for storing large numbers",
+      "A special function for memory management"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "Which operator in C is used to get the address of a variable?",
+    "options": [
+      "*",
+      "%",
+      "&",
+      "#"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "What happens when you try to dereference a null pointer (NULL)?",
+    "options": [
+      "Undefined behavior will occur (e.g., a segmentation fault)",
+      "The value 0 will be returned",
+      "Changing a variable's value after it has been declared",
+      "The program will terminate correctly"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "Which operator is used to get the value stored at the address held by a pointer?",
+    "options": [
+      "*",
+      "&",
+      "->",
+      "%"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "What does the keyword NULL mean when working with pointers?",
+    "options": [
+      "The pointer points to a memory location containing the value 0",
+      "The pointer is uninitialized and contains a garbage value",
+      "The pointer explicitly does not point to any valid memory address",
+      "The pointer points to the last byte of memory"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "Which of the following statements about pointers are true? (Choose all that apply)",
+    "options": [
+      "The size of a pointer is always equal to the size of the data type it points to",
+      "A pointer of type double* can be used to store the address of a variable of type int",
+      "A pointer must be of the same data type as the object it points to",
+      "Dereferencing an uninitialized pointer leads to undefined behavior"
+    ],
+    "correctAnswers": ["A pointer must be of the same data type as the object it points to", "Dereferencing an uninitialized pointer leads to undefined behavior"],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "How does the & (address-of) operator differ from the * (dereference) operator?",
+    "options": [
+      "Both operators perform the same function",
+      "* returns the address of a variable, while & returns the value at that address",
+      "& is used for arithmetic operations, while * is used for logical operations",
+      "& returns the address of a variable, while * returns the value at the address stored in a pointer"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "What will the following code print if the address of variable x is 0x7fff5aabbcc0?\n#include <stdio.h>\nint main() {\n    int x = 10;\n    int *p = &x;\n    printf(\"%p\", (void*)p);\n    return 0;\n}",
+    "options": [
+      "0x7fff5aabbcc0",
+      "10",
+      "The address of the pointer p itself",
+      "A random garbage value"
+    ],
+    "correctAnswers": [0],
+    "questionType": "INPUT_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "Write a line of code to declare a pointer named ptr to type int and initialize it as a null pointer (NULL)",
+    "options": [],
+    "correctAnswers": ["int *ptr = NULL;"],
+    "questionType": "INPUT_CHOICE"
+  },
+  {
+    "id": 10,
+    "questionText": "After executing the code below, what value will the variable y contain?\nint x = 5;\nint *p = &x;\n*p = 20;\nint y = x + *p;",
+    "options": [
+      "5",
+      "10",
+      "25",
+      "40"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  }
+]

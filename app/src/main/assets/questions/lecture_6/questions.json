@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "questionText": "What will this program print?\n\n```c\nint x = 5;\nif (x = 0) {\n    printf(\"True\");\n} else {\n    printf(\"False\");\n}\n```",
+    "options": [
+      "True",
+      "False",
+      "The program will not compile",
+      "There will be a runtime error"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "Which of the following conditions are considered 'true' in C? (Choose all that apply)",
+    "options": [
+      "if (1)",
+      "if (-5)",
+      "if (0)",
+      "if (100)"
+    ],
+    "correctAnswers": ["if (1)", "if (-5)", "if (100)"],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "What does the ternary operator do in C?",
+    "options": [
+      "Performs arithmetic operations",
+      "Compares three numbers simultaneously",
+      "A shorthand form of if-else for assigning values",
+      "Declares three variables at once"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "Write a line of code that uses the ternary operator to assign the value 'adult' to the variable 'status' if age >= 18, and 'minor' otherwise.",
+    "options": [],
+    "correctAnswers": ["status = (age >= 18) ? \"adult\" : \"minor\";"],
+    "questionType": "INPUT_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "How many else if blocks can be used in a single chain of conditions?",
+    "options": [
+      "No more than 3",
+      "Exactly 1",
+      "Any number",
+      "No more than 10"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "What will this program print?\n\n```c\nint a = 10, b = 20;\nprintf(\"%s\", (a > b) ? \"A greater\" : \"B greater\");\n```",
+    "options": [
+      "A greater",
+      "B greater",
+      "10",
+      "20"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "What is the correct way to check if the variable 'score' is in the range from 60 to 100?",
+    "options": [
+      "if (60 <= score <= 100)",
+      "if (score >= 60 && score <= 100)",
+      "if (score >= 60 || score <= 100)",
+      "if (60 >= score >= 100)"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "When is it recommended to use the ternary operator instead of if-else?",
+    "options": [
+      "Always, because it is shorter",
+      "Only for complex nested conditions",
+      "For simple conditions when you need to assign a value to a variable",
+      "Never, it reduces readability"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "What will happen if the user enters 0 in this code?\n\n```c\nint num;\nscanf(\"%d\", &num);\nif (num) {\n    printf(\"Non-zero\");\n} else {\n    printf(\"Zero\");\n}\n```",
+    "options": [
+      "It will print 'Non-zero'",
+      "It will print 'Zero'",
+      "The program will crash with an error",
+      "It will print nothing"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  }
+]

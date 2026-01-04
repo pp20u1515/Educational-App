@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "questionText": "What is an input operation in programming?",
+    "options": [
+      "The process of saving data to a file",
+      "The process of a program receiving data from an external source",
+      "The process of displaying results on the screen",
+      "The process of performing mathematical calculations"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "Which function in the C language is used to output text to the console?",
+    "options": [
+      "scan()",
+      "println()",
+      "printf()",
+      "console.write()"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "What happens if a user enters letters instead of a number in a program using scanf(\"%d\", &age)?",
+    "options": [
+      "The program will automatically convert the letters to a number",
+      "The program will terminate with a compilation error",
+      "The age variable will remain unchanged, and the program's behavior becomes unpredictable",
+      "The program will print an error message and ask for input again"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "Which of the following devices are INPUT devices? (Select all that apply)",
+    "options": [
+      "Keyboard",
+      "Monitor",
+      "Microphone",
+      "Temperature sensor"
+    ],
+    "correctAnswers": ["Keyboard", "Microphone", "Temperature sensor"],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "Which symbol is used in the printf() function to substitute an integer?",
+    "options": [
+      "%s",
+      "%d",
+      "%c",
+      "%f"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "Which library must be included to use the printf and scanf functions?",
+    "options": [
+      "#include <math.h>",
+      "#include <string.h>",
+      "#include <stdlib.h>",
+      "#include <stdio.h>"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "What does the & operator before a variable name do in the scanf function?",
+    "options": [
+      "Multiplies the variable's value by 2",
+      "Specifies the memory address where the variable is stored",
+      "Compares the variable's value to zero",
+      "Declares a new variable"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "Write the command to print an integer variable named age.",
+    "options": [],
+    "correctAnswers": ["printf(\"%d\", age);", "printf(\"%d\n\", age);"],
+    "questionType": "INPUT_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "What is the \"standard output stream\" (stdout) in C?",
+    "options": [
+      "The stream for reading data from the user",
+      "The stream for outputting program errors",
+      "The default stream for outputting normal program messages",
+      "The stream for writing data to a file"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 10,
+    "questionText": "What is the error in this line of code? scanf(\"%d\", age);",
+    "options": [
+      "Missing semicolon at the end",
+      "Wrong format specifier %d",
+      "Missing ampersand & before the variable age",
+      "The scanf function cannot be used for number input"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  }
+]

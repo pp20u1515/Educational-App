@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "questionText": "What does the increment operator ++ do?",
+    "options": [
+      "Multiplies the variable by 2",
+      "Increases the variable's value by 1",
+      "Compares two values",
+      "Makes the variable positive"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "What is the difference between the prefix form ++x and the postfix form x++?",
+    "options": [
+      "The prefix form is faster",
+      "The timing of when the variable's value is changed",
+      "The postfix form does not change the value",
+      "They are synonyms"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "What will this code print?\nint x = 5;\nint y = x++;\nprintf(\"%d\", y);",
+    "options": [
+      "5",
+      "6",
+      "0",
+      "1"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "What will this code print?\nint x = 5;\nint y = ++x;\nprintf(\"%d\", y);",
+    "options": [
+      "5",
+      "0",
+      "6",
+      "1"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "Which operator decreases a variable's value by 1?",
+    "options": [
+      "--",
+      "-",
+      "++",
+      "-="
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "Which of the following statements about increment/decrement operators are true? (Choose all that apply)",
+    "options": [
+      "The prefix form changes the value first, then uses it",
+      "The postfix form uses the value first, then changes it",
+      "They can be safely used multiple times in the same expression",
+      "They only work with integer variables"
+    ],
+    "correctAnswers": ["The prefix form changes the value first, then uses it", "The postfix form uses the value first, then changes it"],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "Why is the prefix form recommended over the postfix form?",
+    "options": [
+      "The prefix form is shorter",
+      "The prefix form avoids creating a temporary copy",
+      "The postfix form is slower for all data types",
+      "The prefix form works with larger numbers"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "What will this code print?\nint a = 3;\nint b = --a + a--;\nprintf(\"a=%d, b=%d\", a, b);",
+    "options": [
+      "a=1, b=4",
+      "a=1, b=5",
+      "a=2, b=4",
+      "Undefined behavior"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "Write a line of code to decrease the variable counter by 1 using the decrement operator",
+    "options": [],
+    "correctAnswers": ["counter--", "--counter"],
+    "questionType": "INPUT_CHOICE"
+  },
+  {
+    "id": 10,
+    "questionText": "Which result is considered undefined behavior?",
+    "options": [
+      "int x = 5; x++;",
+      "int x = 5; int y = ++x;",
+      "int x = 5; int y = x++ + x++;",
+      "int x = 5; printf(\"%d\", x--);"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  }
+]

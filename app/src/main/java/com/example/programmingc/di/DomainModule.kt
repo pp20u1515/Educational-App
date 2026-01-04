@@ -21,16 +21,20 @@ import dagger.hilt.components.SingletonComponent
 import android.content.Context
 import com.example.programmingc.data.repository.LessonRepository
 import com.example.programmingc.data.repository.PackageRepository
+import com.example.programmingc.data.repository.QuestionsRepository
 import com.example.programmingc.domain.repo.ILessonRepository
 import com.example.programmingc.domain.repo.IPackageRepository
+import com.example.programmingc.domain.repo.IQuestionsRepository
 import com.example.programmingc.domain.usecase.CheckAuthStateUseCase
 import com.example.programmingc.domain.usecase.CompleteLessonUseCase
 import com.example.programmingc.domain.usecase.CreateAccUseCase
 import com.example.programmingc.domain.usecase.GetLessonUseCase
+import com.example.programmingc.domain.usecase.GetQuestionsUseCase
 import com.example.programmingc.domain.usecase.ResetPasswordUseCase
 import com.example.programmingc.domain.usecase.ShowLessonsUseCase
 import com.example.programmingc.domain.usecase.ShowPackageUseCase
 import com.example.programmingc.domain.usecase.SignOutUseCase
+import com.example.programmingc.domain.usecase.ValidateQuizAnswerUseCase
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -58,8 +62,12 @@ class DomainModule {
     }
 
     @Provides
-    fun provideAuthRepository(firebaseAuth: FirebaseAuth): IAuthRepository{
-        return AuthRepository(firebaseAuth)
+    fun provideAuthRepository(
+        firebaseAuth: FirebaseAuth,
+        networkDaoService: INetworkDaoService,
+        userDaoService: UserDaoService
+    ): IAuthRepository{
+        return AuthRepository(firebaseAuth, networkDaoService, userDaoService)
     }
 
     @Provides
@@ -73,10 +81,15 @@ class DomainModule {
     }
 
     @Provides
+    fun provideQuestionRepository(context: Context): IQuestionsRepository{
+        return QuestionsRepository(context)
+    }
+
+    @Provides
     fun provideAuthenticateUseCase(
-        credentialRepository: ICredentialRepository
+        authRepository: IAuthRepository
     ): AuthenticateUseCase {
-        return AuthenticateUseCase(credentialRepository)
+        return AuthenticateUseCase(authRepository)
     }
 
     @Provides
@@ -95,9 +108,9 @@ class DomainModule {
 
     @Provides
     fun provideCreateAccUseCase(
-        credentialRepository: ICredentialRepository
+        authRepository: IAuthRepository
     ): CreateAccUseCase{
-        return CreateAccUseCase(credentialRepository)
+        return CreateAccUseCase(authRepository)
     }
 
     @Provides
@@ -115,9 +128,9 @@ class DomainModule {
 
     @Provides
     fun provideResetPasswordUseCase(
-        credentialRepository: ICredentialRepository
+        authRepository: IAuthRepository
     ): ResetPasswordUseCase{
-        return ResetPasswordUseCase(credentialRepository)
+        return ResetPasswordUseCase(authRepository)
     }
 
     @Provides
@@ -139,5 +152,17 @@ class DomainModule {
         authRepository: IAuthRepository
     ): SignOutUseCase{
         return SignOutUseCase(authRepository)
+    }
+
+    @Provides
+    fun provideGetQuestionsUseCase(
+        questionsRepository: IQuestionsRepository
+    ): GetQuestionsUseCase{
+        return GetQuestionsUseCase(questionsRepository)
+    }
+
+    @Provides
+    fun provideValidateQuizAnswerUseCase(): ValidateQuizAnswerUseCase{
+        return ValidateQuizAnswerUseCase()
     }
 }

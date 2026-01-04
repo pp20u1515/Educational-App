@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/codeCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@color/white">
+
+        <TextView
+            android:id="@+id/questionId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top|start"
+            android:padding="20dp"
+            android:background="@null"
+            android:typeface="monospace"
+            android:fontFamily="monospace"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:scrollbars="vertical"
+            android:overScrollMode="always"/>
+    </androidx.cardview.widget.CardView>
+
+    <RadioGroup
+        android:id="@+id/answersRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp">
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="RadioButton"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/checkAnswerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Answer"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:background="@drawable/rectangle_blue"/>
+</LinearLayout>

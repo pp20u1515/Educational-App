@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "questionText": "What is the main() function in a C program?",
+    "options": [
+      "It is a function that must always print text to the screen",
+      "It is the entry point for program execution, where its work begins",
+      "It is a special function for handling mathematical calculations",
+      "It is an optional function that can be omitted"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "Which symbol must necessarily terminate every statement in C?",
+    "options": [
+      "Period (.)",
+      "Colon (:)",
+      "Comma (,)",
+      "Semicolon (;)"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "What is the purpose of the preprocessor directive #include <stdio.h> in the first program?",
+    "options": [
+      "To declare the main() function",
+      "To tell the compiler that the program uses input/output library capabilities",
+      "To make the program shorter",
+      "To print the text \"Hello, World\" to the screen"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "What is a literal in the C language?",
+    "options": [
+      "It is a language keyword, for example, return",
+      "It is the name of a variable or function",
+      "It is a fixed value that is written directly into the code (e.g., a number or a string)",
+      "It is an instruction for the compiler"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "What is the primary purpose of using comments in a program?",
+    "options": [
+      "To speed up program execution",
+      "To provide textual explanations for programmers, which are ignored by the compiler",
+      "To declare new variables",
+      "To perform additional calculations"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "What does a code block in C represent?",
+    "options": [
+      "A single statement terminated by a semicolon",
+      "A group of statements enclosed in curly braces {}",
+      "A preprocessor directive",
+      "A function call, such as printf()"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "Why is it recommended to break a large program into multiple files (.h and .c)",
+    "options": [
+      "To make the program run faster.",
+      "So the compiler can ignore unnecessary parts of the code",
+      "For better organization, ease of maintenance, and code reusability",
+      " It is a requirement of the C language; without it, the program will not compile"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  }
+]

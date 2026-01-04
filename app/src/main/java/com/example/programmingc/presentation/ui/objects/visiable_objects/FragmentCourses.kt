@@ -35,10 +35,6 @@ class FragmentCourses: BaseMenuBar() {
             Toast.makeText(requireContext(), "Soon", Toast.LENGTH_SHORT).show()
         }
 
-        binding.buttonPro.setOnClickListener{
-            Toast.makeText(requireContext(), "Soon", Toast.LENGTH_SHORT).show()
-        }
-
         return binding.root
     }
 

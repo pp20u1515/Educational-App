@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "questionText": "What is a loop in programming?",
+    "options": [
+      "A conditional statement for decision making",
+      "A construct for repeating a set of instructions",
+      "A way to declare variables",
+      "A method for error handling"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "Which loop checks the condition BEFORE executing the loop body?",
+    "options": [
+      "do-while",
+      "for",
+      "while",
+      "All of the above"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "How many times will this loop execute?\nint i = 0;\nwhile (i < 5) {\n    printf(\"%d\", i);\n    i++;\n}",
+    "options": [
+      "0 times",
+      "4 times",
+      "5 times",
+      "Infinitely"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "How does the do-while loop differ from the while loop?",
+    "options": [
+      "Do-while always executes at least once",
+      "While always executes at least once",
+      "Do-while cannot be used with arrays",
+      "They are synonyms"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "What error commonly occurs when working with loops?",
+    "options": [
+      "Off-by-one error",
+      "Syntax error",
+      "Memory leak",
+      "Type mismatch"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "Which of the following statements about the for loop are true? (Choose all that apply)",
+    "options": [
+      "It consists of three parts: initialization, condition, and modification",
+      "It can be infinite: for(;;)",
+      "A variable declared in the initialization is visible outside the loop",
+      "All parts of the for loop are mandatory"
+    ],
+    "correctAnswers": ["It consists of three parts: initialization, condition, and modification", "It can be infinite: for(;;)"],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "What will this program print?\n#include <stdio.h>\nint main() {\n    for (int i = 3; i > 0; i--) {\n        printf(\"%d \", i);\n    }\n    return 0;\n}",
+    "options": [
+      "1 2 3",
+      "3 2 1 0",
+      "0 1 2 3",
+      "3 2 1"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "Write a line of code to declare a for loop that prints numbers from 1 to 10.",
+    "options": [],
+    "correctAnswers": ["for (int i = 1; i <= 10; i++)"],
+    "questionType": "INPUT_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "How many iterations will this loop perform?\nint count = 0;\ndo {\n    count++;\n} while (count < 5 && count > 10);",
+    "options": [
+      "0 iterations",
+      "1 iterations",
+      "5 iterations",
+      "Infinite number"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  }
+]

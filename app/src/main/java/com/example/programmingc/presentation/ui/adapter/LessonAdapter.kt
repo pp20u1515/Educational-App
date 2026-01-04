@@ -20,7 +20,7 @@ import com.example.programmingc.presentation.edit_text.parseContentWithCodeBlock
 import com.example.programmingc.presentation.model.RoundedBackgroundSpan
 
 class LessonAdapter(
-    private var lesson: List<Lesson>,
+    private var lesson: Lesson? = null,
     private val onPracticeClick: (String) -> Unit
 ): RecyclerView.Adapter<LessonAdapter.LessonViewHolder>() {
 
@@ -37,7 +37,7 @@ class LessonAdapter(
     }
 
     override fun onBindViewHolder(holder: LessonViewHolder, position: Int) {
-        val _lesson = lesson[position]
+        val _lesson = lesson ?: return
         val parsedContent = parseContentWithCodeBlocks(_lesson.content)
 
         holder.lecture.text = _lesson.title
@@ -62,9 +62,9 @@ class LessonAdapter(
         }
     }
 
-    override fun getItemCount(): Int = lesson.size
+    override fun getItemCount(): Int = if (lesson != null) 1 else 0
 
-    fun updateData(newLessons: List<Lesson>){
+    fun updateData(newLessons: Lesson?){
         lesson = newLessons
         notifyDataSetChanged()
     }

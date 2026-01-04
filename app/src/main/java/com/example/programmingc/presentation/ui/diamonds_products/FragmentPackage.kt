@@ -52,7 +52,11 @@ class FragmentPackage: BaseMenuBar() {
 
     private fun setupRecyclerView(){
         adapter = PackageAdapter(emptyList())
-        binding.packagesGrid.layoutManager = GridLayoutManager(requireContext(), 3)
+        // GridLayoutManager с 3 колонками
+        val layoutManager = GridLayoutManager(requireContext(), 3).apply {
+            orientation = GridLayoutManager.VERTICAL
+        }
+        binding.packagesGrid.layoutManager = layoutManager
         binding.packagesGrid.adapter = adapter
     }
 

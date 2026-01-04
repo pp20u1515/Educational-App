@@ -21,11 +21,15 @@ class FragmentIntroduction: Fragment() {
     ): View? {
         _binding = FragmentIntroductionBinding.inflate(inflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.clientNext.setOnClickListener{
             navigateDirection()
         }
-
-        return binding.root
     }
 
     private fun navigateDirection(){

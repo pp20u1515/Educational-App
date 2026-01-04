@@ -1,163 +1,203 @@
-Pointers are an essential tool in C programming that allows us to manipulate memory addresses and access data indirectly. They provide us with powerful mechanisms for memory management, creating dynamic data structures, and optimizing program efficiency.
-There is a belief that pointers are quite difficult to understand and can cause errors even for experienced programmers. But you just need to be a little more careful with them.
-However, once you grasp their concepts and learn how to use them effectively, you will unlock new possibilities in your programming journey.
+So far, the programs you've seen have run in a straight line. But what if you want your program to
+make decisions? This is where conditional statements come in.
 
-\bold Address-of operator (&)
+A conditional statement is a programming construct that allows a program to execute different pieces of
+code based on whether a condition is true or false.
 
-When a variable is initialized in C, it is automatically allocated a free memory address. It stores any value you assign to the variable. For example: int age = 32; When the processor executes this statement, it allocates a portion of the computer's memory with a specific address (let's say 0x3093cea98). At that moment, the variable becomes associated with that memory address.
-In previous topics, you saw how to obtain the address of an object in C. This is done using the address-of operator (&). The address-of operator (&) allows us to determine the memory address assigned to a specific variable. It's quite simple:
+\bold The Concept of True and False in C
+
+In C, there is no built-in bool (boolean) data type by default (it was introduced later in C99 with the
+<stdbool.h> header). Instead, C uses integers to represent truth values:
+
+    False is represented by the integer 0.
+
+    True is represented by any non-zero integer (1, -1, 100, etc.).
+
+This is a fundamental concept in C. When we talk about "conditions," we are often referring to control
+flow statements. Control flow is the order in which the instructions in your program are executed.
+
+\bold The if Statement
+
+The simplest form of a conditional statement uses the if keyword.
+
+If the condition inside the parentheses is true (evaluates to a non-zero value), the code within the
+block is executed. Otherwise, the program skips it and continues.
 
 c
-
 #include <stdio.h>
 
 int main() {
-    int age = 32;
-    printf("%d\n", age);        // prints the value of the variable (32)
-    printf("%p\n", (void*)&age); // prints the memory address of the variable (0x3093cea98)
-    return 0;
-}
-c
+    if (1) { // 1 is non-zero, so this is always true
+        printf("This text will always be displayed.\n");
+    }
 
-By using the address-of operator, you can access the memory address of variables, which is a fundamental concept when working with pointers in C.
+    int isDark = 1; // Any non-zero value means "true"
+    if (isDark) {
+        printf("Yep, it's dark now!\n");
+    }
 
-\bold Pointers
-
-Okay, I have a variable age with a value and now even its memory address. Can I store the address itself in a variable? Almost. In C, there is another fundamental data type called a pointer, specifically designed for storing memory addresses.
-In C, a pointer is a variable that stores the memory address of another variable. It allows us to indirectly access and manipulate data by referring to its memory location. Pointers provide flexibility and efficiency in memory management. They enable us to work with dynamic data structures, pass arguments by reference, and interact with low-level operations.
-Pointers are declared similarly to regular variables but with an asterisk * between the data type and the identifier:
-
-c
-
-#include <stdio.h>
-
-int main() {
-    int number = 11;        // our variable
-    int *ptr = &number;     // and this is a pointer to the address of our variable
-
-    printf("value of number: %d\n", number);
-    printf("address of number: %p\n", (void*)&number);
-    printf("pointer content: %p\n", (void*)ptr); // the address of our variable stored in a pointer
-
-    double pi = 3.14;
-    double *piptr = &pi;
-
-    printf("value of pi: %f\n", pi);
-    printf("address of pi: %p\n", (void*)&pi);
-    printf("pointer content: %p\n", (void*)piptr); // the address of our variable stored in a pointer
-
-    // attempt to put the address of an int variable into a double pointer
-    // double *newptr = &number; // ERROR: incompatible pointer types
+    isDark = 0; // 0 means "false"
+    if (isDark) {
+        printf("This text is NEVER printed!!\n");
+    }
 
     return 0;
 }
 c
 
-💡 It is important to remember that a pointer must be of the same data type as the object it points to.
-
-    if int n; then int *iptr = &n;
-
-    if double m; then double *dptr = &m;
-
-How much memory is needed to store types like int or double? Does a pointer to these types also occupy space (after all, you need to store the memory address somewhere)? The sizeof() operator has the answers to these questions:
+In C, any expression that evaluates to a non-zero value inside an if statement (or loop) is
+considered true. Only zero is considered false. This is very convenient. For example, to check if a
+divisor is valid, you don't necessarily have to write:
 
 c
+if (divider != 0) {
+    // some code
+}
+c
 
+You can simply write:
+c
+if (divider) { // This is true if 'divider' is any number except 0
+    // some code
+}
+c
+This principle simplifies code and is a fundamental part of C programming.
+
+\bold The if-else Statement
+
+You can extend the if statement with an else clause to provide an alternative action when the condition is false.
+
+If the condition is true, the first block of code is executed. If it is false, the block following the
+else is executed. Both blocks cannot be executed together.
+c
 #include <stdio.h>
 
 int main() {
-    int number = 11;
-    int *ptr = &number;
+    int numerator, denominator;
+    printf("Let's divide the numbers, enter two numbers: ");
+    scanf("%d %d", &numerator, &denominator);
 
-    printf("int size: %zu\n", sizeof(number));
-    printf("ptr to int size: %zu\n\n", sizeof(ptr));
+    if (denominator) { // Check if denominator is not zero
+        printf("The result is: %d\n", numerator / denominator);
+    } else {
+        printf("Unfortunately, the divisor is 0. Cannot divide.\n");
+    }
 
-    double pi = 3.14;
-    double *piptr = &pi;
+    return 0;
+}
+c
+\bold Chaining Conditions with else if
 
-    printf("double size: %zu\n", sizeof(pi));
-    printf("ptr to double size: %zu\n", sizeof(piptr));
+For checking multiple conditions, you can chain if and else statements together using else if
+c
+#include <stdio.h>
+
+int main() {
+    int number;
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    if (number == 1) {
+        printf("Number is 1\n");
+    } else if (number == 2) {
+        printf("Number is 2\n");
+    } else if (number == 3) {
+        printf("Number is 3\n");
+    } else if (number == 4) {
+        printf("Number is 4\n");
+    } else {
+        printf("Number is not 1, 2, 3, or 4\n");
+    }
+
+    return 0;
+}
+c
+Output Example:
+Enter a number: 89
+Number is not 1, 2, 3, or 4
+
+\bold The Ternary Operator (? :)
+
+Often in programming, you need to assign a value to a variable based on a condition. For example:
+c
+if (a > b) {
+    max = a;
+} else {
+    max = b;
+}
+c
+C provides a shorthand for this common pattern: the ternary operator. It is a compact form of an
+if-else statement that returns a value.
+The general syntax is:
+c
+result = condition ? value_if_true : value_if_false;
+c
+Here is the same assignment using the ternary operator:
+c
+max = (a > b) ? a : b;
+c
+This code is more concise. Let's break it down:
+
+    The condition (a > b) is evaluated.
+
+    If the condition is true, the expression evaluates to a.
+
+    If the condition is false, the expression evaluates to b.
+
+    The result is then assigned to max.
+
+Complete Example:
+c
+#include <stdio.h>
+
+int main() {
+    int number;
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    // The ternary operator returns a value. We use it directly in printf.
+    // Note: We use the integer format specifier %d and print the corresponding string.
+    printf("The number is %s\n", (number % 2 == 0) ? "even" : "odd");
 
     return 0;
 }
 c
 
-In our case, you get the following result:
-
-c
-
-int size: 4
-ptr to int size: 8
-
-double size: 8
-ptr to double size: 8
-c
-
-So what's the point? For the double type, the memory size occupied by the variable and the pointer is the same, but for the int type, the pointer is twice as big. Yes, the advantage isn't particularly noticeable for basic data types, but the size of a pointer is always fixed (since you only store the address and nothing more). This is where the main advantage of a pointer lies: you can have an object of any size somewhere, even 1GB, and without passing the entire object around your program, you can always manipulate a pointer to its memory address.
-The size of a pointer in C can vary across computer systems, depending on the underlying architecture. It is typically equal to the native word size, such as 4 bytes on a 32-bit system or 8 bytes on a 64-bit system. However, variations in pointer size exist, especially with different computer architectures or specialized systems. Consider these variations when writing C code for portability and compatibility.
-Okay, so a pointer stores the address, but can you somehow retrieve the value from it? Of course, for that, use the dereference operator (*) with a pointer.
-
-\bold Dereference operator (*)
-
-When you dereference a pointer, it means getting the value that is stored at the memory address it points to. You do it using the dereference operator (*). Dereferencing allows you to read or modify the value at that memory location:
-
+A More Complex Example (Nested Ternary):
 c
 
 #include <stdio.h>
 
 int main() {
-    int number = 11;
-    int *ptr = &number;
+    int a, b;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
 
-    printf("value of number: %d\n", number);
-    printf("address of number: %p\n", (void*)&number);
-    printf("pointer content: %p\n", (void*)ptr); // the address of our variable stored in a pointer
+    // Compare a and b
+    const char *result;
+    if (a == b) {
+        result = "equal";
+    } else {
+        if (a > b) {
+            result = "greater";
+        } else {
+            result = "less";
+        }
+    }
+    printf("The first number is %s than the second.\n", result);
 
-    // Aaaand...
-    printf("Value at the address pointed to by ptr: %d\n", *ptr); // Dereference the pointer
-
-    *ptr = 39; // Change the value at the address pointed to by ptr
-    printf("New value of number: %d\n", number); // number has also changed
+    // This can be written with a nested ternary operator, but use with caution for readability:
+    // printf("The first number is %s than the second.\n",
+    //        (a == b) ? "equal" : (a > b) ? "greater" : "less");
 
     return 0;
 }
 c
 
-Understanding the dereference operator is crucial when working with pointers in C. It enables us to access and manipulate data indirectly, giving us powerful capabilities in memory management and data manipulation.
+\bold The Golden Rule of Good Programming
 
-\bold Null pointers
+"Write clean and readable code."
 
-Pointers can be very tricky (more than variables) because you can declare them without initializing them (in which case the pointer will point to an unknown area of memory). You need to be extremely careful because a pointer can point to something you don't intend to change, and you won't be able to verify it. Below is a syntactically valid code example, but it can potentially lead to significant issues if you attempt to write something using such a pointer.
-
-c
-
-#include <stdio.h>
-
-int main() {
-    int *ptr; // Declared but not initialized
-
-    // Print the value of the pointer 'ptr' (can be any garbage address)
-    printf("%p\n", (void*)ptr);
-
-    // Dereference and print the value (Undefined Behavior if uninitialized!)
-    // printf("%d\n", *ptr); // DANGEROUS! Don't do this!
-
-    // Write a value to the memory location pointed to by 'ptr' (potential critical errors)
-    // *ptr = 100; // DANGEROUS! Where are we writing the data? Might break the OS!
-
-    // Print the "updated" value (undefined behavior due to previous potential errors)
-    // printf("%d\n", *ptr); // DANGEROUS!
-
-    return 0;
-}// In practice, this code may behave differently, but most often will lead to a crash (Segmentation fault).
-c
-
-To safeguard yourself, you can use a null pointer. A null pointer is a special value that indicates it is not pointing to any valid memory address. You can assign it explicitly using the value NULL (defined in stdio.h or stddef.h).
-
-c
-
-int *ptr = NULL; // assigning NULL to the pointer
-c
-
-💡 Null pointers are dangerous because they do not point to a valid memory location. When you dereference a null pointer, that is, when you try to access the memory location it points to, it leads to undefined behavior. This can result in crashes (segmentation fault), program termination, unpredictable results, or memory corruption if the null pointer is mistakenly used to read from or write to memory.
-It is crucial to handle null pointers appropriately to avoid crashes and undefined behavior in the program. Always check if a pointer is NULL before dereferencing it.
+If the ternary operator makes your code simpler and easier to understand (as in the "even/odd" example),
+use it. If it makes the logic more confusing and nested (as in the more complex comparison), the
+if-else construct is almost always the better choice. Clarity should be your top priority.

@@ -1,0 +1,157 @@
+You already know how to shape the control flow of a program using if-else statements.
+This is a very handy operator. But let's imagine that you have a choice of 5, 10, or 20 options. Each time you will have to write a complex structure of if/else operators. And for each such operator, you need 2 pairs of curly braces. That's a lot of them, isn't it? But this can be avoided. In this topic, you will learn an alternative way to deal with multiple choices.
+
+\bold Switch, case, and default
+
+Let's still first try to implement something using if-else operators. For example, choosing an action from a game menu. To do that, you can use a conditional statement with multiple branches, as shown below.
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int choice;
+    printf("Game Menu\n");
+    printf("1. New Game\n");
+    printf("2. Continue\n");
+    printf("3. Settings\n");
+    printf("4. Quit\n");
+    printf("Choose an option: ");
+    scanf("%d", &choice);
+
+    if (choice == 1) {
+        printf("Starting a new game...\n");
+    } else if (choice == 2) {
+        printf("Continuing the game...\n");
+    } else if (choice == 3) {
+        printf("Opening settings...\n");
+    } else if (choice == 4) {
+        printf("Exiting the game...\n");
+    } else {
+        printf("Invalid choice. Please try again.\n");
+    }
+    return 0;
+}
+c
+
+Of course, this code handles the task. But if your conditional statement has many branches, it can be difficult to understand. And here, the switch statement comes to the rescue.
+
+The switch statement provides a way to choose between multiple options (case) based on the value of a single variable (not an expression!). The variable can be an integer, character, string, or enumeration (enum). You will study the last two types in more detail in the following topics.
+
+With the switch statement, the previous code will look like this:
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int choice;
+    printf("Game Menu\n");
+    printf("1. New Game\n");
+    printf("2. Continue\n");
+    printf("3. Settings\n");
+    printf("4. Quit\n");
+    printf("Choose an option: ");
+    scanf("%d", &choice);
+
+    switch (choice) {
+        case 1:
+            printf("Starting a new game...\n");
+            break;
+        case 2:
+            printf("Continuing the game...\n");
+            break;
+        case 3:
+            printf("Opening settings...\n");
+            break;
+        case 4:
+            printf("Exiting the game...\n");
+            break;
+        default:
+            printf("Invalid choice. Please try again.\n");
+            break;
+    }
+    return 0;
+}
+c
+
+As you can see, this code is well-structured and easier to read than the if/else conditional statement. We haven't explained the keywords switch, case, and break yet, but you can already guess what they mean.
+
+\bold Switch under a microscope
+
+Let's now take a closer look at switch and its components.
+
+c
+
+switch (choice) {
+    case 1:
+        printf("Starting a new game...\n");
+        break;
+    case 2:
+        printf("Continuing the game...\n");
+        break;
+    case 3:
+        printf("Opening settings...\n");
+        break;
+    case 4:
+        printf("Exiting the game...\n");
+        break;
+    default:
+        printf("Invalid choice. Please try again.\n");
+        break;
+}
+c
+
+    switch (choice) { } - In C, the switch statement performs different actions based on the value of a variable or expression. It starts with the keyword switch followed by the variable or expression being evaluated in parentheses. The code block enclosed in curly braces { } contains a series of case labels that specify the possible values to compare against.
+
+    case - Within a switch statement, the case keyword defines a specific value (but not a range, unlike in C++) to compare against the variable or expression specified in the switch statement. If the value matches the case label, the corresponding code block associated with that case is executed.
+
+    break - The break statement is used within a switch statement to terminate the execution of the current case and exit the switch statement. break is optional.
+
+    default - The default keyword serves as a label within a switch statement that specifies the code to be executed if none of the case labels match the value of the evaluated expression. It is the default option when no other cases are matched. The default case is optional and can be placed anywhere within the switch block, but it is often used as the last case.
+
+As you may have noticed (if not, please pay attention), break is optional. And this can lead to potential issues.
+
+Sequential code execution is one of the trickiest aspects of a switch statement. When a case is matched (or the default case is executed), execution starts from the first statement following that case and continues until one of the following termination conditions is met:
+
+    The end of the switch block is reached.
+
+    A return statement is executed.
+
+    A break statement is executed.
+
+Note that if none of these termination conditions are met, all the cases following the matched case will be executed.
+
+c
+
+#include <stdio.h>
+
+int main() {
+    int option = 2;
+    switch (option) {
+        case 1:
+            printf("This option is not suitable, we will not print this.\n");
+        case 2:
+            printf("Oh, we will print this.\n");
+        case 3:
+            printf("And we will print this too...\n");
+        case 4:
+            printf("And this too??? YES!\n");
+        case 5:
+            printf("And this 8)\n");
+        default:
+            printf("And this\n");
+    }
+    return 0;
+}
+c
+
+As a result of executing the code, you will get the following:
+
+Oh, we will print this.
+And we will print this too...
+And this too??? YES!
+And this 8)
+And this
+
+This is definitely not what you need! The break statement tells the compiler that you have already done everything you wanted with a particular switch and do not intend to work with it anymore. Remember this and be careful.

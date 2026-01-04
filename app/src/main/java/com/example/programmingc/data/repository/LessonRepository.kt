@@ -23,7 +23,7 @@ class LessonRepository @Inject constructor(
 
     override suspend fun showLessons(): List<LessonWindow> {
         return listOf(
-            LessonWindow("1", 1, "", "Introduction to programming and C history", listOf(R.drawable.image_study, R.drawable.image_c, R.drawable.baseline_play_arrow)),
+            LessonWindow("1", 1, "", "Introduction to C", listOf(R.drawable.image_study, R.drawable.image_c, R.drawable.baseline_play_arrow)),
             LessonWindow("2", 2, "", "Writing the first C program", listOf(R.drawable.image_study, R.drawable.image_c, R.drawable.baseline_play_arrow)),
             LessonWindow("3", 3, "", "First look at input/output", listOf(R.drawable.image_study, R.drawable.image_c, R.drawable.baseline_play_arrow)),
             LessonWindow("4", 4, "", "Data Structure and Types", listOf(R.drawable.image_study, R.drawable.image_c, R.drawable.baseline_play_arrow)),

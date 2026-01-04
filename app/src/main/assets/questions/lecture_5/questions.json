@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "questionText": "What happens if you try to print the value of an uninitialized variable?",
+    "options": [
+      "The value 0 will be printed",
+      "A random (garbage) value will be printed",
+      "The program will terminate with a compilation error",
+      "The variable's name will be printed"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "Which operator in C is used to get the address of a variable?",
+    "options": [
+      "*",
+      "%",
+      "&",
+      "#"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "What does variable initialization mean?",
+    "options": [
+      "Declaring a variable without specifying its type",
+      "Getting the memory address of a variable",
+      "Changing a variable's value after it has been declared",
+      "Assigning a value to a variable at the moment of its declaration"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "Which keyword is used to create a constant (a variable that cannot be changed)?",
+    "options": [
+      "constant",
+      "static",
+      "final",
+      "const"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "Which of the following statements about constants in C are true? (Choose all that apply)",
+    "options": [
+      "A constant can be declared without an initial value",
+      "A constant must be initialized at the time of declaration",
+      "The value of a constant cannot be changed using the assignment operator =",
+      "The const keyword is placed after the variable type"
+    ],
+    "correctAnswers": ["A constant must be initialized at the time of declaration", "The value of a constant cannot be changed using the assignment operator ="],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "How does declaring a variable differ from initializing it?",
+    "options": [
+      "They are synonyms, and there is no difference",
+      "Declaration allocates memory for the variable, while initialization assigns it an initial value",
+      "Initialization is performed before the variable is declared",
+      "Declaration assigns a value, while initialization allocates memory"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "What will happen if you try to execute the following code: const int x; x = 10;?",
+    "options": [
+      "The code will execute successfully, and the variable x will be assigned the value 10",
+      "The program will print a garbage value",
+      "A compilation error will occur because the constant was not initialized at the time of declaration",
+      "The program will crash during runtime"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "Write a line of code to declare and initialize a constant named speed_limit of type int with a value of 60.",
+    "options": [],
+    "correctAnswers": ["const int speed_limit = 60;"],
+    "questionType": "INPUT_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "After executing the code int number; number = 2 + 2 * 2;, what value will be stored in the variable number?",
+    "options": [
+      "6",
+      "8",
+      "0",
+      "Undefined (garbage), because the variable was not initialized"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 10,
+    "questionText": "According to the rules for variable names in C, which of the following is a valid variable name?",
+    "options": [
+      "2nd_place",
+      "float",
+      "totalScore",
+      "user-name"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  }
+]

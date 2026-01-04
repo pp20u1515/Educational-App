@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/resultOverlay"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:visibility="gone"
+    android:elevation="8dp">
+
+    <!-- Иконка результата -->
+    <ImageView
+        android:id="@+id/resultIcon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/resultTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Correct!"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Сообщение -->
+    <TextView
+        android:id="@+id/resultMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Your answer is correct"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Контейнер для кнопок -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <!-- Кнопка возврата к курсу (общая для обоих случаев) -->
+        <Button
+            android:id="@+id/buttonBackToCourse"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:text="Back to Course"
+            android:textColor="@color/black" />
+
+        <!-- Кнопка продолжить (только для правильного ответа) -->
+        <Button
+            android:id="@+id/buttonContinue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:text="Continue"
+            android:textColor="@color/black"
+            android:visibility="gone" />
+
+        <!-- Кнопка повторить (только для неправильного ответа) -->
+        <Button
+            android:id="@+id/buttonRetry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:text="Try Again"
+            android:textColor="@color/black"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>

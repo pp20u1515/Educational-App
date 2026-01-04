@@ -1,356 +1,166 @@
-Loops are essential for repeating similar operations and simplifying a programmer's life. Computers are happy to perform any number of repetitive actions; it's a piece of cake for them. In the C programming language, there are several types of loops. In this topic, you will explore two of them: the while loop and the do-while loop.
+In C, the increment (++) and decrement (--) operators are important arithmetic operators that allow you to increase or decrease a variable's value by one. These operators come in two forms: prefix and postfix, each with its own behavior and side effects. In this topic, you will learn about the increment and decrement operators, their different forms, and the best practices for using them.
 
-\bold The while loop
+\bold Increment (++) and Decrement (--) Operators
 
-The while loop is very similar to the conditional if statement.
-
-The while loop consists of a block of code and a condition (a Boolean expression). If the condition is true, the code inside the block is executed. This code repeats until the condition becomes false. Since this loop checks the condition before the block is executed, this control structure is also known as a pre-test loop. You can think of the while loop as a repetitive if statement.
-
-The basic syntax of the while loop is the following:
+Use the increment (++) and decrement (--) operators to change a variable's value by adding or subtracting one, respectively. These are unary operators, meaning they operate on a single operand (a variable or another entity participating in the operation). Here is the basic syntax for these operators:
 
 c
 
-while (condition) {
-    // some code here
-    // this code will repeat as long as the condition is true
-}
+++someVariable; // Prefix increment
+--someVariable; // Prefix decrement
+someVariable++; // Postfix increment
+someVariable--; // Postfix decrement
 c
 
-A loop's body can contain any correct C statements, including conditional statements and even other loops (the latter are called nested loops).
+In the postfix form, the operator is placed after the variable, while in the prefix form, it is placed before it. This placement difference affects the behavior of these operators and how they interact with other parts of an expression. Their behavior is discussed in the sections below.
 
-It is also possible to write an infinite loop if the condition is invariably true. In C, non-zero constants are typically used for this:
-
-c
-
-while (1) {
-    // code will repeat indefinitely
-}
-c
-
-But be very careful with such experiments; you need to clearly understand what you are doing and how to stop it!
-
-\bold Example 1: The while loop
+Prefix Form: Write the prefix form of the increment and decrement operators before the variable, like ++someVariable or --someVariable. When you use the prefix form, the variable's value is changed first, and then the expression uses the updated value. Here is an example:
 
 c
 
 #include <stdio.h>
 
 int main() {
-    int count = 0;
-    while (count < 5) {
-        printf("Count: %d\n", count);
-        count++;
-    }
+    int number = 10;
+    int addFive;
+    printf("Number before: %d\n", number);
+    int result = ++number; // First increment 'number', then use its value
+    printf("Number after: %d\n", number);  // 'number' value increased by 1
+    printf("Result: %d\n", result);        // 'result' value is 11, i.e., the changed value
+    addFive = number + 5; // the updated value of 'number' (11) is used here
+    printf("Sum: %d\n", addFive); // Now 'number' is 11, and 'result' is also 11
     return 0;
 }
 c
 
-In this example, the while loop will continue executing the code block as long as the condition count < 5 is true. It will print the current value of count and increment it by 1 with each iteration. The loop will stop once the condition becomes false. The output will be:
+Output of this code snippet:
 
-Count: 0
-Count: 1
-Count: 2
-Count: 3
-Count: 4
+Number before: 10
+Number after: 11
+Result: 11
+Sum: 16
 
-Note that the condition is evaluated before each iteration, and if it is initially false, the loop will not be executed at all.
-
-\bold Example 2: The while loop (printing letters)
+Postfix Form: Write the postfix form of the increment and decrement operators after the variable, like someVariable++ or someVariable--. When you use the postfix form, the expression uses the variable's value first, and then changes the variable. Here is an example:
 
 c
 
 #include <stdio.h>
 
 int main() {
-    char letter = 'A';
-    while (letter <= 'Z') {
-        printf("%c", letter);
-        letter++;
-    }
+    int number = 10;
+    int addFive;
+    printf("Number before: %d\n", number);
+    int result = number++; // Use the value of 'number' first, then increment it.
+    printf("Number after: %d\n", number);  // 'number' value increased by 1
+    printf("Result: %d\n", result);
+    addFive = number + 5; // the updated value of 'number' (11) is used here
+    printf("Sum: %d\n", addFive); // Now 'number' is 11, but 'result' is still 10
     return 0;
 }
 c
 
-This program prints English letters in a single line. The program takes the first letter 'A' and then proceeds as follows: if the letter is less than or equal to 'Z', the program enters the loop's body; inside the body, it prints the current character, and letter is assigned the next letter of the alphabet.
+Output of this code snippet:
 
-The program prints:
+Number before: 10
+Number after: 11
+Result: 10
+Sum: 16
 
-ABCDEFGHIJKLMNOPQRSTUVWXYZ
+\bold Side Effects
 
-Remember that you can get the next character according to the ASCII table (standard for C) by using the increment operator.
+Using the increment (++) and decrement (--) operators in C can have side effects that programmers need to be aware of. These side effects can lead to unexpected behavior or errors in your code if you are not careful. Let's discuss some common side effects:
 
-\bold The do-while loop
-
-In the do-while loop, the body is executed first, and the condition is tested afterwards. If the condition is true, the statements within the block are executed again. This repeats until the condition becomes false. Because do-while loops check the condition after the block is executed, this control structure is often also known as a post-test loop.
-
-In contrast to the while loop, which tests the condition before the code within the block is executed, the do-while loop is an exit-condition loop. Therefore, the code within the block is always executed at least once.
-
-This loop contains three parts: the do keyword, a body, and while(condition):
+    Confusion with Postfix Form: The postfix form of the increment and decrement operators can cause confusion in more complex expressions. Consider the following example:
 
 c
 
-do {
-    // body: do something
-} while (condition); // check condition and if true, go to body
+int firstNum = 5;
+int secondNum = 2 * firstNum++; // What is the value of 'secondNum'? 10 or 12?
 c
 
-A good example of its use is a program that reads data from standard input until a user enters a certain number or string.
+The value of secondNum depends on when the postfix form (firstNum++) is applied—before or after the multiplication. To avoid confusion, you should use the prefix form or separate the increment from its use in expressions.
 
-\bold Example 3: The do-while loop
+Rewritten example with prefix form:
 
 c
+
+int firstNum = 10;
+int secondNum = 2 * ++firstNum; // 'secondNum' will always be 22 (2 * 11)
+c
+
+Here, the value of secondNum will always be 22 (2 * 11). This happens because the prefix form first increments firstNum and then uses the updated value (11) in the multiplication, ensuring consistent and predictable behavior.
+
+Unintended Changes: Using the increment and decrement operators can lead to unintended changes to the original variable. This is especially problematic when using the postfix form. Look at the example below:
+
+c
+
+int firstNum = 10;
+int result = firstNum++; // 'firstNum' is now 11, but 'result' is 10
+c
+
+In this case, if you planned to use the original value of firstNum in multiple places, using the postfix form can lead to errors.
+
+Rewritten example with prefix form:
+
+c
+
+int firstNum = 10;
+int result = ++firstNum; // 'firstNum' is now 11, and 'result' is also 11
+c
+
+Here, you first increment the variable firstNum and then assign the updated value to both firstNum and result. This ensures that both firstNum and result contain the same value, preventing any unintended change to the original variable.
+
+Undefined Behavior with Multiple Modifications in One Expression: Using the increment or decrement operators multiple times in the same expression on the same variable can lead to undefined behavior. Look at the example below:
+
+c
+
+// (with undefined behavior):
+
+#include <stdio.h>
+int main() {
+    int firstNum = 10;
+    // UNDEFINED BEHAVIOR - Do not modify a single variable multiple times in one expression.
+    int secondNum = firstNum++ + firstNum++;
+    printf("%d\n", firstNum);
+    printf("%d\n", secondNum);
+    return 0;
+}
+c
+
+In this case, the result is undefined because the order of evaluation of the subexpressions is not guaranteed. The C standard does not specify whether the first firstNum++ or the second firstNum++ will be evaluated first. The value of firstNum is modified twice in the same expression without a sequence point. The result of such an operation is unpredictable due to the unspecified order of evaluation.
+
+IMPORTANT: Even using the prefix form in a similar situation does not solve the problem and also leads to undefined behavior according to the C standard (before C++17, C++ had a similar issue):
+
+c
+
+int secondNum = ++firstNum + ++firstNum; // Also UNDEFINED BEHAVIOR in C!
+c
+
+        Do not use a variable that has a side effect applied to it (increment/decrement) more than once in the same expression. If you do, the result may be undefined. In short, do not use multiple modifications of the same variable in a single expression. Otherwise, it will lead to undefined behavior.
+
+\bold Best Practices
+
+    Prefer Prefix Increment/Decrement: It is generally recommended to use the prefix form (++someVariable, --someVariable) instead of the postfix form (someVariable++, someVariable--), unless the behavior of the postfix form is explicitly required. The prefix form is often more efficient as it avoids the unnecessary overhead associated with creating a temporary copy of the variable (this is more relevant for C++ and complex types than for built-in types in C).
+
+    Avoid Mixing Increment/Decrement with Other Operators: To avoid confusion and ensure predictable results, it is better to use the increment and decrement operators separately or in isolation. Mixing them with other operators in a single expression can lead to unexpected behavior, especially when using the postfix form.
+
+c
+
+// C Code demonstrating the difference:
 
 #include <stdio.h>
 
 int main() {
-    int value;
-    printf("Input value: \n");
-    do {
-        scanf("%d", &value);
-        printf("You entered %d\n", value);
-    } while (value != 0);
+    int firstNum = 10;
+    int secondNum = ++firstNum * 2; // Increment to 11 first, then multiplication 11*2=22
+    printf("firstNum: %d, secondNum: %d\n", firstNum, secondNum); // 11, 22
+
+    firstNum = 10; // Reset value
+    secondNum = firstNum++ * 2; // Multiplication 10*2=20 first, then increment to 11
+    printf("firstNum: %d, secondNum: %d\n", firstNum, secondNum); // 11, 20
+
     return 0;
 }
 c
 
-This program reads integers from the standard input and displays them. The program runs until you enter the number 0. If the number 0 is entered, the program prints it and then stops. Note that, like the while loop, the do-while loop can be infinite.
-
-In practice, the do-while loop is used less frequently than the while loop. It is used when the code inside the loop must be executed at least once.
-
-What makes computers so wonderful? They think quickly and never tire of repetitive tasks. Imagine having an array that contains the entire alphabet, and you want to print it line by line. Or even an array with 1000 or even a million values. If you had to print everything manually, I believe you would quickly grow tired of writing code. That's where loops come to the rescue!
-
-In this topic, let's explore the most popular loop in programming: the for loop. It allows you to automate repetitive tasks and iterate over arrays or ranges of values without the need for manual repetition. With the for loop, you can harness the power of computers to handle large amounts of data effortlessly.
-
-\bold The basic for-loop syntax
-
-The for loop has the following basic syntax:
-
-c
-
-for (initialization; condition; modification) {
-    // do something
-}
-c
-
-Parts of the loop:
-
-    The initialization statement is executed once before the loop begins; usually, loop variables are initialized here.
-
-    The condition is a Boolean expression that determines the need for the next iteration; if it's false, the loop terminates.
-
-    The modification is a statement that changes the value of the loop variables; it is invoked after each iteration of the loop; usually, it uses increment or decrement to modify the loop's variable.
-
-Inside the loop's body, the program can perform any correct C statements. It can even contain other loops (nested loops).
-The order of execution for any for loop is always the same:
-
-    The initialization statement is executed.
-
-    If the condition is false, then the loop terminates.
-
-    If the condition is true, then the loop's body is executed.
-
-    The modification is performed.
-
-    Go to step 2 (check the condition).
-
-Let's write a loop for printing integer numbers from 0 to 9 on the same line.
-
-c
-
-#include <stdio.h>
-
-int main() {
-    for (int i = 0; i < 10; i++) {
-        printf("%d ", i);
-    }
-    return 0;
-}
-c
-
-This code displays:
-
-0 1 2 3 4 5 6 7 8 9
-
-You declared the iterative variable i in the loop, and each time the loop is executed, you increase it by 1 (i++). And you will display its value on the screen as long as your variable is less than 10 (i < 10).
-The variables declared in the initialization statement are visible only inside the scope that includes all parts of the loop: the condition, the body, and the modification. Integer loop variables are often named i, j, k, or index.
-
-Here's another example. Let's calculate the sum of the integer numbers from 1 to 10000 (inclusive) using the for loop:
-
-c
-
-#include <stdio.h>
-
-int main() {
-    int sum = 0;
-    for (int i = 1; i <= 10000; i++) {
-        sum += i;
-    }
-    printf("The sum is: %d\n", sum);
-    return 0;
-}
-c
-
-The code displays:
-
-The sum is: 50005000
-
-Here you carry out the same actions, only the termination conditions have changed a little (i <= 10000) and inside the loop, you do not display the result, but sum it up (sum += i;).
-
-Let's take a slightly more difficult problem and at the same time recall what you've learned before. Let's write a loop for printing the English alphabet:
-
-c
-
-#include <stdio.h>
-
-int main() {
-    char alphabet[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-    int alphabetSize = sizeof(alphabet) / sizeof(alphabet[0]);
-    int lettersPerLine = 4;
-
-    for (int i = 0; i < alphabetSize; i++) {
-        printf("%c ", alphabet[i]);
-        if ((i + 1) % lettersPerLine == 0) {
-            printf("\n");
-        }
-    }
-    return 0;
-}
-c
-
-Don't rush to read further; carefully study the example. Do you understand everything? In this example, a large number of everything you have already learned is concentrated (if, %, sizeof, array, printf). Play around with the code in your IDE. If everything is clear, let's move on.
-
-\bold Skipping parts
-
-The initialization statement, the condition, and the modification parts are optional; the for loop might not have all of them.
-It is possible to declare a variable outside the loop:
-
-c
-
-int i = 10;
-for (; i > 0; i--) {
-    printf("%d ", i);
-}
-c
-
-Moreover, it is also possible to write an infinite loop without these parts at all:
-
-c
-
-for (;;) {
-    // do something
-}
-c
-
-But be very careful with such experiments; you need to clearly understand what you are doing and how to stop it!
-
-\bold Nested loops
-
-It's possible to nest one for loop inside another for loop. This approach is used to process multidimensional structures like tables (matrices), data cubes, and so on.
-
-For example, the following code prints the multiplication table for numbers from 1 to 9 (inclusive).
-
-c
-
-#include <stdio.h>
-
-int main() {
-    for (int i = 1; i < 10; i++) {
-        for (int j = 1; j < 10; j++) {
-            printf("%d\t", i * j);
-        }
-        printf("\n");
-    }
-    return 0;
-}
-c
-
-It outputs:
-(The multiplication table as in the original text)
-
-One of the biggest challenges that beginner programmers often face with for loops (as well as other types of loops) is the off-by-one error. This error occurs when the loop iterates one time more or one time less than the desired number of iterations. It usually happens because an incorrect comparison operator is used in the loop condition (for example, > instead of >=, or vice versa). These errors are often difficult to detect as the compiler will not complain about them, and the program will run, but the results will be incorrect.
-When writing for loops, it's important to remember that the loop will continue executing as long as the condition is true. It is recommended to test loops using different values to verify their functionality. It is good practice to test loops with various input data (numbers, characters, etc.) that force the loop to execute 0, 1, and 2 times. If the loop operates correctly in these scenarios, then everything is okay.
-
-\bold Rewritten code in C:
-
-Example 1: Printing numbers from 0 to 9
-
-c
-
-#include <stdio.h>
-
-int main() {
-    for (int i = 0; i < 10; i++) {
-        printf("%d ", i);
-    }
-    return 0;
-}
-c
-
-Example 2: Sum of numbers from 1 to 10000
-
-c
-
-#include <stdio.h>
-
-int main() {
-    int sum = 0;
-    for (int i = 1; i <= 10000; i++) {
-        sum += i;
-    }
-    printf("The sum is: %d\n", sum);
-    return 0;
-}
-c
-
-Example 3: Printing the alphabet (4 letters per line)
-
-c
-
-#include <stdio.h>
-
-int main() {
-    char alphabet[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-    int alphabetSize = sizeof(alphabet) / sizeof(alphabet[0]);
-    int lettersPerLine = 4;
-
-    for (int i = 0; i < alphabetSize; i++) {
-        printf("%c ", alphabet[i]);
-        if ((i + 1) % lettersPerLine == 0) {
-            printf("\n");
-        }
-    }
-    return 0;
-}
-c
-
-Example 4: Loop with a variable declared outside
-
-c
-
-#include <stdio.h>
-
-int main() {
-    int i = 10;
-    for (; i > 0; i--) {
-        printf("%d ", i);
-    }
-    return 0;
-}
-c
-
-Example 5: Multiplication table (nested loops)
-
-c
-
-#include <stdio.h>
-
-int main() {
-    for (int i = 1; i < 10; i++) {
-        for (int j = 1; j < 10; j++) {
-            printf("%d\t", i * j);
-        }
-        printf("\n");
-    }
-    return 0;
-}
-c
+In this example, the difference between prefix and postfix increment when combined with other operators is visible. In the first case, the prefix increment is used, so the value of firstNum is first incremented to 11 and then multiplied by 2, resulting in secondNum becoming 22. In the second case, the postfix increment is used, so the original value of firstNum (10) is used to calculate secondNum, and only then is firstNum incremented to 11. Therefore, secondNum is 20, not 22 as some might expect. Consequently, use the prefix increment/decrement to avoid confusion and undefined behavior. Separating operations into multiple lines often makes the code much clearer.

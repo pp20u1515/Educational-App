@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "questionText": "What does the logical AND operator (&&) return if both operands are true?",
+    "options": [
+      "0",
+      "1",
+      "False",
+      "Compilation error"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "What will be the result of the expression: (5 > 3) && (10 < 8)?",
+    "options": [
+      "True (1)",
+      "False (0)",
+      "Undefined result",
+      "Runtime error"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "Which of the following expressions use logical operators correctly? (Select all that apply)",
+    "options": [
+      "if (age >= 18 && hasLicense)",
+      "if (x & y)",
+      "if (score > 60 || attendance > 75)",
+      "if (temperature !> 30)"
+    ],
+    "correctAnswers": ["if (age >= 18 && hasLicense)", "if (score > 60 || attendance > 75)"],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "What will this program output?\n\n```c\nint x = 0;\nint y = 5;\nprintf(\"%d\", !x && y);\n```",
+    "options": [
+      "0",
+      "1",
+      "5",
+      "Compilation error"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "Write a condition to check if the number 'n' is in the range from 10 to 50 inclusive.",
+    "options": [],
+    "correctAnswers": ["n >= 10 && n <= 50"],
+    "questionType": "INPUT_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "Which operator has the highest precedence?",
+    "options": [
+      "Logical AND (&&)",
+      "Logical OR (||)",
+      "Logical NOT (!)",
+      "All have the same precedence"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "What is short-circuit evaluation?",
+    "options": [
+      "Compilation speed optimization",
+      "Evaluating only part of an expression if the result is already clear",
+      "Code reduction",
+      "Automatic simplification of logical expressions"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "What will this program output?\n\n```c\nint a = 1, b = 0, c = 1;\nprintf(\"%d\", a || b && c);\n```",
+    "options": [
+      "0",
+      "1",
+      "Depends on the compiler",
+      "Runtime error"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "Which condition checks that the number 'x' is NOT between 20 and 30?",
+    "options": [
+      "x < 20 && x > 30",
+      "x <= 20 || x >= 30",
+      "!(x > 20 && x < 30)",
+      "x != 20 && x != 30"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 10,
+    "questionText": "What will this code output?\n\n```c\nint x = 5, y = 0;\nif (x > 0 || y++ > 0) {\n    printf(\"x=%d, y=%d\", x, y);\n}\n```",
+    "options": [
+      "x=5, y=0",
+      "x=5, y=1",
+      "x=6, y=0",
+      "x=6, y=1"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  }
+]

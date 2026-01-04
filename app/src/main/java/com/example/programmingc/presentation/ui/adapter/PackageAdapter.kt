@@ -1,6 +1,5 @@
 package com.example.programmingc.presentation.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +36,6 @@ class PackageAdapter(
 
     //override fun getItemCount(): Int = myPackage.size
     override fun getItemCount(): Int {
-        println("DEBUG: Item count = ${myPackage.size}")
         return myPackage.size
     }
 

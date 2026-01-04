@@ -19,7 +19,7 @@ class UserDaoService @Inject constructor(database: Database) {
         return userDao.readAll().map { users-> users.map { it.toDomain() } }
     }
 
-    fun readByEmail(email: String): User?{
+    suspend fun readByEmail(email: String): User?{
         return userDao.readByEmail(email)?.toDomain()
     }
 

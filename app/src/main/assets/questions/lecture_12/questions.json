@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "questionText": "Which symbol is used when declaring a pointer?",
+    "options": [
+      "&",
+      "#",
+      "*",
+      "@"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "What does the & operator do in C?",
+    "options": [
+      "Gets the value at the address stored in a pointer",
+      "Returns the size of a variable",
+      "Declares a new variable",
+      "Gets the memory address of a variable"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "What happens when you try to dereference a null pointer (NULL)?",
+    "options": [
+      "Undefined behavior will occur (e.g., a segmentation fault)",
+      "The program will terminate correctly",
+      "The value 0 will be returned",
+      "The pointer will automatically get a new address"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "What does the value NULL mean for a pointer?",
+    "options": [
+      "The pointer points to a memory location containing the value 0",
+      "The pointer is uninitialized and contains a garbage value",
+      "The pointer explicitly does not point to any valid memory address",
+      "The pointer points to the last byte of memory"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "Which of the following statements about pointers are true? (Choose all that apply)",
+    "options": [
+      "A pointer must be of the same data type as the object it points to",
+      "Dereferencing an uninitialized pointer leads to undefined behavior",
+      "The C language supports references in the same way as C++",
+      "You should always check if a pointer is not NULL before dereferencing it"
+    ],
+    "correctAnswers": ["A pointer must be of the same data type as the object it points to", "Dereferencing an uninitialized pointer leads to undefined behavior", "You should always check if a pointer is not NULL before dereferencing it"],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "How does the & (address-of) operator differ from the * (dereference) operator?",
+    "options": [
+      "Both operators perform the same function",
+      "& returns the address of a variable, while * returns the value at the address stored in a pointer",
+      "* returns the address of a variable, while & returns the value at that address",
+      "& is used for arithmetic operations, while * is used for logical operations"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "What will the following code print?\n#include <stdio.h>\nint main() {\n    int x = 10;\n    int *p = &x;\n    *p = 20;\n    printf(\"%d\", x);\n    return 0;\n}",
+    "options": [
+      "20",
+      "The address of variable x",
+      "10",
+      "A random garbage value"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "Why is initializing pointers considered an important safety practice?",
+    "options": [
+      "It speeds up program execution.",
+      "Uninitialized pointers occupy less memory.",
+      "It prevents undefined behavior from accidental dereferencing.",
+      "The compiler requires mandatory initialization of all variables."
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  }
+]

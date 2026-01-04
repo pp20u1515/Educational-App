@@ -11,12 +11,12 @@ import javax.inject.Inject
 class CredentialDaoService @Inject constructor(database: Database) {
     private val credentialDao = database.getCredentialDao()
 
-    // сохранить данные пользователя (например, email и пароль) в локальную базу.
+    // сохранить данные пользователя в локальную базу.
     suspend fun insert(credential: Credential){
         credentialDao.insert(credential.toEntity())
     }
     // получить сохранённые учетные данные пользователя в виде доменной модели.
-    fun readByEmail(email: String): Credential?{
+    suspend fun readByEmail(email: String): Credential?{
         return credentialDao.readByEmail(email)?.toDomain()
     }
 

@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="Levels"
+        android:text="Courses"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="@color/black"/>
@@ -24,7 +24,7 @@
         android:background="@drawable/rounded_button"
         android:layout_marginBottom="40dp"
         android:layout_marginHorizontal="50dp"
-        android:text="Beginner Level"
+        android:text="C"
         android:textColor="@color/white"/>
 
     <Button
@@ -34,17 +34,6 @@
         android:background="@drawable/rounded_button"
         android:layout_marginBottom="40dp"
         android:layout_marginHorizontal="50dp"
-        android:text="Middle Level"
+        android:text="New course soon"
         android:textColor="@color/white"/>
-
-    <Button
-        android:id="@+id/buttonPro"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginHorizontal="50dp"
-        android:background="@drawable/rounded_button"
-        android:text="Pro Level"
-        android:textColor="@color/white"/>
-
-
 </LinearLayout>

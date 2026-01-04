@@ -115,17 +115,16 @@
             android:name="lessonId"
             app:argType="string"
             android:defaultValue=""/>
-
         <action
-            android:id="@+id/action_fragment_lesson_to_fragment_practice"
-            app:destination="@id/fragment_practice" >
+            android:id="@+id/action_fragment_lesson_to_fragment_quiz_single_choice"
+            app:destination="@id/fragment_quiz_single_choice" />
+        <action
+            android:id="@+id/action_fragment_lesson_to_fragment_quiz_multiple_choice"
+            app:destination="@id/fragment_quiz_multiple_choice" />
+        <action
+            android:id="@+id/action_fragment_lesson_to_fragment_quiz_input_choice"
+            app:destination="@id/fragment_quiz_input_choice" />
 
-            <argument
-                android:name="lessonId"
-                app:argType="string"
-                android:defaultValue=""/>
-
-        </action>
     </fragment>
 
     <fragment
@@ -139,6 +138,85 @@
             app:argType="string"
             android:defaultValue=""/>
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_quiz_single_choice"
+        android:name="com.example.programmingc.presentation.ui.lessons.quiz.FragmentQuizSingleChoice"
+        android:label="fragment_quiz_single_choice"
+        tools:layout="@layout/fragment_quiz_single_choice">
+
+        <action
+            android:id="@+id/action_fragment_quiz_single_choice_to_fragment_practice"
+            app:destination="@id/fragment_practice" />
+
+        <argument
+            android:name="lessonId"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="questionIndex"
+            app:argType="integer"
+            android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_fragment_quiz_single_choice_self"
+            app:destination="@id/fragment_quiz_single_choice" />
+        <action
+            android:id="@+id/action_fragment_quiz_single_choice_to_fragment_quiz_multiple_choice"
+            app:destination="@id/fragment_quiz_multiple_choice" />
+        <action
+            android:id="@+id/action_fragment_quiz_single_choice_to_fragment_quiz_input_choice"
+            app:destination="@id/fragment_quiz_input_choice" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_quiz_multiple_choice"
+        android:name="com.example.programmingc.presentation.ui.lessons.quiz.FragmentQuizMultipleChoice"
+        android:label="fragment_quiz_multiple_choice"
+        tools:layout="@layout/fragment_quiz_multiple_choice">
+
+        <argument
+            android:name="lessonId"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="questionIndex"
+            app:argType="integer"
+            android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_fragment_quiz_multiple_choice_self"
+            app:destination="@id/fragment_quiz_multiple_choice" />
+        <action
+            android:id="@+id/action_fragment_quiz_multiple_choice_to_fragment_quiz_single_choice"
+            app:destination="@id/fragment_quiz_single_choice" />
+        <action
+            android:id="@+id/action_fragment_quiz_multiple_choice_to_fragment_quiz_input_choice"
+            app:destination="@id/fragment_quiz_input_choice" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_quiz_input_choice"
+        android:name="com.example.programmingc.presentation.ui.lessons.quiz.FragmentQuizInputChoice"
+        android:label="fragment_quiz_input_choice"
+        tools:layout="@layout/fragment_quiz_input_choice">
+
+        <argument
+            android:name="lessonId"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="questionIndex"
+            app:argType="integer"
+            android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_fragment_quiz_input_choice_to_fragment_quiz_multiple_choice"
+            app:destination="@id/fragment_quiz_multiple_choice" />
+        <action
+            android:id="@+id/action_fragment_quiz_input_choice_to_fragment_quiz_single_choice"
+            app:destination="@id/fragment_quiz_single_choice" />
+        <action
+            android:id="@+id/action_fragment_quiz_input_choice_self"
+            app:destination="@id/fragment_quiz_input_choice" />
     </fragment>
 
 </navigation>

@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "questionText": "What is the switch statement used for in C?",
+    "options": [
+      "For creating loops",
+      "For handling multiple choices based on a variable's value",
+      "For declaring functions",
+      "For working with arrays"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "Which data types can be used in a switch expression?",
+    "options": [
+      "Only integral types (int, char, enum)",
+      "Only strings",
+      "Any data types",
+      "Only floating-point numbers"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "What happens if you forget the break statement in a case?",
+    "options": [
+      "The program will terminate with an error",
+      "Execution will fall through to the next case",
+      "The case will be ignored",
+      "Only the default case will be executed"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "When is the default block in a switch executed?",
+    "options": [
+      "It is always executed first",
+      "When a break statement is encountered",
+      "After all cases have been executed",
+      "When none of the case values match the expression"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "Can you use value ranges in a case label in C?",
+    "options": [
+      "Yes, using a hyphen (e.g., case 1-5:)",
+      "Yes, using a colon (e.g., case 1:5:)",
+      "No, only discrete values are allowed",
+      "Yes, using a comma (e.g., case 1,2,3:)"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "Which of the following statements about switch are true? (Choose all that apply)",
+    "options": [
+      "The default case is mandatory",
+      "break is used to exit the switch statement",
+      "A case label must end with a colon",
+      "Multiple values can be listed in a single case using commas"
+    ],
+    "correctAnswers": ["break is used to exit the switch statement", "A case label must end with a colon"],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "What is an advantage of using a switch statement over a chain of if-else statements for multiple choices?",
+    "options": [
+      "switch is faster",
+      "Code with switch is more readable and structured",
+      "switch supports more conditions",
+      "switch can check value ranges"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "What will this code print?\nint x = 2;\nswitch (x) {\n    case 1: printf(\"One \");\n    case 2: printf(\"Two \");\n    case 3: printf(\"Three \");\n    default: printf(\"Default\");\n}",
+    "options": [
+      "Two Three Default",
+      "Two",
+      "Two Default",
+      "Default"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "Why is it important to use break in each case?",
+    "options": [
+      "To prevent unintended fall-through to subsequent cases",
+      "To make the program run faster",
+      "To make the code shorter",
+      "break is mandatory in the C language"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  }
+]

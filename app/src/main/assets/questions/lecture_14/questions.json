@@ -1,0 +1,117 @@
+[
+  {
+    "id": 1,
+    "questionText": "What is an array in the C language?",
+    "options": [
+      "A collection of elements of different data types",
+      "An ordered collection of elements of the same type",
+      "A special function for memory management",
+      "A data type for storing a single value"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 2,
+    "questionText": "Which index is used to access the first element of an array in C?",
+    "options": [
+      "0",
+      "1",
+      "first",
+      "-1"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 3,
+    "questionText": "What happens when you try to access an element outside the array's bounds?",
+    "options": [
+      "The program will always terminate with an error",
+      "The value 0 will be returned",
+      "Undefined behavior will occur",
+      "The compiler will prevent this error"
+    ],
+    "correctAnswers": [2],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 4,
+    "questionText": "How do you determine the number of elements in an array?",
+    "options": [
+      "sizeof(array) / sizeof(array[0])",
+      "length(array)",
+      "count(array)",
+      "array.size()"
+    ],
+    "correctAnswers": [0],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 5,
+    "questionText": "What is stored in an uninitialized array?",
+    "options": [
+      "Zero values",
+      "Random (garbage) values",
+      "Empty strings",
+      "Default values for the type"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 6,
+    "questionText": "Which of the following statements about arrays in C are true? (Choose all that apply)",
+    "options": [
+      "Array elements are stored in a contiguous memory area",
+      "The size of an array can be changed during runtime",
+      "Arrays use zero-based indexing",
+      "An array can be passed to a function by value"
+    ],
+    "correctAnswers": ["Array elements are stored in a contiguous memory area", "Arrays use zero-based indexing"],
+    "questionType": "MULTIPLE_CHOICE"
+  },
+  {
+    "id": 7,
+    "questionText": "How is an array different from a pointer in C?",
+    "options": [
+      "They are synonyms",
+      "An array has a fixed size, while a pointer can be reassigned",
+      "A pointer occupies more memory",
+      "An array can store elements of different types"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 8,
+    "questionText": "What will this code print?\n#include <stdio.h>\nint main() {\n    int arr[3] = {10, 20, 30};\n    printf(\"%d\", arr[1] + arr[2]);\n    return 0;\n}",
+    "options": [
+      "30",
+      "60",
+      "1020",
+      "50"
+    ],
+    "correctAnswers": [3],
+    "questionType": "SINGLE_CHOICE"
+  },
+  {
+    "id": 9,
+    "questionText": "Write a line of code to declare an array of 5 integers named scores",
+    "options": [],
+    "correctAnswers": ["int scores[5]"],
+    "questionType": "INPUT_CHOICE"
+  },
+  {
+    "id": 10,
+    "questionText": "How do you correctly declare and initialize a 2x3 two-dimensional array?",
+    "options": [
+      "int matrix[2,3] = {1,2,3,4,5,6};",
+      "int matrix[2][3] = {{1,2,3}, {4,5,6}};",
+      "int matrix[3][2] = {1,2,3,4,5,6};",
+      "array matrix[2][3] = {1,2,3,4,5,6};"
+    ],
+    "correctAnswers": [1],
+    "questionType": "SINGLE_CHOICE"
+  }
+]
