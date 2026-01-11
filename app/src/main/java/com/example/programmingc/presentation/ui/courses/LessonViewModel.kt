@@ -1,17 +1,14 @@
-package com.example.programmingc.presentation.ui.objects.visiable_objects
+package com.example.programmingc.presentation.ui.courses
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.programmingc.domain.model.Lesson
 import com.example.programmingc.domain.model.QuizQuestion
-import com.example.programmingc.domain.usecase.CompleteLessonUseCase
 import com.example.programmingc.domain.usecase.GetLessonUseCase
 import com.example.programmingc.domain.usecase.GetQuestionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

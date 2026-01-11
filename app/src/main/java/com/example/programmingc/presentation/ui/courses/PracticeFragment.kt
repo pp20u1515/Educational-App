@@ -1,4 +1,4 @@
-package com.example.programmingc.presentation.ui.objects.visiable_objects
+package com.example.programmingc.presentation.ui.courses
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import com.example.programmingc.databinding.PracticeBinding
 import com.example.programmingc.presentation.ui.menu.BaseMenuBar
 import dagger.hilt.android.AndroidEntryPoint
-import org.intellij.lang.annotations.Language
 
 @AndroidEntryPoint
 class PracticeFragment: BaseMenuBar() {

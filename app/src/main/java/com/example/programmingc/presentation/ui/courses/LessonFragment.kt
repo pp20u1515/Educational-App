@@ -1,7 +1,8 @@
-package com.example.programmingc.presentation.ui.objects.visiable_objects
+package com.example.programmingc.presentation.ui.courses
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
@@ -13,9 +14,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.programmingc.presentation.ui.adapter.LessonAdapter
-import com.example.programmingc.presentation.ui.menu.BaseMenuBar
-import dagger.hilt.android.AndroidEntryPoint
 import com.example.programmingc.R
 import com.example.programmingc.databinding.LessonBinding
 import com.example.programmingc.domain.model.Lesson
@@ -24,6 +22,9 @@ import com.example.programmingc.presentation.edit_text.CodeContent
 import com.example.programmingc.presentation.edit_text.TextContent
 import com.example.programmingc.presentation.edit_text.parseContentWithCodeBlocks
 import com.example.programmingc.presentation.model.RoundedBackgroundSpan
+import com.example.programmingc.presentation.ui.adapter.LessonAdapter
+import com.example.programmingc.presentation.ui.menu.BaseMenuBar
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LessonFragment: BaseMenuBar() {
@@ -159,7 +160,7 @@ class LessonFragment: BaseMenuBar() {
             text = createCodeSpannable(code, context)
             setTextIsSelectable(true)
             textSize = 14f
-            setTypeface(typeface, android.graphics.Typeface.ITALIC)
+            setTypeface(typeface, Typeface.ITALIC)
             setPadding(32, 16, 32, 16)
         }
 

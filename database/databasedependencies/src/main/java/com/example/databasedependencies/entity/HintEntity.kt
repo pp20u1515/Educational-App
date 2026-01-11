@@ -5,16 +5,18 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "Credentials",
+    tableName = "Hints",
     foreignKeys = [ForeignKey(
         entity = UserEntity::class,
         parentColumns = ["id"],
-        childColumns = ["id"],
+        childColumns = ["userId"],
         onDelete = ForeignKey.CASCADE
-    )])
-data class CredentialEntity (
+    )]
+)
+data class HintEntity(
     @PrimaryKey
     val id: String,
-    val email: String,
-    val password: String
+    val userId: String,
+    val text: String,
+    val isUsed: Boolean = false
 )

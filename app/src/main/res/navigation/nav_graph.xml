@@ -73,7 +73,7 @@
 
     <fragment
         android:id="@+id/fragmentCourses"
-        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.FragmentCourses"
+        android:name="com.example.programmingc.presentation.ui.courses.FragmentCourses"
         android:label="fragment_courses"
         tools:layout="@layout/fragment_courses">
 
@@ -107,7 +107,7 @@
 
     <fragment
         android:id="@+id/fragment_lesson"
-        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.LessonFragment"
+        android:name="com.example.programmingc.presentation.ui.courses.LessonFragment"
         android:label="fragment_lesson"
         tools:layout="@layout/lesson">
 
@@ -129,7 +129,7 @@
 
     <fragment
         android:id="@+id/fragment_practice"
-        android:name="com.example.programmingc.presentation.ui.objects.visiable_objects.PracticeFragment"
+        android:name="com.example.programmingc.presentation.ui.courses.PracticeFragment"
         android:label="fragment_practice"
         tools:layout="@layout/practice">
 

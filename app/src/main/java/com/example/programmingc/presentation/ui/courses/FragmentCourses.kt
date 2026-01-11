@@ -1,4 +1,4 @@
-package com.example.programmingc.presentation.ui.objects.visiable_objects
+package com.example.programmingc.presentation.ui.courses
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.example.programmingc.databinding.FragmentCoursesBinding
 import com.example.programmingc.presentation.ui.menu.BaseMenuBar
 
 class FragmentCourses: BaseMenuBar() {
-    private var _binding: FragmentCoursesBinding ?= null
+    private var _binding: FragmentCoursesBinding?= null
     private val binding: FragmentCoursesBinding get() = _binding!!
     private lateinit var direction: NavDirections
 

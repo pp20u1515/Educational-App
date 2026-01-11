@@ -17,6 +17,7 @@
         android:padding="12dp"
         android:scaleType="centerInside"
         android:contentDescription="Open menu"
+        android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -26,6 +27,7 @@
         android:layout_width="90dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
+        android:clickable="true"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
         app:cardBackgroundColor="#FFFFFF"
