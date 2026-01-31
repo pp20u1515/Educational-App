@@ -19,6 +19,7 @@ class CreateAccViewModel @Inject constructor(
 ): ViewModel() {
     private val _authState = MutableStateFlow<AuthState>(AuthState.Idle)
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
+
     fun createAcc(email: String, password: String){
         viewModelScope.launch {
             _authState.value = AuthState.Idle

@@ -73,7 +73,9 @@ class AuthFragment: BaseMenuBar() {
 
     private fun handleAuthState(state: AuthViewModel.AuthState){
         when(state){
-            is AuthViewModel.AuthState.Idle -> {} // ничего не делать
+            is AuthViewModel.AuthState.Idle -> {
+
+            }
             is AuthViewModel.AuthState.Success -> {
                 navigateToIntroduction()
             }

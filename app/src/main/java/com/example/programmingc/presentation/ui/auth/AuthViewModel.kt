@@ -51,7 +51,7 @@ class AuthViewModel @Inject constructor(
     sealed class AuthState {
         object Idle: AuthState()
         object Success : AuthState()
-        data class ValidationError(val message: String) : AuthState() // ошибка валидации
-        data class Error(val message: String): AuthState() // ошибка аутентификации/сети
+        data class ValidationError(val message: String) : AuthState()
+        data class Error(val message: String): AuthState() // Error with authentication/net
     }
 }

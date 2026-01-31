@@ -1,6 +1,5 @@
 package com.example.programmingc.data.repository
 
-import com.example.programmingc.domain.model.Practice
 import com.example.programmingc.domain.repo.ILessonRepository
 import com.google.gson.Gson
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -11,7 +10,7 @@ import com.example.programmingc.domain.model.LessonWindow
 import javax.inject.Inject
 
 class LessonRepository @Inject constructor(
-    @ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context
 ): ILessonRepository {
     private val gson = Gson()
 
@@ -37,14 +36,6 @@ class LessonRepository @Inject constructor(
             LessonWindow("12", 12, "", "Increment (++) and Decrement (--) Operators", listOf(R.drawable.image_study, R.drawable.image_c, R.drawable.baseline_play_arrow)),
             LessonWindow("13", 13, "", "Switch, case and default", listOf(R.drawable.image_study, R.drawable.image_c, R.drawable.baseline_play_arrow))
         )
-    }
-
-    override suspend fun getPracticeByLessonId(lessonId: String): Practice? {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun markLessonCompleted(lessonId: String) {
-        TODO("Not yet implemented")
     }
 
     private fun loadJsonFromAssets(filePath: String): String{

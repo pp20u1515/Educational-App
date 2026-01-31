@@ -11,7 +11,7 @@ import org.json.JSONArray
 import javax.inject.Inject
 
 class QuestionsRepository @Inject constructor(
-    @ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context
 ): IQuestionsRepository {
     override suspend fun getAvailableLectureIds(): List<Int> {
         return withContext(Dispatchers.IO){

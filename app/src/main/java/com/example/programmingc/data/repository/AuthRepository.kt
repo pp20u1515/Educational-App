@@ -36,7 +36,6 @@ class AuthRepository @Inject constructor(
         }
         else{
             userDaoService.updateActiveUser(user.id)
-            println("user from auth: ${userDaoService.getCurrentUser()}")
         }
         return rc
     }

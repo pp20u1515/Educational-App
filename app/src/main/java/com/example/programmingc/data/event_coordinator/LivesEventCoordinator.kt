@@ -18,7 +18,6 @@ class LivesEventCoordinator @Inject constructor() {
     }
 
     sealed class LiveEvent {
-        object LiveUsed : LiveEvent()
         data class LivesUpdated(val count: Int) : LiveEvent()
         object RefreshRequested : LiveEvent()
     }

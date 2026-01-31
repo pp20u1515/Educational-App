@@ -68,7 +68,9 @@ class CreateAccFragment: Fragment() {
 
     private fun handleAuthState(state: CreateAccViewModel.AuthState){
         when (state){
-            is CreateAccViewModel.AuthState.Idle -> {} // ничего не делать
+            is CreateAccViewModel.AuthState.Idle -> {
+
+            }
             is CreateAccViewModel.AuthState.Success -> {
                 navigateDirection()
             }

@@ -63,7 +63,9 @@ class RecoveryFragment: Fragment() {
 
     private fun handleState(state: RecoveryViewModel.RecoveryState){
         when (state){
-            is RecoveryViewModel.RecoveryState.Idle -> {}
+            is RecoveryViewModel.RecoveryState.Idle -> {
+
+            }
             is RecoveryViewModel.RecoveryState.Success -> {
                 navigateDirection()
             }

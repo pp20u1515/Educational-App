@@ -29,15 +29,7 @@ class LivesDaoService @Inject constructor(database: Database) {
         return hintDao.getLastResetDate(userId)
     }
 
-    suspend fun needsReset(userId: String): Int{
-        return hintDao.needsReset(userId)
-    }
-
     suspend fun resetToDailyLimit(userId: String, currentTime: Long): Int{
         return hintDao.resetToDailyLimit(userId, currentTime)
-    }
-
-    suspend fun observeAvailableHints(userId: String): Flow<Int>{
-        return hintDao.observeAvailableHints(userId)
     }
 }
