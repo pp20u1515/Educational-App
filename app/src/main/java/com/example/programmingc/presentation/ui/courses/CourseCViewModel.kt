@@ -1,12 +1,13 @@
 package com.example.programmingc.presentation.ui.courses
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.programmingc.domain.model.LessonWindow
 import com.example.programmingc.domain.usecase.ShowLessonsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,26 +15,25 @@ import javax.inject.Inject
 class CourseCViewModel @Inject constructor(
     private val showLessonsUseCase: ShowLessonsUseCase
 ): ViewModel() {
-    private val _lessons = MutableLiveData<List<LessonWindow>>()
-    val lessons: LiveData<List<LessonWindow>> = _lessons
+    private val _lessons = MutableSharedFlow<List<LessonWindow>>(replay = 1)
+    val lessons: SharedFlow<List<LessonWindow>> = _lessons.asSharedFlow()
 
-    private val _errorMessage = MutableLiveData<String?>()
-    val errorMessage: LiveData<String?> = _errorMessage
+    private val _errorMessage = MutableSharedFlow<String?>()
+    val errorMessage: SharedFlow<String?> = _errorMessage.asSharedFlow()
 
     fun loadLessons(){
-        _errorMessage.value = null
-
         viewModelScope.launch {
+            _errorMessage.emit(null)
             try {
                 val lessonsList = showLessonsUseCase.invoke()
-                _lessons.value = lessonsList
+                _lessons.emit(lessonsList)
             } catch (e: Exception){
-                _errorMessage.value = "Error in loading lectures"
+                _errorMessage.emit("Error in loading lectures")
             }
         }
     }
 
-    fun clearError(){
-        _errorMessage.value = null
+    suspend fun clearError(){
+        _errorMessage.emit(null)
     }
 }

@@ -6,11 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.programmingc.databinding.FragmentMainScreenBinding
 import com.example.programmingc.presentation.ui.adapter.LessonWindowAdapter
 import com.example.programmingc.presentation.ui.menu.BaseMenuBar
+import kotlinx.coroutines.launch
 
 class FragmentCourseC: BaseMenuBar() {
     private var _binding: FragmentMainScreenBinding? = null
@@ -35,29 +39,35 @@ class FragmentCourseC: BaseMenuBar() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView() // ← Добавляем инициализацию RecyclerView
+        setupRecyclerView()
         observeViewModel()
         courseCViewModel.loadLessons()
     }
 
     private fun setupRecyclerView() {
-        // Инициализируем адаптер с пустым списком
         adapter = LessonWindowAdapter(emptyList()) { lessonId ->
             onPlayButtonClicked(lessonId)
         }
         binding.lessonRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.lessonRecyclerView.adapter = adapter // ← Устанавливаем адаптер!
+        binding.lessonRecyclerView.adapter = adapter
     }
 
     private fun observeViewModel(){
-        courseCViewModel.lessons.observe(viewLifecycleOwner){ lessons ->
-            adapter.updateLessons(lessons) // ← Обновляем данные существующего адаптера
-        }
-
-        courseCViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            errorMessage?.let { message ->
-                showErrorToast(message)
-                courseCViewModel.clearError()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                launch {
+                    courseCViewModel.lessons.collect{ lessons ->
+                        adapter.updateLessons(lessons)
+                    }
+                }
+                launch {
+                    courseCViewModel.errorMessage.collect { errorMessage ->
+                        errorMessage?.let { message ->
+                            showErrorToast(message)
+                            courseCViewModel.clearError()
+                        }
+                    }
+                }
             }
         }
     }

@@ -1,12 +1,13 @@
 package com.example.programmingc.presentation.ui.diamonds_products
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.programmingc.domain.model.Package
 import com.example.programmingc.domain.usecase.ShowPackageUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,25 +15,26 @@ import javax.inject.Inject
 class PackageViewModel @Inject constructor(
     private val showPackageUseCase: ShowPackageUseCase
 ): ViewModel() {
-    private val _package = MutableLiveData<List<Package>>()
-    val storedPackage: LiveData<List<Package>> = _package
+    private val _storedPackage = MutableSharedFlow<List<Package>>(replay = 1)
+    val storedPackage: SharedFlow<List<Package>> = _storedPackage.asSharedFlow()
 
-    private val _errorMessage = MutableLiveData<String?>()
-    val errorMessage: LiveData<String?> = _errorMessage
+    private val _errorMessage = MutableSharedFlow<String?>(replay = 1)
+    val errorMessage: SharedFlow<String?> = _errorMessage.asSharedFlow()
 
     fun showPackages(){
-        _errorMessage.value = null
-
         viewModelScope.launch {
+            _errorMessage.emit(null)
+
             try {
                 val packagesList = showPackageUseCase.invoke()
-                _package.value = packagesList
+                _storedPackage.emit(packagesList)
             } catch (e: Exception){
-                _errorMessage.value = "Error loading packages"
+                _errorMessage.emit("Error loading packages")
             }
         }
     }
-    fun clearError(){
-        _errorMessage.value = null
+
+    suspend fun clearError(){
+        _errorMessage.emit(null)
     }
 }
