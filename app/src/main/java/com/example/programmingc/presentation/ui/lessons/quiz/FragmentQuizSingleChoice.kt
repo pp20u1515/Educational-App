@@ -46,7 +46,7 @@ class FragmentQuizSingleChoice : BaseMenuBar() {
         } catch (e: NumberFormatException){
             0
         }
-        // Загружаем вопросы для лекции
+        
         quizSingleChoiceViewModel.loadQuestionsForLecture(lectureId, questionIndex)
 
         setupRadioButtons()
@@ -81,14 +81,12 @@ class FragmentQuizSingleChoice : BaseMenuBar() {
             if (quizSingleChoiceViewModel.isAnswerSelected()) {
                 quizSingleChoiceViewModel.validateQuizAnswer()
             } else {
-                // Показать сообщение о необходимости выбора ответа
                 showMessage("Please select an answer")
             }
         }
     }
 
     private fun observeViewModel() {
-        // Наблюдаем за текущим вопросом
         quizSingleChoiceViewModel.currentQuestion.observe(viewLifecycleOwner) { question ->
             question?.let {
                 currentQuestion = it
@@ -132,7 +130,6 @@ class FragmentQuizSingleChoice : BaseMenuBar() {
             event?.let {
                 when (it) {
                     is QuizSingleChoiceViewModel.QuizNavigationEvent.ShowResults -> {
-                        showResults(it.score, it.totalQuestions)
                     }
                     is QuizSingleChoiceViewModel.QuizNavigationEvent.NavigateToSingleChoice -> {
                         navigateToSingleChoice(it.lessonId, it.questionIndex)
@@ -144,8 +141,7 @@ class FragmentQuizSingleChoice : BaseMenuBar() {
                         navigateToInputChoice(it.lessonId, it.questionIndex)
                     }
                     is QuizSingleChoiceViewModel.QuizNavigationEvent.NavigateToResults -> {
-                        // Обработка навигации к результатам если нужно
-                        showResults(it.score, it.totalQuestions)
+
                     }
                 }
                 // Сбрасываем событие после обработки
@@ -223,8 +219,6 @@ class FragmentQuizSingleChoice : BaseMenuBar() {
 
     private fun handleValidationResult(result: ValidationResult) {
         if (result.isCorrect) {
-            showCorrectAnswerFeedback()
-            // Кнопка становится неактивной после правильного ответа
             binding.checkAnswerButton.isEnabled = true
         } else {
             showIncorrectAnswerFeedback(result.message)
@@ -232,21 +226,6 @@ class FragmentQuizSingleChoice : BaseMenuBar() {
 
         // Обновляем текст кнопки в зависимости от того, последний ли это вопрос
         updateCheckButtonText()
-    }
-
-    private fun showCorrectAnswerFeedback() {
-        // Подсвечиваем правильный ответ зеленым
-        /*currentQuestion?.correctAnswers?.firstOrNull()?.let { correctIndex ->
-            if (correctIndex in radioButtons.indices) {
-                radioButtons[correctIndex.toInt()].setTextColor(resources.getColor(android.R.color.holo_green_dark, null))
-            }
-        }*/
-
-        binding.checkAnswerButton.text = if (quizSingleChoiceViewModel.isLastQuestion()) {
-            "Show Results"
-        } else {
-            "Next Question"
-        }
     }
 
     private fun showIncorrectAnswerFeedback(message: String) {
@@ -280,7 +259,7 @@ class FragmentQuizSingleChoice : BaseMenuBar() {
             // Изменяем поведение кнопки после правильного ответа
             binding.checkAnswerButton.setOnClickListener {
                 if (quizSingleChoiceViewModel.isLastQuestion()) {
-                    quizSingleChoiceViewModel.showResults()
+                    //quizSingleChoiceViewModel.showResults()
                 } else {
                     quizSingleChoiceViewModel.goToNextQuestion(lessonId)
                     clearAnswerFeedback()
@@ -292,7 +271,6 @@ class FragmentQuizSingleChoice : BaseMenuBar() {
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
             binding.checkAnswerButton.visibility = View.GONE
-            // Можно показать ProgressBar
         } else {
             binding.checkAnswerButton.visibility = View.VISIBLE
         }
@@ -303,21 +281,8 @@ class FragmentQuizSingleChoice : BaseMenuBar() {
         android.widget.Toast.makeText(requireContext(), message, android.widget.Toast.LENGTH_SHORT).show()
     }
 
-    private fun showResults(score: Int, totalQuestions: Int) {
-        // Переход к экрану результатов
-        val resultMessage = "Your score: $score/$totalQuestions"
-        showMessage(resultMessage)
-
-        // Здесь можно реализовать навигацию к экрану результатов
-        // findNavController().navigate(R.id.action_quizFragment_to_resultsFragment)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    fun setupQuestion(question: QuizQuestion) {
-        quizSingleChoiceViewModel.setQuestion(question)
     }
 }

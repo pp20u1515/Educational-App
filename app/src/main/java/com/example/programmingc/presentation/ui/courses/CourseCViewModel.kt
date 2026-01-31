@@ -1,4 +1,4 @@
-package com.example.programmingc.presentation.ui
+package com.example.programmingc.presentation.ui.courses
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainScreenViewModel @Inject constructor(
+class CourseCViewModel @Inject constructor(
     private val showLessonsUseCase: ShowLessonsUseCase
 ): ViewModel() {
     private val _lessons = MutableLiveData<List<LessonWindow>>()

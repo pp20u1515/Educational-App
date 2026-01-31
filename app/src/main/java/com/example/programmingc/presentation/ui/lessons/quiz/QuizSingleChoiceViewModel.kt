@@ -8,6 +8,7 @@ import com.example.programmingc.domain.model.QuestionType
 import com.example.programmingc.domain.model.QuizQuestion
 import com.example.programmingc.domain.model.ValidationResult
 import com.example.programmingc.domain.usecase.GetQuestionsUseCase
+import com.example.programmingc.domain.usecase.UseLiveForWrongAnswerUseCase
 import com.example.programmingc.domain.usecase.ValidateQuizAnswerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,17 +17,16 @@ import javax.inject.Inject
 @HiltViewModel
 class QuizSingleChoiceViewModel @Inject constructor(
     private val validateQuizAnswerUseCase: ValidateQuizAnswerUseCase,
-    private val getQuestionsUseCase: GetQuestionsUseCase
-) : ViewModel() {
-
+    private val getQuestionsUseCase: GetQuestionsUseCase,
+    private val useLiveForWrongAnswerUseCase: UseLiveForWrongAnswerUseCase
+): ViewModel() {
     private val _questions = MutableLiveData<List<QuizQuestion>>()
     val questions: LiveData<List<QuizQuestion>> = _questions
 
     private val _currentQuestion = MutableLiveData<QuizQuestion?>()
     val currentQuestion: LiveData<QuizQuestion?> = _currentQuestion
 
-    private val _currentQuestionIndex = MutableLiveData<Int>(0)
-    val currentQuestionIndex: LiveData<Int> = _currentQuestionIndex
+    private val _currentQuestionIndex = MutableLiveData(0)
 
     private val _validationResult = MutableLiveData<ValidationResult?>()
     val validationResult: LiveData<ValidationResult?> = _validationResult
@@ -43,12 +43,8 @@ class QuizSingleChoiceViewModel @Inject constructor(
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
-    private val _navigateToNextQuestion = MutableLiveData<NavigationData?>()
-    val navigateToNextQuestion: LiveData<NavigationData?> = _navigateToNextQuestion
-
     private var userAnswers: MutableMap<String, Int> = mutableMapOf() // key: questionId (String)
 
-    // Загрузка вопросов для лекции
     fun loadQuestionsForLecture(lectureId: Int, questionIndex: Int) {
         _quizState.value = QuizState.Loading
         _errorMessage.value = null
@@ -133,11 +129,8 @@ class QuizSingleChoiceViewModel @Inject constructor(
                 )
                 _validationResult.value = result
 
-                // Автоматически переходим к следующему вопросу после правильного ответа
-                if (result.isCorrect) {
-                    // Задержка для показа feedback
-                    kotlinx.coroutines.delay(1000)
-                    //goToNextQuestion()
+                if (!result.isCorrect){
+                    useLiveForWrongAnswerUseCase.invoke()
                 }
             } catch (e: Exception) {
                 _validationResult.value = ValidationResult(
@@ -176,35 +169,6 @@ class QuizSingleChoiceViewModel @Inject constructor(
         val lectureId: Int,
         val questionIndex: Int
     )
-
-    fun goToPreviousQuestion() {
-        val currentIndex = _currentQuestionIndex.value ?: 0
-        val questionsList = _questions.value ?: emptyList()
-
-        if (currentIndex > 0) {
-            setCurrentQuestion(currentIndex - 1)
-        }
-    }
-
-    fun showResults() {
-        val questionsList = _questions.value ?: emptyList()
-        val score = calculateScore()
-        _navigationEvents.value = QuizNavigationEvent.ShowResults(score, questionsList.size)
-    }
-
-    private fun calculateScore(): Int {
-        val questionsList = _questions.value ?: return 0
-        var score = 0
-
-        /*questionsList.forEach { question ->
-            val userAnswer = userAnswers[question.id]
-            if (userAnswer != null && question.correctAnswers.contains(userAnswer)) {
-                score++
-            }
-        }*/
-
-        return score
-    }
 
     fun isAnswerSelected(): Boolean {
         return _selectedAnswer.value != null

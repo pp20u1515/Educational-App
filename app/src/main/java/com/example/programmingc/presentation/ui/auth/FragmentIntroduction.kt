@@ -33,7 +33,7 @@ class FragmentIntroduction: Fragment() {
     }
 
     private fun navigateDirection(){
-        val destination = FragmentIntroductionDirections.actionFragmentIntroductionToFragmentMainScreen()
+        val destination = FragmentIntroductionDirections.actionFragmentIntroductionToFragmentCourseC()
         findNavController().navigate(destination)
     }
 }

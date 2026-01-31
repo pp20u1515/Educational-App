@@ -2,11 +2,13 @@ package com.example.programmingc.presentation.ui.lessons.quiz
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.programmingc.domain.model.QuestionType
 import com.example.programmingc.domain.model.QuizQuestion
 import com.example.programmingc.domain.model.ValidationResult
 import com.example.programmingc.domain.usecase.GetQuestionsUseCase
+import com.example.programmingc.domain.usecase.UseLiveForWrongAnswerUseCase
 import com.example.programmingc.domain.usecase.ValidateQuizAnswerUseCase
 import com.example.programmingc.presentation.ui.lessons.quiz.QuizSingleChoiceViewModel.NavigationData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,8 +18,9 @@ import javax.inject.Inject
 @HiltViewModel
 class QuizInputChoiceViewModel @Inject constructor(
     private val validateQuizAnswerUseCase: ValidateQuizAnswerUseCase,
-    private val getQuestionsUseCase: GetQuestionsUseCase
-): BaseQuizViewModel() {
+    private val getQuestionsUseCase: GetQuestionsUseCase,
+    private val useLiveForWrongAnswerUseCase: UseLiveForWrongAnswerUseCase
+): ViewModel() {
     private val _questions = MutableLiveData<List<QuizQuestion>>()
     val questions: LiveData<List<QuizQuestion>> = _questions
 
@@ -47,7 +50,7 @@ class QuizInputChoiceViewModel @Inject constructor(
 
     private var userAnswers = mutableListOf<String?>() // key: questionId (String)
 
-    override fun loadQuestionsForLecture(lectureId: Int, questionIndex: Int) {
+    fun loadQuestionsForLecture(lectureId: Int, questionIndex: Int) {
         _quizState.value = QuizState.Loading
         _errorMessage.value = null
 
@@ -126,11 +129,10 @@ class QuizInputChoiceViewModel @Inject constructor(
         println("DEBUG: All user answers: $userAnswers")
     }
 
-    override fun validateQuizAnswer(){
+    fun validateQuizAnswer(){
         val question = _currentQuestion.value
         val selectedIndex = _selectedAnswer.value
-        println("question in valid: $question")
-        println("selectedIndex: $selectedIndex")
+
         if (question == null || selectedIndex == null) {
             _validationResult.value = ValidationResult(
                 isCorrect = false,
@@ -147,11 +149,8 @@ class QuizInputChoiceViewModel @Inject constructor(
                 )
                 _validationResult.value = result
 
-                // Автоматически переходим к следующему вопросу после правильного ответа
-                if (result.isCorrect) {
-                    // Задержка для показа feedback
-                    kotlinx.coroutines.delay(1000)
-                    //goToNextQuestion()
+                if (!result.isCorrect){
+                    useLiveForWrongAnswerUseCase.invoke()
                 }
             } catch (e: Exception) {
                 _validationResult.value = ValidationResult(
@@ -162,7 +161,7 @@ class QuizInputChoiceViewModel @Inject constructor(
         }
     }
 
-    override fun goToNextQuestion(lessonId: String) {
+    fun goToNextQuestion(lessonId: String) {
         val currentIndex = _currentQuestionIndex.value ?: 0
         val questionsList = _questions.value ?: emptyList()
 
@@ -185,26 +184,6 @@ class QuizInputChoiceViewModel @Inject constructor(
         }
     }
 
-    fun showResults() {
-        val questionsList = _questions.value ?: emptyList()
-        val score = calculateScore()
-        _navigationEvents.value = QuizInputChoiceViewModel.QuizNavigationEvent.ShowResults(score, questionsList.size)
-    }
-
-    private fun calculateScore(): Int {
-        val questionsList = _questions.value ?: return 0
-        var score = 0
-
-        /*questionsList.forEach { question ->
-            val userAnswer = userAnswers[question.id]
-            if (userAnswer != null && question.correctAnswers.contains(userAnswer)) {
-                score++
-            }
-        }*/
-
-        return score
-    }
-
     fun clearNavigationEvent() {
         _navigationEvents.value = null
     }
@@ -213,7 +192,7 @@ class QuizInputChoiceViewModel @Inject constructor(
         _errorMessage.value = null
     }
 
-    override fun getTotalQuestions(): Int {
+    fun getTotalQuestions(): Int {
         return _questions.value?.size ?: 0
     }
 
@@ -221,14 +200,6 @@ class QuizInputChoiceViewModel @Inject constructor(
         val currentIndex = _currentQuestionIndex.value ?: 0
         val totalQuestions = getTotalQuestions()
         return currentIndex == totalQuestions - 1
-    }
-
-    override fun getCurrentQuestion(): QuizQuestion? {
-        TODO("Not yet implemented")
-    }
-
-    override fun getCurrentQuestionIndex(): Int {
-        TODO("Not yet implemented")
     }
 
     sealed class QuizState {

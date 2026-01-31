@@ -3,7 +3,6 @@ package com.example.programmingc.presentation.ui.factory
 import com.example.programmingc.R
 import com.example.programmingc.domain.model.QuestionType
 import com.example.programmingc.domain.model.QuizQuestion
-import com.example.programmingc.presentation.ui.lessons.quiz.BaseQuizFragment
 import com.example.programmingc.presentation.ui.lessons.quiz.FragmentQuizInputChoice
 import com.example.programmingc.presentation.ui.lessons.quiz.FragmentQuizMultipleChoice
 import com.example.programmingc.presentation.ui.lessons.quiz.FragmentQuizSingleChoice

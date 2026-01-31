@@ -1,4 +1,4 @@
-package com.example.programmingc.presentation.ui.courses
+package com.example.programmingc.presentation.ui.lessons.quiz
 
 import android.os.Bundle
 import android.view.LayoutInflater

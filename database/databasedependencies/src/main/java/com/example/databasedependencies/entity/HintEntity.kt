@@ -14,9 +14,11 @@ import androidx.room.PrimaryKey
     )]
 )
 data class HintEntity(
-    @PrimaryKey
-    val id: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0L,
     val userId: String,
-    val text: String,
-    val isUsed: Boolean = false
+    val isUsed: Boolean = false,
+    val lastResetDate: Long = System.currentTimeMillis(),
+    val dailyHints: Int = 5,
+    val dailyLimit: Int = 5
 )

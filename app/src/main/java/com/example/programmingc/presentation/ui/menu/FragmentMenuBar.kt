@@ -4,17 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.programmingc.databinding.FragmentMenubarBinding
 import com.example.programmingc.presentation.ui.MainActivity
+import com.example.programmingc.presentation.ui.MainViewModel
+import kotlinx.coroutines.launch
 
 class FragmentMenuBar: BaseMenuBar() {
     private var _binding: FragmentMenubarBinding?= null
     private val binding: FragmentMenubarBinding get() = _binding!!
-    private val menuBarViewModel: MenuBarViewModel by viewModels()
+    private val menuBarViewModel: MenuBarViewModel by activityViewModels()
 
     override fun shouldShowMenu(): Boolean {
-        return false // Сам меню-бар не должен управлять своей видимостью
+        return false
     }
 
     override fun onCreateView(
@@ -31,20 +36,35 @@ class FragmentMenuBar: BaseMenuBar() {
         super.onViewCreated(view, savedInstanceState)
 
         setupClickListener()
+        observeViewModel()
     }
 
     private fun setupClickListener(){
         binding.menuIcon.setOnClickListener{
-
+            (requireActivity() as MainActivity).openDrawer()
         }
 
         binding.cardView.setOnClickListener {
-
+            viewModel.navigateTo(MainViewModel.MenuNavigationEvent.ToDiamonds)
         }
 
         binding.menuHint.setOnClickListener {
-
+            viewModel.navigateTo(MainViewModel.MenuNavigationEvent.ToLives)
         }
+    }
+
+    private fun observeViewModel(){
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                menuBarViewModel.liveCount.collect { count ->
+                    updateHintCountUI(count)
+                }
+            }
+        }
+    }
+
+    private fun updateHintCountUI(count: Int){
+        binding.hintCount.text = count.toString()
     }
 
     override fun onDestroyView() {

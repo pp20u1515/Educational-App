@@ -1,69 +1,50 @@
 package com.example.programmingc.presentation.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.programmingc.domain.model.Credential
-import com.example.programmingc.domain.usecase.AuthenticateUseCase
 import com.example.programmingc.domain.usecase.CheckAuthStateUseCase
 import com.example.programmingc.domain.usecase.SignOutUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.Result
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val authUseCase: AuthenticateUseCase,
     private val checkAuthStateUseCase: CheckAuthStateUseCase,
     private val signOutUseCase: SignOutUseCase
 ) : ViewModel() {
-    // Состояние аутентификации
     private val _authState = MutableStateFlow<AuthState>(AuthState.Loading)
     val authState: StateFlow<AuthState> = _authState.asStateFlow()
+    private val _navigationEvents = MutableSharedFlow<MenuNavigationEvent>()
+    val navigationEvent = _navigationEvents.asSharedFlow()
+    private val _menuBarVisible = MutableStateFlow(true)
+    val menuBarVisible: StateFlow<Boolean> = _menuBarVisible
 
-    // Видимость меню
-    val _menuBarVisible = MutableLiveData(true)
-    val menuBarVisible: LiveData<Boolean> = _menuBarVisible
-
-    // Проверка состояния аутентификации
     fun checkAuthState() {
         viewModelScope.launch {
-            val result = checkAuthStateUseCase()
-            _authState.value = if (result.isSuccess) {
-                if (result.getOrNull() == true)
-                    AuthState.Authenticated
-                else
-                    AuthState.Unauthenticated
+            val result = checkAuthStateUseCase.invoke()
+
+            if (result) {
+                _authState.value = AuthState.Authenticated
             } else {
-                AuthState.Error(result.exceptionOrNull()?.message ?: "Auth check failed")
+                _authState.value = AuthState.Unauthenticated
             }
         }
     }
 
-    // Аутентификация
-    suspend fun authenticate(email: String, password: String) {
-        _authState.value = AuthState.Loading
-        authUseCase(Credential(email = email, password = password))
-        _authState.value = AuthState.Authenticated
-    }
-
-    suspend fun resetPassword(email: String){
-
-    }
-
-    // Выход
     fun signOut() {
         viewModelScope.launch {
             val result = signOutUseCase()
-            _authState.value = if (result.isSuccess) {
-                AuthState.Unauthenticated
+
+            if (result) {
+                _authState.value = AuthState.Unauthenticated
             } else {
-                AuthState.Error(result.exceptionOrNull()?.message ?: "Logout failed")
+                _authState.value = AuthState.Error( "Logout failed")
             }
         }
     }
@@ -76,10 +57,21 @@ class MainViewModel @Inject constructor(
         _menuBarVisible.value = false
     }
 
+    fun navigateTo(event: MenuNavigationEvent){
+        viewModelScope.launch {
+            _navigationEvents.emit(event)
+        }
+    }
+
     sealed class AuthState {
         object Loading : AuthState()
         object Authenticated : AuthState()
         object Unauthenticated : AuthState()
         data class Error(val message: String) : AuthState()
+    }
+
+    sealed class MenuNavigationEvent {
+        object ToDiamonds: MenuNavigationEvent()
+        object ToLives: MenuNavigationEvent()
     }
 }

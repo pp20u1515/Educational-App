@@ -32,6 +32,7 @@ abstract class BaseMenuBar: Fragment() {
         }
     }
 
-    // Абстрактный метод, который должен быть реализован в дочерних классах
+    // Class that should be realized in child classes
     abstract fun shouldShowMenu(): Boolean
+
 }

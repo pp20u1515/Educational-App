@@ -36,6 +36,7 @@ fun CredentialDto.toDomain(): Credential = Credential(
 fun FirebaseUser.toDomain(): User = User(
     id = uid,
     email = email ?: "",
-    password = displayName ?: ""
+    password = displayName ?: "",
+    registrationDate = System.currentTimeMillis()
 )
 // endregion

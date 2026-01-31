@@ -15,10 +15,6 @@ class DiamondsDaoService @Inject constructor(database: Database) {
         diamondsDao.insert(diamonds.toEntity())
     }
 
-    fun readAll(): Flow<List<Diamonds>>{
-        return diamondsDao.readAll().map { diamonds -> diamonds.map { it.toDomain() } }
-    }
-
     suspend fun update(diamonds: Diamonds){
         diamondsDao.update(diamonds.toEntity())
     }

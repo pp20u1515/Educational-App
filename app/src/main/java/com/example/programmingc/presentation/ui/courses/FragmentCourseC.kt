@@ -1,4 +1,4 @@
-package com.example.programmingc.presentation.ui
+package com.example.programmingc.presentation.ui.courses
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,10 +12,10 @@ import com.example.programmingc.databinding.FragmentMainScreenBinding
 import com.example.programmingc.presentation.ui.adapter.LessonWindowAdapter
 import com.example.programmingc.presentation.ui.menu.BaseMenuBar
 
-class FragmentMainScreen: BaseMenuBar() {
+class FragmentCourseC: BaseMenuBar() {
     private var _binding: FragmentMainScreenBinding? = null
     private val binding: FragmentMainScreenBinding get() = _binding!!
-    private val mainScreenViewModel: MainScreenViewModel by viewModels()
+    private val courseCViewModel: CourseCViewModel by viewModels()
     private lateinit var adapter: LessonWindowAdapter
 
     override fun shouldShowMenu(): Boolean {
@@ -37,7 +37,7 @@ class FragmentMainScreen: BaseMenuBar() {
 
         setupRecyclerView() // ← Добавляем инициализацию RecyclerView
         observeViewModel()
-        mainScreenViewModel.loadLessons()
+        courseCViewModel.loadLessons()
     }
 
     private fun setupRecyclerView() {
@@ -50,14 +50,14 @@ class FragmentMainScreen: BaseMenuBar() {
     }
 
     private fun observeViewModel(){
-        mainScreenViewModel.lessons.observe(viewLifecycleOwner){ lessons ->
+        courseCViewModel.lessons.observe(viewLifecycleOwner){ lessons ->
             adapter.updateLessons(lessons) // ← Обновляем данные существующего адаптера
         }
 
-        mainScreenViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+        courseCViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             errorMessage?.let { message ->
                 showErrorToast(message)
-                mainScreenViewModel.clearError()
+                courseCViewModel.clearError()
             }
         }
     }
@@ -76,8 +76,8 @@ class FragmentMainScreen: BaseMenuBar() {
     }
 
     private fun navigateToLesson(id: String){
-        val direction = FragmentMainScreenDirections
-            .actionFragmentMainScreenToFragmentLesson(lessonId = id)
+        val direction = FragmentCourseCDirections
+            .actionFragmentCourseCToFragmentLesson(lessonId = id)
         findNavController().navigate(direction)
     }
 }

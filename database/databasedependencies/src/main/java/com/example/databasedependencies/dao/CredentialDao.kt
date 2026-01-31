@@ -14,9 +14,6 @@ interface CredentialDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(credentialDao: CredentialEntity)
 
-    @Query("SELECT * FROM Credentials")
-    fun readAll(): Flow<List<CredentialEntity>>
-
     @Query("SELECT * FROM Credentials WHERE email=:email")
     suspend fun readByEmail(email: String): CredentialEntity?
 

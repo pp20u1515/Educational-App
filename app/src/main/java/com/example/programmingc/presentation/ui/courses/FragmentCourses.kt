@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.example.programmingc.databinding.FragmentCoursesBinding
 import com.example.programmingc.presentation.ui.menu.BaseMenuBar
@@ -13,7 +12,6 @@ import com.example.programmingc.presentation.ui.menu.BaseMenuBar
 class FragmentCourses: BaseMenuBar() {
     private var _binding: FragmentCoursesBinding?= null
     private val binding: FragmentCoursesBinding get() = _binding!!
-    private lateinit var direction: NavDirections
 
     override fun shouldShowMenu(): Boolean {
         return true
@@ -26,16 +24,20 @@ class FragmentCourses: BaseMenuBar() {
     ): View? {
         _binding = FragmentCoursesBinding.inflate(inflater, container, false)
 
-        binding.buttonBeginner.setOnClickListener{
-            direction = FragmentCoursesDirections.actionFragmentLevelsToFragmentMainScreen()
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonC.setOnClickListener{
+            val direction = FragmentCoursesDirections.actionFragmentLevelsToFragmentCourseC()
             findNavController().navigate(direction)
         }
 
-        binding.buttonMiddle.setOnClickListener{
-            Toast.makeText(requireContext(), "Soon", Toast.LENGTH_SHORT).show()
+        binding.buttonNewCourse.setOnClickListener{
+            Toast.makeText(requireContext(), "New course will appear soon!", Toast.LENGTH_SHORT).show()
         }
-
-        return binding.root
     }
 
     override fun onDestroyView() {

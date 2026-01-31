@@ -15,8 +15,7 @@ import androidx.room.PrimaryKey
 )
 data class DiamondsEntity(
     @PrimaryKey
-    val id: String,
+    val id: Long = 0L,
     val userId: String,
     val availableDiamonds: Int
-
 )

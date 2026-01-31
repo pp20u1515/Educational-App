@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.databasedependencies.db.Database
 import com.example.programmingc.data.datasource.local.service.CredentialDaoService
+import com.example.programmingc.data.datasource.local.service.LivesDaoService
 import com.example.programmingc.data.datasource.local.service.UserDaoService
 import dagger.Module
 import dagger.Provides
@@ -22,7 +23,7 @@ class LocalModule {
             context,
             Database::class.java,
             "educationalApp.db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
     @Provides
@@ -33,5 +34,10 @@ class LocalModule {
     @Provides
     fun provideCredentialDaoService(database: Database): CredentialDaoService {
         return CredentialDaoService(database)
+    }
+
+    @Provides
+    fun provideLiveDaoService(database: Database): LivesDaoService{
+        return LivesDaoService(database)
     }
 }

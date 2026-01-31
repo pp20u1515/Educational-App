@@ -22,7 +22,6 @@ import com.example.programmingc.presentation.edit_text.CodeContent
 import com.example.programmingc.presentation.edit_text.TextContent
 import com.example.programmingc.presentation.edit_text.parseContentWithCodeBlocks
 import com.example.programmingc.presentation.model.RoundedBackgroundSpan
-import com.example.programmingc.presentation.ui.adapter.LessonAdapter
 import com.example.programmingc.presentation.ui.menu.BaseMenuBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,7 +30,6 @@ class LessonFragment: BaseMenuBar() {
     private var _binding: LessonBinding? = null
     private val binding: LessonBinding get() = _binding!!
     private val lessonViewModel: LessonViewModel by viewModels()
-    private lateinit var adapter: LessonAdapter
 
     override fun shouldShowMenu(): Boolean {
         return true
@@ -55,7 +53,6 @@ class LessonFragment: BaseMenuBar() {
         lessonViewModel.loadQuestionsForLesson(lessonId)
 
         setupObservers(lessonId)
-        //setupClickListeners()
     }
 
     private fun setupObservers(lessonId: String){

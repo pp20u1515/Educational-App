@@ -9,10 +9,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.programmingc.databinding.FragmentQuizInputChoiceBinding
 import com.example.programmingc.domain.model.QuizQuestion
 import com.example.programmingc.domain.model.ValidationResult
+import com.example.programmingc.presentation.ui.menu.BaseMenuBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FragmentQuizInputChoice: BaseQuizFragment() {
+class FragmentQuizInputChoice: BaseMenuBar() {
     private var _binding: FragmentQuizInputChoiceBinding? = null
     private val binding: FragmentQuizInputChoiceBinding get() = _binding!!
     private val quizInputChoiceViewModel: QuizInputChoiceViewModel by viewModels()
@@ -68,9 +69,7 @@ class FragmentQuizInputChoice: BaseQuizFragment() {
         android.widget.Toast.makeText(requireContext(), message, android.widget.Toast.LENGTH_SHORT).show()
     }
 
-    override fun getViewModel(): BaseQuizViewModel = quizInputChoiceViewModel
-
-    override fun observeViewModel() {
+    private fun observeViewModel() {
         // Наблюдаем за текущим вопросом
         quizInputChoiceViewModel.currentQuestion.observe(viewLifecycleOwner) { question ->
             question?.let {
@@ -180,7 +179,7 @@ class FragmentQuizInputChoice: BaseQuizFragment() {
             // Изменяем поведение кнопки после правильного ответа
             binding.checkAnswerButton.setOnClickListener {
                 if (quizInputChoiceViewModel.isLastQuestion()) {
-                    quizInputChoiceViewModel.showResults()
+                    //quizInputChoiceViewModel.showResults()
                 } else {
                     quizInputChoiceViewModel.goToNextQuestion(lessonId)
                 }
@@ -205,9 +204,5 @@ class FragmentQuizInputChoice: BaseQuizFragment() {
         binding.questionId.text = question.question
 
 
-    }
-
-    override fun setupQuestion(question: QuizQuestion) {
-        TODO("Not yet implemented")
     }
 }

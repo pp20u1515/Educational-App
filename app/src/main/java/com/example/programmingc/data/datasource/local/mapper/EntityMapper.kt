@@ -1,14 +1,12 @@
 package com.example.programmingc.data.datasource.local.mapper
 
 import com.example.databasedependencies.entity.CredentialEntity
-import com.example.databasedependencies.entity.DailyHintStatusEntity
 import com.example.databasedependencies.entity.DiamondsEntity
 import com.example.databasedependencies.entity.HintEntity
 import com.example.databasedependencies.entity.UserEntity
 import com.example.programmingc.domain.model.Credential
-import com.example.programmingc.domain.model.DailyHintStatus
 import com.example.programmingc.domain.model.Diamonds
-import com.example.programmingc.domain.model.Hint
+import com.example.programmingc.domain.model.Live
 import com.example.programmingc.domain.model.User
 
 // region entity -> domain
@@ -25,26 +23,19 @@ fun UserEntity.toDomain(): User = User(
     registrationDate = registrationDate
 )
 
-fun HintEntity.toDomain(): Hint = Hint(
+fun HintEntity.toDomain(): Live = Live(
     id = id,
     userId = userId,
-    text = text,
-    isUsed = isUsed
+    isUsed = isUsed,
+    lastResetDate = lastResetDate,
+    dailyHints = dailyHints,
+    dailyLimit = dailyLimit
 )
 
 fun DiamondsEntity.toDomain(): Diamonds = Diamonds(
     id = id,
     userId = userId,
     availableDiamonds = availableDiamonds
-)
-
-fun DailyHintStatusEntity.toDomain(): DailyHintStatus = DailyHintStatus(
-    id = id,
-    userId = userId,
-    available = available,
-    usedToday = usedToday,
-    dailyLimit = dailyLimit,
-    nextResetTime = nextResetTime
 )
 // endregion
 
@@ -62,25 +53,18 @@ fun User.toEntity(): UserEntity = UserEntity(
     registrationDate = registrationDate
 )
 
-fun Hint.toEntity(): HintEntity = HintEntity(
+fun Live.toEntity(): HintEntity = HintEntity(
     id = id,
     userId = userId,
-    text = text,
-    isUsed = isUsed
+    isUsed = isUsed,
+    lastResetDate = lastResetDate,
+    dailyHints = dailyHints,
+    dailyLimit = dailyLimit
 )
 
 fun Diamonds.toEntity(): DiamondsEntity = DiamondsEntity(
     id = id,
     userId = userId,
     availableDiamonds = availableDiamonds
-)
-
-fun DailyHintStatus.toEntity(): DailyHintStatusEntity = DailyHintStatusEntity(
-    id = id,
-    userId = userId,
-    available = available,
-    usedToday = usedToday,
-    dailyLimit = dailyLimit,
-    nextResetTime = nextResetTime
 )
 // endregion

@@ -60,6 +60,10 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.8.5")
 
+    // WorkManager
+    implementation("androidx.work:work-runtime:2.11.0")
+    implementation("androidx.hilt:hilt-work:1.3.0")
+
     // Firebase
     implementation (platform("com.google.firebase:firebase-bom:34.1.0"))
     implementation ("com.google.firebase:firebase-analytics")
@@ -79,6 +83,7 @@ dependencies {
     implementation(libs.firebase.crashlytics.buildtools)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.benchmark.common)
+    implementation(libs.androidx.hilt.common)
     kapt ("com.google.dagger:hilt-android-compiler:2.56.2")
     kapt ("androidx.hilt:hilt-compiler:1.2.0")
 

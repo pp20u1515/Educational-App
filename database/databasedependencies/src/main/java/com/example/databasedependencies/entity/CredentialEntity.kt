@@ -14,7 +14,7 @@ import androidx.room.PrimaryKey
     )])
 data class CredentialEntity (
     @PrimaryKey
-    val id: String,
+    val id: Long = 0L,
     val email: String,
     val password: String
 )

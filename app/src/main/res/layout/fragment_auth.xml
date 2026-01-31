@@ -110,6 +110,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.051"
-            app:srcCompat="@drawable/image_c" />
+            app:srcCompat="@drawable/kodo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

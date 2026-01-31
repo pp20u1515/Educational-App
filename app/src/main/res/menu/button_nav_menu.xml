@@ -14,10 +14,6 @@
             android:icon="@drawable/image_c"
             android:title="Settings"/>
         <item
-            android:id="@+id/nav_levels"
-            android:icon="@drawable/image_c"
-            android:title="Levels"/>
-        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/image_c"
             android:title="SignOut"/>

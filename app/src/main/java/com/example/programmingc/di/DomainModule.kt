@@ -7,7 +7,6 @@ import com.example.programmingc.data.datasource.remote.service.INetworkDaoServic
 import com.example.programmingc.data.repository.AuthRepository
 import com.example.programmingc.data.repository.CredentialRepository
 import com.example.programmingc.data.repository.UserRepository
-import com.example.programmingc.datasource.remote.service.NetworkDaoService
 import com.example.programmingc.domain.repo.IAuthRepository
 import com.example.programmingc.domain.repo.ICredentialRepository
 import com.example.programmingc.domain.repo.IUserRepository
@@ -19,21 +18,30 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import android.content.Context
+import com.example.programmingc.data.datasource.local.service.LivesDaoService
+import com.example.programmingc.data.event_coordinator.LivesEventCoordinator
+import com.example.programmingc.data.repository.LivesRepository
 import com.example.programmingc.data.repository.LessonRepository
 import com.example.programmingc.data.repository.PackageRepository
 import com.example.programmingc.data.repository.QuestionsRepository
+import com.example.programmingc.domain.repo.ILivesRepository
 import com.example.programmingc.domain.repo.ILessonRepository
 import com.example.programmingc.domain.repo.IPackageRepository
 import com.example.programmingc.domain.repo.IQuestionsRepository
 import com.example.programmingc.domain.usecase.CheckAuthStateUseCase
 import com.example.programmingc.domain.usecase.CompleteLessonUseCase
 import com.example.programmingc.domain.usecase.CreateAccUseCase
+import com.example.programmingc.domain.usecase.GetAvailableLivesUseCase
 import com.example.programmingc.domain.usecase.GetLessonUseCase
 import com.example.programmingc.domain.usecase.GetQuestionsUseCase
+import com.example.programmingc.domain.usecase.LivesUpdateUseCase
+import com.example.programmingc.domain.usecase.ResetIfNewDayUseCase
 import com.example.programmingc.domain.usecase.ResetPasswordUseCase
 import com.example.programmingc.domain.usecase.ShowLessonsUseCase
 import com.example.programmingc.domain.usecase.ShowPackageUseCase
 import com.example.programmingc.domain.usecase.SignOutUseCase
+import com.example.programmingc.domain.usecase.UseLiveForWrongAnswerUseCase
+import com.example.programmingc.domain.usecase.ValidateCredentialsUseCase
 import com.example.programmingc.domain.usecase.ValidateQuizAnswerUseCase
 
 @Module
@@ -46,10 +54,9 @@ class DomainModule {
 
     @Provides
     fun provideUserRepository(
-        userDaoService: UserDaoService,
-        networkDaoService: NetworkDaoService
+        userDaoService: UserDaoService
     ): IUserRepository{
-        return UserRepository(userDaoService, networkDaoService)
+        return UserRepository(userDaoService)
     }
 
     @Provides
@@ -65,9 +72,10 @@ class DomainModule {
     fun provideAuthRepository(
         firebaseAuth: FirebaseAuth,
         networkDaoService: INetworkDaoService,
-        userDaoService: UserDaoService
+        userDaoService: UserDaoService,
+        livesDaoService: LivesDaoService
     ): IAuthRepository{
-        return AuthRepository(firebaseAuth, networkDaoService, userDaoService)
+        return AuthRepository(firebaseAuth, networkDaoService, userDaoService, livesDaoService)
     }
 
     @Provides
@@ -83,6 +91,14 @@ class DomainModule {
     @Provides
     fun provideQuestionRepository(context: Context): IQuestionsRepository{
         return QuestionsRepository(context)
+    }
+
+    @Provides
+    fun provideLivesRepository(
+        livesDaoService: LivesDaoService,
+        userDaoService: UserDaoService,
+        livesEventCoordinator: LivesEventCoordinator): ILivesRepository{
+        return LivesRepository(livesDaoService, userDaoService, livesEventCoordinator)
     }
 
     @Provides
@@ -114,16 +130,39 @@ class DomainModule {
     }
 
     @Provides
-    fun provideGetUsersUseCase(
-        userRepository: IUserRepository
-    ): GetUsersUseCase {
-        return GetUsersUseCase(userRepository)
+    fun provideGetAvailableLivesUseCase(livesRepository: ILivesRepository): GetAvailableLivesUseCase{
+        return GetAvailableLivesUseCase(livesRepository)
     }
+
     @Provides
     fun provideGetLessonUseCase(
         lessonRepository: ILessonRepository
     ): GetLessonUseCase{
         return GetLessonUseCase(lessonRepository)
+    }
+
+    @Provides
+    fun provideGetQuestionsUseCase(
+        questionsRepository: IQuestionsRepository
+    ): GetQuestionsUseCase{
+        return GetQuestionsUseCase(questionsRepository)
+    }
+
+    @Provides
+    fun provideGetUsersUseCase(
+        userRepository: IUserRepository
+    ): GetUsersUseCase {
+        return GetUsersUseCase(userRepository)
+    }
+
+    @Provides
+    fun provideLivesUpdateUseCase(livesRepository: ILivesRepository): LivesUpdateUseCase{
+        return LivesUpdateUseCase(livesRepository)
+    }
+
+    @Provides
+    fun provideResetIfNewDayUseCase(liveRepository: ILivesRepository): ResetIfNewDayUseCase{
+        return ResetIfNewDayUseCase(liveRepository)
     }
 
     @Provides
@@ -155,10 +194,13 @@ class DomainModule {
     }
 
     @Provides
-    fun provideGetQuestionsUseCase(
-        questionsRepository: IQuestionsRepository
-    ): GetQuestionsUseCase{
-        return GetQuestionsUseCase(questionsRepository)
+    fun provideUseLiveForWrongAnswerUseCase(liveRepository: ILivesRepository): UseLiveForWrongAnswerUseCase{
+        return UseLiveForWrongAnswerUseCase(liveRepository)
+    }
+
+    @Provides
+    fun provideValidateCredentialsUseCase(): ValidateCredentialsUseCase{
+        return ValidateCredentialsUseCase()
     }
 
     @Provides

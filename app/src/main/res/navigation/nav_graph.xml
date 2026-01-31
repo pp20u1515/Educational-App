@@ -3,13 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentMainScreen">
-
-    <activity
-        android:id="@+id/activityMainScreen"
-        android:name="com.example.programmingc.presentation.ui.MainActivity"
-        android:label="activity_main_screen"
-        tools:layout="@layout/activity_main_screen" />
+    app:startDestination="@id/fragmentCourses">
 
     <fragment
         android:id="@+id/fragmentCreateAcc"
@@ -29,8 +23,8 @@
         tools:layout="@layout/fragment_introduction">
 
         <action
-            android:id="@+id/action_fragmentIntroduction_to_fragmentMainScreen"
-            app:destination="@id/fragmentMainScreen" />
+            android:id="@+id/action_fragmentIntroduction_to_fragmentCourseC"
+            app:destination="@id/fragmentCourseC" />
     </fragment>
 
     <fragment
@@ -44,13 +38,13 @@
     </fragment>
 
     <fragment
-        android:id="@+id/fragmentMainScreen"
-        android:name="com.example.programmingc.presentation.ui.FragmentMainScreen"
-        android:label="fragmentMainScreen"
+        android:id="@+id/fragmentCourseC"
+        android:name="com.example.programmingc.presentation.ui.courses.FragmentCourseC"
+        android:label="fragmentCourseC"
         tools:layout="@layout/fragment_main_screen" >
 
         <action
-            android:id="@+id/action_fragmentMainScreen_to_fragment_lesson"
+            android:id="@+id/action_fragmentCourseC_to_fragment_lesson"
             app:destination="@id/fragment_lesson" >
 
             <argument
@@ -60,8 +54,11 @@
 
         </action>
         <action
-            android:id="@+id/action_fragmentMainScreen_to_fragmentDiamonds"
+            android:id="@+id/action_fragmentCourseC_to_fragmentDiamonds"
             app:destination="@id/fragmentDiamonds" />
+        <action
+            android:id="@+id/action_fragmentCourseC_to_fragment_menu"
+            app:destination="@id/fragment_menu" />
     </fragment>
 
     <fragment
@@ -78,8 +75,8 @@
         tools:layout="@layout/fragment_courses">
 
         <action
-            android:id="@+id/action_fragmentLevels_to_fragmentMainScreen"
-            app:destination="@id/fragmentMainScreen" />
+            android:id="@+id/action_fragmentLevels_to_fragmentCourseC"
+            app:destination="@id/fragmentCourseC" />
     </fragment>
 
     <fragment
@@ -129,7 +126,7 @@
 
     <fragment
         android:id="@+id/fragment_practice"
-        android:name="com.example.programmingc.presentation.ui.courses.PracticeFragment"
+        android:name="com.example.programmingc.presentation.ui.lessons.quiz.PracticeFragment"
         android:label="fragment_practice"
         tools:layout="@layout/practice">
 
@@ -217,6 +214,28 @@
         <action
             android:id="@+id/action_fragment_quiz_input_choice_self"
             app:destination="@id/fragment_quiz_input_choice" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_menu"
+        android:name="com.example.programmingc.presentation.ui.menu.FragmentMenuBar"
+        android:label="fragmentMenu"
+        tools:layout="@layout/fragment_menubar">
+
+        <action
+            android:id="@+id/action_fragment_menu_to_fragmentDiamonds"
+            app:destination="@id/fragmentDiamonds" />
+        <action
+            android:id="@+id/action_fragment_menu_to_fragment_lives"
+            app:destination="@id/fragment_lives" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_lives"
+        android:name="com.example.programmingc.presentation.ui.menu.DialogFragmentLives"
+        android:label="fragmentLives"
+        tools:layout="@layout/fragment_lives">
+
     </fragment>
 
 </navigation>

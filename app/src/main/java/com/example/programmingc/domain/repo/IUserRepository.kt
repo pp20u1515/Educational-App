@@ -10,4 +10,7 @@ interface IUserRepository {
     suspend fun delete()
     fun getAll(): Flow<List<User>>
 
+    suspend fun updateNotActiveUser(userId: String)
+
+    suspend fun getCurrentUser(): User?
 }

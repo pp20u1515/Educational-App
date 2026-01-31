@@ -1,9 +1,11 @@
 package com.example.programmingc.data.repository
 
+import com.example.programmingc.data.datasource.local.service.LivesDaoService
 import com.example.programmingc.data.datasource.local.service.UserDaoService
 import com.example.programmingc.data.datasource.remote.service.INetworkDaoService
 import com.example.programmingc.datasource.remote.mapper.toDomain
 import com.example.programmingc.domain.model.Credential
+import com.example.programmingc.domain.model.Live
 import com.example.programmingc.domain.repo.IAuthRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -12,7 +14,8 @@ import javax.inject.Inject
 class AuthRepository @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val networkDaoService: INetworkDaoService,
-    private val userDaoService: UserDaoService
+    private val userDaoService: UserDaoService,
+    private val livesDaoService: LivesDaoService
 ): IAuthRepository {
     override suspend fun isUserAuthenticated(): Boolean {
         val firebaseUser = firebaseAuth.currentUser
@@ -32,7 +35,8 @@ class AuthRepository @Inject constructor(
             rc = false
         }
         else{
-            userDaoService.insert(user)
+            userDaoService.updateActiveUser(user.id)
+            println("user from auth: ${userDaoService.getCurrentUser()}")
         }
         return rc
     }
@@ -41,7 +45,9 @@ class AuthRepository @Inject constructor(
         val user = networkDaoService.register(credential)
 
         if (user != null){
-            userDaoService.insert(user.toDomain())
+            val domainUser = user.toDomain()
+            userDaoService.insert(domainUser)
+            livesDaoService.insert(Live(userId = domainUser.id))
         }
 
         return user
@@ -53,8 +59,15 @@ class AuthRepository @Inject constructor(
 
     override suspend fun signOut(): Boolean {
         return try {
-            firebaseAuth.signOut()
-            true
+            val currentUser = userDaoService.getCurrentUser()
+
+            if (currentUser != null){
+                userDaoService.updateNotActiveUser(currentUser.id)
+                firebaseAuth.signOut()
+                true
+            } else {
+                false
+            }
         }
         catch (e: Exception){
             false

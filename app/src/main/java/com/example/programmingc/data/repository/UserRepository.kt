@@ -8,13 +8,19 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
-    private val userDaoService: UserDaoService,
-    private val networkDaoService: INetworkDaoService
+    private val userDaoService: UserDaoService
 ): IUserRepository {
 
     override suspend fun insert(user: User) {
         userDaoService.insert(user)
-        networkDaoService
+    }
+
+    override suspend fun updateNotActiveUser(userId: String) {
+        userDaoService.updateNotActiveUser(userId)
+    }
+
+    override suspend fun getCurrentUser(): User? {
+        return userDaoService.getCurrentUser()
     }
 
     override suspend fun read() {

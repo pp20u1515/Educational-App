@@ -8,6 +8,7 @@ import com.example.programmingc.domain.model.QuestionType
 import com.example.programmingc.domain.model.QuizQuestion
 import com.example.programmingc.domain.model.ValidationResult
 import com.example.programmingc.domain.usecase.GetQuestionsUseCase
+import com.example.programmingc.domain.usecase.UseLiveForWrongAnswerUseCase
 import com.example.programmingc.domain.usecase.ValidateQuizAnswerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,8 +17,9 @@ import javax.inject.Inject
 @HiltViewModel
 class QuizMultipleChoiceViewModel @Inject constructor(
     private val validateQuizAnswerUseCase: ValidateQuizAnswerUseCase,
-    private val getQuestionsUseCase: GetQuestionsUseCase
-) : ViewModel() {
+    private val getQuestionsUseCase: GetQuestionsUseCase,
+    private val useLiveForWrongAnswerUseCase: UseLiveForWrongAnswerUseCase
+): ViewModel() {
 
     private val _questions = MutableLiveData<List<QuizQuestion>>()
     val questions: LiveData<List<QuizQuestion>> = _questions
@@ -142,16 +144,15 @@ class QuizMultipleChoiceViewModel @Inject constructor(
 
         viewModelScope.launch {
             try {
-                // Передаем выбранные тексты опций в use case
-                val result = // Изменен тип на List<String>
+                val result =
                     validateQuizAnswerUseCase(
                         question = question,
-                        userAnswers = selectedOptions // Изменен тип на List<String>
+                        userAnswers = selectedOptions
                     )
                 _validationResult.value = result
 
-                if (result.isCorrect) {
-                    kotlinx.coroutines.delay(1000)
+                if (!result.isCorrect){
+                    useLiveForWrongAnswerUseCase.invoke()
                 }
             } catch (e: Exception) {
                 _validationResult.value = ValidationResult(
