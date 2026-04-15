@@ -1,8 +1,8 @@
 package com.example.programmingc.data.repository
 
-import com.example.programmingc.data.datasource.local.service.CredentialDaoService
-import com.example.programmingc.data.datasource.local.service.UserDaoService
-import com.example.programmingc.data.datasource.remote.service.INetworkDaoService
+import com.example.programmingc.data.source.local.service.CredentialDaoService
+import com.example.programmingc.data.source.local.service.UserDaoService
+import com.example.programmingc.data.source.remote.service.INetworkDaoService
 import com.example.programmingc.domain.model.Credential
 import com.example.programmingc.domain.repo.ICredentialRepository
 import com.google.firebase.auth.FirebaseUser

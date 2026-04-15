@@ -1,7 +1,7 @@
 package com.example.programmingc.data.repository
 
-import com.example.programmingc.data.datasource.local.service.LivesDaoService
-import com.example.programmingc.data.datasource.local.service.UserDaoService
+import com.example.programmingc.data.source.local.service.LivesDaoService
+import com.example.programmingc.data.source.local.service.UserDaoService
 import com.example.programmingc.data.event_coordinator.LivesEventCoordinator
 import com.example.programmingc.domain.repo.ILivesRepository
 import java.util.Calendar
@@ -16,13 +16,13 @@ class LivesRepository @Inject constructor(
         val user = userDaoService.getCurrentUser()
 
         return if (user != null){
-            val canUse = livesDaoService.getAvailableHints(user.id)
+            val canUse = livesDaoService.getAvailableHints(user.id) ?: 0
 
             if (canUse > 0){
                 val result = livesDaoService.useDailyHint(user.id)
 
                 if (result > 0){
-                    val remaining = livesDaoService.getAvailableHints(user.id)
+                    val remaining = livesDaoService.getAvailableHints(user.id) ?: 0
 
                     livesEventCoordinator.emit(LivesEventCoordinator.LiveEvent.LivesUpdated(remaining))
                     UseLiveResult.Success(remainingLives = remaining)
@@ -49,7 +49,7 @@ class LivesRepository @Inject constructor(
 
             if (lastReset != null && isNewDay(lastReset, now)){
                 livesDaoService.resetToDailyLimit(user.id, now)
-                val remaining = livesDaoService.getAvailableHints(user.id)
+                val remaining = livesDaoService.getAvailableHints(user.id) ?: 0
                 livesEventCoordinator.emit(LivesEventCoordinator.LiveEvent.LivesUpdated(remaining))
             }
         }
@@ -76,7 +76,7 @@ class LivesRepository @Inject constructor(
         val user = userDaoService.getCurrentUser()
 
         return if (user != null){
-            livesDaoService.getAvailableHints(user.id)
+            livesDaoService.getAvailableHints(user.id) ?: 0
         }
         else{
             -1
@@ -87,7 +87,8 @@ class LivesRepository @Inject constructor(
         val user = userDaoService.getCurrentUser()
 
         if (user != null) {
-            val remaining = livesDaoService.getAvailableHints(user.id)
+            val remaining = livesDaoService.getAvailableHints(user.id) ?: 0
+
             livesEventCoordinator.emit(LivesEventCoordinator.LiveEvent.LivesUpdated(remaining))
         }
     }

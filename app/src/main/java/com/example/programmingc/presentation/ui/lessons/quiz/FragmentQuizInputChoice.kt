@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.programmingc.databinding.FragmentQuizInputChoiceBinding
@@ -46,8 +47,17 @@ class FragmentQuizInputChoice: BaseMenuBar() {
 
         quizInputChoiceViewModel.loadQuestionsForLecture(lectureId, questionIndex)
 
+        setupBackPressedHandler()
         setupClickListener()
         observeViewModel()
+    }
+
+    private fun setupBackPressedHandler(){
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (findNavController().previousBackStackEntry != null) {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun setupClickListener(){

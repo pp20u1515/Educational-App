@@ -17,6 +17,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
+        <meta-data
+            android:name="com.google.android.gms.ads.ca-app-pub-9603868762765948~8564394727"
+            android:value="ca-app-pub-9603868762765948~8564394727"/>
+
         <activity
             android:name="com.example.programmingc.presentation.ui.MainActivity"
             android:exported="true"

@@ -1,0 +1,5 @@
+1. When we close the app, open new app, close new app and return to our app again we lose the menu
+2. Counter of lives in the old users acc is not working correct.
+3. When we close app and open again its not saved the last opened page(bad callback).
+4. Fix the warning with the 16KB page size
+5. Атомарность Room

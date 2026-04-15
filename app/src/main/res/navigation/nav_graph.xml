@@ -23,8 +23,8 @@
         tools:layout="@layout/fragment_introduction">
 
         <action
-            android:id="@+id/action_fragmentIntroduction_to_fragmentCourseC"
-            app:destination="@id/fragmentCourseC" />
+            android:id="@+id/action_fragmentIntroduction_to_fragmentCourses"
+            app:destination="@id/fragmentCourses" />
     </fragment>
 
     <fragment

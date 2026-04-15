@@ -14,7 +14,7 @@ interface HintDao {
     suspend fun insert(hint: HintEntity)
 
     @Query("SELECT dailyHints FROM Hints WHERE userId = :userId")
-    suspend fun getAvailableHints(userId: String): Int
+    suspend fun getAvailableHints(userId: String): Int?
 
     @Query("SELECT lastResetDate FROM Hints WHERE userId =:userId")
     suspend fun getLastResetDate(userId: String): Long?

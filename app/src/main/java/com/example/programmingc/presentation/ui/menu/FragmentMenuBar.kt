@@ -28,7 +28,6 @@ class FragmentMenuBar: BaseMenuBar() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMenubarBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 

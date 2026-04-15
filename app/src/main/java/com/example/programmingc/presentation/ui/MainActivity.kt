@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import com.example.programmingc.databinding.ActivityMainScreenBinding
 import com.example.programmingc.presentation.ui.menu.DialogFragmentLives
+import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         _binding = ActivityMainScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        MobileAds.initialize(this) {}
 
         binding.apply {
             activityVM = viewModel
@@ -129,7 +131,7 @@ class MainActivity : AppCompatActivity() {
                     val currentDestination = navController.currentDestination?.id
 
                     if (currentDestination == null || currentDestination == R.id.fragment_auth) {
-                        navController.navigate(R.id.fragmentMainScreen)
+                        navController.navigate(R.id.fragmentCourses)
                     }
                     viewModel.showMenu()
                 }

@@ -19,6 +19,9 @@ interface UserDao {
     @Query("SELECT * FROM Users WHERE isCurrent = true LIMIT 1")
     suspend fun getCurrentUser(): UserEntity?
 
+    @Query("SELECT * FROM Users WHERE id = :userId")
+    suspend fun getUserById(userId: String): UserEntity?
+
     @Update
     suspend fun update(user: UserEntity)
 

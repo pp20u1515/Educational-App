@@ -3,9 +3,9 @@ package com.example.programmingc.di
 import android.content.Context
 import androidx.room.Room
 import com.example.databasedependencies.db.Database
-import com.example.programmingc.data.datasource.local.service.CredentialDaoService
-import com.example.programmingc.data.datasource.local.service.LivesDaoService
-import com.example.programmingc.data.datasource.local.service.UserDaoService
+import com.example.programmingc.data.source.local.service.CredentialDaoService
+import com.example.programmingc.data.source.local.service.LivesDaoService
+import com.example.programmingc.data.source.local.service.UserDaoService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

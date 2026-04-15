@@ -1,6 +1,6 @@
 package com.example.programmingc.data.repository
 
-import com.example.programmingc.data.datasource.local.service.UserDaoService
+import com.example.programmingc.data.source.local.service.UserDaoService
 import com.example.programmingc.domain.model.User
 import com.example.programmingc.domain.repo.IUserRepository
 import javax.inject.Inject

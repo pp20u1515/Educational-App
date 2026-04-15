@@ -68,14 +68,13 @@ dependencies {
     implementation (platform("com.google.firebase:firebase-bom:34.1.0"))
     implementation ("com.google.firebase:firebase-analytics")
     implementation ("com.google.firebase:firebase-auth")
-    implementation ("com.google.firebase:firebase-firestore:26.0.0")
     implementation ("com.google.firebase:firebase-appcheck:19.0.0")
     implementation ("com.google.firebase:firebase-appcheck-ktx:18.0.0")
     implementation ("com.google.firebase:firebase-appcheck-safetynet:16.1.2")
     implementation("com.google.android.gms:play-services-auth:21.4.0")
 
     // Google Ads
-    //implementation("com.google.android.gms:play-services-ads:24.6.0")
+    implementation("com.google.android.gms:play-services-ads:25.0.0")
 
     // library hilt
     implementation("com.google.dagger:hilt-android:2.56.2")
@@ -84,6 +83,7 @@ dependencies {
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.benchmark.common)
     implementation(libs.androidx.hilt.common)
+    implementation(libs.firebase.database)
     kapt ("com.google.dagger:hilt-android-compiler:2.56.2")
     kapt ("androidx.hilt:hilt-compiler:1.2.0")
 

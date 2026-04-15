@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.programmingc.databinding.FragmentDiamondsBinding
 import com.example.programmingc.presentation.ui.adapter.PackageAdapter
@@ -38,6 +40,7 @@ class FragmentPackage: BaseMenuBar() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupBackPressedHandler()
         setupRecyclerView()
         observeViewModel()
         packageViewModel.showPackages()
@@ -46,6 +49,14 @@ class FragmentPackage: BaseMenuBar() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setupBackPressedHandler(){
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (findNavController().previousBackStackEntry != null) {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun setupRecyclerView(){

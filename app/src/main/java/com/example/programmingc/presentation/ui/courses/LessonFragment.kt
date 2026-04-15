@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.programmingc.R
@@ -52,7 +53,16 @@ class LessonFragment: BaseMenuBar() {
         lessonViewModel.loadLesson(lessonId)
         lessonViewModel.loadQuestionsForLesson(lessonId)
 
+        setupBackPressedHandler()
         setupObservers(lessonId)
+    }
+
+    private fun setupBackPressedHandler(){
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (findNavController().previousBackStackEntry != null) {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun setupObservers(lessonId: String){
@@ -87,17 +97,17 @@ class LessonFragment: BaseMenuBar() {
                 }
             }
         }
-        // ✅ Установите обработчик кнопки один раз
+        // Установите обработчик кнопки один раз
         setupPracticeButton(lesson.id)
     }
 
     private fun setupPracticeButton(lessonId: String) {
         binding.startPracticingId.setOnClickListener {
-            startPractice(lessonId) // ✅ Передаем lessonId
+            startPractice(lessonId) // Передаем lessonId
         }
     }
 
-    private fun startPractice(lessonId: String){ // ✅ Принимаем lessonId как параметр
+    private fun startPractice(lessonId: String){ // Принимаем lessonId как параметр
         val questions = lessonViewModel.questions.value
 
         if (questions.isNullOrEmpty()) {

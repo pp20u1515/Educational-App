@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.programmingc.R
@@ -49,9 +50,18 @@ class FragmentQuizSingleChoice : BaseMenuBar() {
         
         quizSingleChoiceViewModel.loadQuestionsForLecture(lectureId, questionIndex)
 
+        setupBackPressedHandler()
         setupRadioButtons()
         setupClickListener()
         observeViewModel()
+    }
+
+    private fun setupBackPressedHandler(){
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (findNavController().previousBackStackEntry != null) {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun setupRadioButtons() {

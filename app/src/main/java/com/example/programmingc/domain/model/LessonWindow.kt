@@ -5,5 +5,7 @@ data class LessonWindow(
     val number: Int,
     val title: String,
     val text: String,
-    val imageResIds: List<Int>
+    val imageResIds: List<Int>,
+    val isCompleted: Boolean = false,
+    val isLocked: Boolean = true
 )

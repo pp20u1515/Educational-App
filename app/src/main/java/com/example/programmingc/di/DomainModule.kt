@@ -1,9 +1,9 @@
 package com.example.programmingc.di
 
 import android.app.Application
-import com.example.programmingc.data.datasource.local.service.CredentialDaoService
-import com.example.programmingc.data.datasource.local.service.UserDaoService
-import com.example.programmingc.data.datasource.remote.service.INetworkDaoService
+import com.example.programmingc.data.source.local.service.CredentialDaoService
+import com.example.programmingc.data.source.local.service.UserDaoService
+import com.example.programmingc.data.source.remote.service.INetworkDaoService
 import com.example.programmingc.data.repository.AuthRepository
 import com.example.programmingc.data.repository.CredentialRepository
 import com.example.programmingc.data.repository.UserRepository
@@ -11,14 +11,14 @@ import com.example.programmingc.domain.repo.IAuthRepository
 import com.example.programmingc.domain.repo.ICredentialRepository
 import com.example.programmingc.domain.repo.IUserRepository
 import com.example.programmingc.domain.usecase.AuthenticateUseCase
-import com.example.programmingc.domain.usecase.GetUsersUseCase
 import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import android.content.Context
-import com.example.programmingc.data.datasource.local.service.LivesDaoService
+import com.example.programmingc.data.source.local.service.DiamondsDaoService
+import com.example.programmingc.data.source.local.service.LivesDaoService
 import com.example.programmingc.data.event_coordinator.LivesEventCoordinator
 import com.example.programmingc.data.repository.LivesRepository
 import com.example.programmingc.data.repository.LessonRepository
@@ -29,7 +29,6 @@ import com.example.programmingc.domain.repo.ILessonRepository
 import com.example.programmingc.domain.repo.IPackageRepository
 import com.example.programmingc.domain.repo.IQuestionsRepository
 import com.example.programmingc.domain.usecase.CheckAuthStateUseCase
-import com.example.programmingc.domain.usecase.CompleteLessonUseCase
 import com.example.programmingc.domain.usecase.CreateAccUseCase
 import com.example.programmingc.domain.usecase.GetAvailableLivesUseCase
 import com.example.programmingc.domain.usecase.GetLessonUseCase
@@ -73,9 +72,14 @@ class DomainModule {
         firebaseAuth: FirebaseAuth,
         networkDaoService: INetworkDaoService,
         userDaoService: UserDaoService,
-        livesDaoService: LivesDaoService
+        livesDaoService: LivesDaoService,
+        diamondsDaoService: DiamondsDaoService
     ): IAuthRepository{
-        return AuthRepository(firebaseAuth, networkDaoService, userDaoService, livesDaoService)
+        return AuthRepository(firebaseAuth,
+            networkDaoService,
+            userDaoService,
+            livesDaoService,
+            diamondsDaoService)
     }
 
     @Provides
@@ -116,13 +120,6 @@ class DomainModule {
     }
 
     @Provides
-    fun provideCompleteLessonUseCase(
-        lessonRepository: ILessonRepository
-    ): CompleteLessonUseCase{
-        return CompleteLessonUseCase(lessonRepository)
-    }
-
-    @Provides
     fun provideCreateAccUseCase(
         authRepository: IAuthRepository
     ): CreateAccUseCase{
@@ -146,13 +143,6 @@ class DomainModule {
         questionsRepository: IQuestionsRepository
     ): GetQuestionsUseCase{
         return GetQuestionsUseCase(questionsRepository)
-    }
-
-    @Provides
-    fun provideGetUsersUseCase(
-        userRepository: IUserRepository
-    ): GetUsersUseCase {
-        return GetUsersUseCase(userRepository)
     }
 
     @Provides

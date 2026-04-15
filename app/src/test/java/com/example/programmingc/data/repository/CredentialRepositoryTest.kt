@@ -1,8 +1,8 @@
 package com.example.programmingc.data.repository
 
-import com.example.programmingc.data.datasource.local.service.CredentialDaoService
-import com.example.programmingc.data.datasource.local.service.UserDaoService
-import com.example.programmingc.datasource.remote.service.NetworkDaoService
+import com.example.programmingc.data.source.local.service.CredentialDaoService
+import com.example.programmingc.data.source.local.service.UserDaoService
+import com.example.programmingc.data.source.remote.service.NetworkDaoService
 import com.example.programmingc.domain.model.Credential
 import com.example.programmingc.domain.model.User
 import com.example.programmingc.domain.repo.ICredentialRepository

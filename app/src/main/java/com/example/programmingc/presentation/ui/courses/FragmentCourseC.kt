@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -39,9 +40,18 @@ class FragmentCourseC: BaseMenuBar() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupBackPressedHandler()
         setupRecyclerView()
         observeViewModel()
         courseCViewModel.loadLessons()
+    }
+
+    private fun setupBackPressedHandler(){
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (findNavController().previousBackStackEntry != null) {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun setupRecyclerView() {
