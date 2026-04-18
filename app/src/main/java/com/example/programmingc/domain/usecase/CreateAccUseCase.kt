@@ -8,7 +8,7 @@ import javax.inject.Inject
 class CreateAccUseCase @Inject constructor(
     private val authRepository: IAuthRepository
 ) {
-    suspend operator fun invoke(credential: Credential): FirebaseUser? {
+    suspend operator fun invoke(credential: Credential): Result<FirebaseUser> {
         return authRepository.createAcc(credential)
     }
 }

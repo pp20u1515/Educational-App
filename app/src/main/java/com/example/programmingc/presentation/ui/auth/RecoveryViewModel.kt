@@ -24,7 +24,7 @@ class RecoveryViewModel @Inject constructor(
 
                     val rc = resetPasswordUseCase.invoke(normalizedEmail)
 
-                    if (rc){
+                    if (rc.isSuccess){
                         _recoveryState.value = RecoveryState.Success("Password reset email sent successfully")
                     }
                     else{

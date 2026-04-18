@@ -2,7 +2,7 @@ package com.example.programmingc.data.repository
 
 import com.example.programmingc.data.source.local.service.CredentialDaoService
 import com.example.programmingc.data.source.local.service.UserDaoService
-import com.example.programmingc.data.source.remote.service.NetworkDaoService
+import com.example.programmingc.data.source.remote.service.NetworkDataSource
 import com.example.programmingc.domain.model.Credential
 import com.example.programmingc.domain.model.User
 import com.example.programmingc.domain.repo.ICredentialRepository
@@ -23,7 +23,7 @@ import kotlin.test.assertTrue
 class CredentialRepositoryTest {
     private lateinit var mockCredentialDaoService: CredentialDaoService
     private lateinit var mockUserDaoService: UserDaoService
-    private lateinit var mockNetworkDaoService: NetworkDaoService
+    private lateinit var mockNetworkDaoService: NetworkDataSource
     private lateinit var credentialRepository: CredentialRepository
 
     @Before

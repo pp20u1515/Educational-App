@@ -1,7 +1,7 @@
 package com.example.programmingc.data.repository
 
 import com.example.programmingc.data.source.local.service.UserDaoService
-import com.example.programmingc.data.source.remote.service.INetworkDaoService
+import com.example.programmingc.data.source.remote.service.INetworkDataSource
 import com.example.programmingc.domain.model.Credential
 import com.example.programmingc.domain.model.User
 import com.example.programmingc.domain.repo.IAuthRepository
@@ -26,7 +26,7 @@ import kotlin.test.assertTrue
 @OptIn(ExperimentalCoroutinesApi::class)
 class AuthRepositoryTest {
     private lateinit var mockFirebaseAuth: FirebaseAuth
-    private lateinit var mockNetworkDaoService: INetworkDaoService
+    private lateinit var mockNetworkDaoService: INetworkDataSource
     private lateinit var mockUserDaoService: UserDaoService
     private lateinit var authRepository: AuthRepository
 

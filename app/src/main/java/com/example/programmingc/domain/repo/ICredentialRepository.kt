@@ -6,7 +6,7 @@ import com.google.firebase.auth.FirebaseUser
 interface ICredentialRepository {
     suspend fun authenticate(credential: Credential): Boolean
 
-    suspend fun createAcc(credential: Credential): FirebaseUser?
+    suspend fun createAcc(credential: Credential): Result<FirebaseUser>
 
-    suspend fun resetPassword(email: String): Boolean
+    suspend fun resetPassword(email: String): Result<Boolean>
 }

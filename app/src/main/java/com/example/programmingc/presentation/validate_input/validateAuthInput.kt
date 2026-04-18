@@ -1,4 +1,4 @@
-package com.example.programmingc.domain.validate_input
+package com.example.programmingc.presentation.validate_input
 
 import com.example.programmingc.domain.model.ValidAuthInput
 

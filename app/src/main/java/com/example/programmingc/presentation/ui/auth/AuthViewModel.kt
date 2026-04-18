@@ -28,7 +28,7 @@ class AuthViewModel @Inject constructor(
 
             when (validResult){
                 is ValidateCredentialsUseCase.ValidationResult.Error -> {
-                    _authState.value = AuthState.ValidationError(
+                    _authState.value = AuthState.Error(
                         message = validResult.message
                     )
                 }
@@ -37,7 +37,7 @@ class AuthViewModel @Inject constructor(
                         email = email,
                         password = password))
 
-                    if (authResult) {
+                    if (authResult.isSuccess) {
                         _authState.value = AuthState.Success
                     }
                     else{
@@ -51,7 +51,6 @@ class AuthViewModel @Inject constructor(
     sealed class AuthState {
         object Idle: AuthState()
         object Success : AuthState()
-        data class ValidationError(val message: String) : AuthState()
-        data class Error(val message: String): AuthState() // Error with authentication/net
+        data class Error(val message: String) : AuthState()
     }
 }

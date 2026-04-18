@@ -6,7 +6,7 @@ import javax.inject.Inject
 class ResetPasswordUseCase @Inject constructor(
     private val authRepository: IAuthRepository
 ) {
-    suspend operator fun invoke(email: String): Boolean{
+    suspend operator fun invoke(email: String): Result<Boolean>{
         return authRepository.resetPassword(email)
     }
 }

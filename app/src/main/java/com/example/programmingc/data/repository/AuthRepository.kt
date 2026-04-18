@@ -3,8 +3,9 @@ package com.example.programmingc.data.repository
 import com.example.programmingc.data.source.local.service.DiamondsDaoService
 import com.example.programmingc.data.source.local.service.LivesDaoService
 import com.example.programmingc.data.source.local.service.UserDaoService
-import com.example.programmingc.data.source.remote.service.INetworkDaoService
+import com.example.programmingc.data.source.remote.service.INetworkDataSource
 import com.example.programmingc.data.source.remote.mapper.toDomain
+import com.example.programmingc.data.source.remote.mapper.toDto
 import com.example.programmingc.domain.model.Credential
 import com.example.programmingc.domain.model.Diamonds
 import com.example.programmingc.domain.model.Live
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
-    private val networkDaoService: INetworkDaoService,
+    private val networkDataSource: INetworkDataSource,
     private val userDaoService: UserDaoService,
     private val livesDaoService: LivesDaoService,
     private val diamondsDaoService: DiamondsDaoService
@@ -31,77 +32,93 @@ class AuthRepository @Inject constructor(
     }
 
     // TODO need to check the result if some operations fail
-    override suspend fun authenticate(credential: Credential): Boolean {
-        var rc = true
-        var user = userDaoService.readByEmail(credential.email)
+    override suspend fun authenticate(credential: Credential): Result<Boolean> {
+        return try {
+            val localUser = userDaoService.readByEmail(credential.email)
 
-        if (user == null){
-            user = networkDaoService.authenticate(credential)
+            if (localUser == null){
+                val remoteUser = networkDataSource.authenticate(credential.toDto())
 
-            if (user == null){
-                rc = false
+                if (remoteUser.isFailure){
+                    return Result.failure(remoteUser.exceptionOrNull() ?: Exception("Authentication failed!"))
+                }
+                else{
+                    val userDto = remoteUser.getOrNull() ?: return Result.failure(Exception("User data is null!"))
+                    val user = userDto.toDomain()
+
+                    userDaoService.insert(user)
+                    userDaoService.updateActiveUser(user.id)
+
+                    val livesInfo = networkDataSource.getLivesByUserId(user.id)
+                    val diamondsInfo = networkDataSource.getDiamondsByUserId(user.id)
+
+                    if (livesInfo.isSuccess) {
+                        livesInfo.getOrNull()?.let { liveDto ->
+                            livesDaoService.insert(
+                                Live(
+                                    id = liveDto.id,
+                                    userId = liveDto.userId,
+                                    isUsed = liveDto.isUsed,
+                                    lastResetDate = liveDto.lastResetDate,
+                                    dailyHints = liveDto.dailyHints,
+                                    dailyLimit = liveDto.dailyLimit
+                                )
+                            )
+                        }
+                    }
+
+                    if (diamondsInfo.isSuccess) {
+                        diamondsInfo.getOrNull()?.let { diamondsDto ->
+                            diamondsDaoService.insert(
+                                Diamonds(
+                                    id = diamondsDto.id,
+                                    userId = diamondsDto.userId,
+                                    availableDiamonds = diamondsDto.availableDiamonds
+                                )
+                            )
+                        }
+                    }
+                }
             }
             else{
-                userDaoService.insert(user)
-                userDaoService.updateActiveUser(user.id)
-
-                val livesInfo = networkDaoService.getLivesByUserId(user.id)
-                val diamondsInfo = networkDaoService.getDiamondsByUserId(user.id)
-
-                livesInfo?.let {
-                    livesDaoService.insert(Live(
-                        id = it.id,
-                        userId = it.userId,
-                        isUsed = it.isUsed,
-                        lastResetDate = it.lastResetDate,
-                        dailyHints = it.dailyHints,
-                        dailyLimit = it.dailyLimit))
-                }
-
-                diamondsInfo?.let {
-                    diamondsDaoService.insert(Diamonds(
-                        id = it.id,
-                        userId = it.userId,
-                        availableDiamonds = it.availableDiamonds
-                    ))
-                }
+                userDaoService.updateActiveUser(localUser.id)
             }
+            Result.success(true)
+        } catch (e: Exception){
+            Result.failure(e)
         }
-        else{
-            userDaoService.updateActiveUser(user.id)
-        }
-        return rc
     }
 
-    override suspend fun createAcc(credential: Credential): FirebaseUser? {
-        val user = networkDaoService.register(credential)
+    override suspend fun createAcc(credential: Credential): Result<FirebaseUser> {
+        return try {
+            val user = networkDataSource.registerUser(credential.toDto())
 
-        if (user != null){
-            val domainUser = user.toDomain()
-            try {
-                val rc = networkDaoService.initializeUserResources(userId = domainUser.id)
+            if (user.isSuccess){
+                val firebaseUser = user.getOrNull() ?: return Result.failure(Exception("User is null after registration"))
+                val domainUser = firebaseUser.toDomain()
+                val rc = networkDataSource.registerUserResources(userId = domainUser.id)
 
-                if (rc){
+                if (rc.isSuccess){
                     userDaoService.insert(domainUser)
                     livesDaoService.insert(Live(userId = domainUser.id))
                     diamondsDaoService.insert(Diamonds(userId = domainUser.id))
+                    Result.success(firebaseUser)
                 }else{
                     //networkDaoService.deleteUser()
-                    return null
+                    Result.failure(Exception("Failed to initialize user resources"))
                 }
-            } catch (e: Exception){
-                //networkDaoService.deleteUser()
-                throw e
             }
+            else{
+                Result.failure(user.exceptionOrNull() ?: Exception("Registration failed!"))
+            }
+        }catch (e: Exception){
+            Result.failure(e)
         }
-        else{
-            return null
-        }
-        return user
+
     }
 
-    override suspend fun resetPassword(email: String): Boolean {
-        return networkDaoService.resetPassword(email)
+    override suspend fun resetPassword(email: String): Result<Boolean> {
+        return networkDataSource.resetPassword(email)
     }
 
     override suspend fun signOut(): Boolean {

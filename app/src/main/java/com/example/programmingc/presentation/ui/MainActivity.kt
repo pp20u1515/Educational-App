@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import com.example.programmingc.databinding.ActivityMainScreenBinding
 import com.example.programmingc.presentation.ui.menu.DialogFragmentLives
-import com.google.android.gms.ads.MobileAds
+//import com.google.android.gms.ads.MobileAds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         _binding = ActivityMainScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        MobileAds.initialize(this) {}
+        //MobileAds.initialize(this) {}
 
         binding.apply {
             activityVM = viewModel

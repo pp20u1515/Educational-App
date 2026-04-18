@@ -48,7 +48,7 @@ android {
 dependencies {
     implementation (project(":database:databasedependencies"))
     implementation ("androidx.core:core-ktx:1.7.0")
-    implementation ("androidx.appcompat:appcompat:1.6.1")
+    implementation ("androidx.appcompat:appcompat:1.7.1")
     implementation ("com.google.android.material:material:1.8.0")
     implementation ("androidx.constraintlayout:constraintlayout:2.2.0")
     implementation ("androidx.fragment:fragment-ktx:1.8.5")
@@ -74,7 +74,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:21.4.0")
 
     // Google Ads
-    implementation("com.google.android.gms:play-services-ads:25.0.0")
+    //implementation("com.google.android.gms:play-services-ads:25.0.0")
 
     // library hilt
     implementation("com.google.dagger:hilt-android:2.56.2")
@@ -84,6 +84,7 @@ dependencies {
     implementation(libs.androidx.benchmark.common)
     implementation(libs.androidx.hilt.common)
     implementation(libs.firebase.database)
+    implementation ("com.google.firebase:firebase-storage")
     kapt ("com.google.dagger:hilt-android-compiler:2.56.2")
     kapt ("androidx.hilt:hilt-compiler:1.2.0")
 

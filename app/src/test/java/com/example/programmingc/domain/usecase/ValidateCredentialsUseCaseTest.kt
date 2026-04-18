@@ -1,7 +1,7 @@
 package com.example.programmingc.domain.usecase
 
 import com.example.programmingc.domain.model.ValidAuthInput
-import com.example.programmingc.domain.validate_input.checkInput
+import com.example.programmingc.presentation.validate_input.checkInput
 import io.mockk.every
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic

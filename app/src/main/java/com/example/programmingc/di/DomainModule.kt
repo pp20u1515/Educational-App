@@ -3,7 +3,7 @@ package com.example.programmingc.di
 import android.app.Application
 import com.example.programmingc.data.source.local.service.CredentialDaoService
 import com.example.programmingc.data.source.local.service.UserDaoService
-import com.example.programmingc.data.source.remote.service.INetworkDaoService
+import com.example.programmingc.data.source.remote.service.INetworkDataSource
 import com.example.programmingc.data.repository.AuthRepository
 import com.example.programmingc.data.repository.CredentialRepository
 import com.example.programmingc.data.repository.UserRepository
@@ -62,7 +62,7 @@ class DomainModule {
     fun provideCredentialRepository(
         credentialDaoService: CredentialDaoService,
         userDaoService: UserDaoService,
-        networkDaoService: INetworkDaoService
+        networkDaoService: INetworkDataSource
     ): ICredentialRepository{
         return CredentialRepository(credentialDaoService, userDaoService, networkDaoService)
     }
@@ -70,7 +70,7 @@ class DomainModule {
     @Provides
     fun provideAuthRepository(
         firebaseAuth: FirebaseAuth,
-        networkDaoService: INetworkDaoService,
+        networkDaoService: INetworkDataSource,
         userDaoService: UserDaoService,
         livesDaoService: LivesDaoService,
         diamondsDaoService: DiamondsDaoService

@@ -1,11 +1,10 @@
 package com.example.programmingc.di
 
-import com.example.programmingc.data.source.remote.service.INetworkDaoService
-import com.example.programmingc.data.source.remote.dao.FirebaseAuthDao
-import com.example.programmingc.data.source.remote.dao.FirebaseStorageDao
-import com.example.programmingc.data.source.remote.service.NetworkDaoService
+import com.example.programmingc.data.source.remote.service.INetworkDataSource
+import com.example.programmingc.data.source.remote.service.NetworkDataSource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,20 +28,10 @@ class RemoteModule {
     }
 
     @Provides
-    fun provideFirebaseAuthDao(firebaseAuth: FirebaseAuth): FirebaseAuthDao {
-        return FirebaseAuthDao(firebaseAuth)
-    }
-
-    @Provides
-    fun provideNetworkDaoService(
-        firebaseAuthDao: FirebaseAuthDao,
-        firebaseStorageDao: FirebaseStorageDao
-    ): INetworkDaoService {
-        return NetworkDaoService(firebaseAuthDao, firebaseStorageDao)
-    }
-
-    @Provides
-    fun provideFirebaseStorageDao(firebaseStorage: FirebaseDatabase): FirebaseStorageDao{
-        return FirebaseStorageDao(firebaseStorage)
+    fun provideNetworkDataSource(
+        firebaseAuth: FirebaseAuth,
+        firebaseDatabase: FirebaseDatabase
+    ): INetworkDataSource {
+        return NetworkDataSource(firebaseAuth, firebaseDatabase)
     }
 }

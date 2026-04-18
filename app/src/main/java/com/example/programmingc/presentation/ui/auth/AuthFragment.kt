@@ -79,9 +79,6 @@ class AuthFragment: BaseMenuBar() {
             is AuthViewModel.AuthState.Success -> {
                 navigateToIntroduction()
             }
-            is AuthViewModel.AuthState.ValidationError -> {
-                showError(state.message)
-            }
             is AuthViewModel.AuthState.Error -> {
                 showError(state.message)
             }

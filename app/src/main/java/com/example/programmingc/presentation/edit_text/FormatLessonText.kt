@@ -73,7 +73,7 @@ private fun formatTextWithBold(text: String): SpannableStringBuilder {
             // Первая часть всегда обычный текст
             val normalText = SpannableString(parts[i])
             normalText.setSpan(
-                ForegroundColorSpan(Color.parseColor("#000000")), // Темно-серый
+                ForegroundColorSpan(Color.parseColor("#000000")),
                 0,
                 normalText.length,
                 SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE

@@ -7,7 +7,7 @@ import javax.inject.Inject
 class AuthenticateUseCase @Inject constructor(
     private val authRepository: IAuthRepository
 ){
-    suspend operator fun invoke(credential: Credential): Boolean{
+    suspend operator fun invoke(credential: Credential): Result<Boolean>{
        return authRepository.authenticate(credential)
     }
 }
